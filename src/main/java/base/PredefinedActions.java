@@ -31,7 +31,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import constant.ConstantPath;
 import CustomException.InvalidLocatorType;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import stepDefination.AutomationHooks;
+import stepDefinition.AutomationHooks;
 
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeOptions;
@@ -177,10 +177,12 @@ public class PredefinedActions {
 		return getElement(locator, isWaitRequired).getAttribute(attributeName);
 	}
 
-	public void setText(String locator, boolean isWaitRequired, String text) {
+	public void setText(String locator, boolean isWaitRequired, String text) throws InterruptedException {
 		WebElement element = getElement(locator, isWaitRequired);
 		if (element.isEnabled()) {
+			
 			element.sendKeys(text);
+			System.out.println(text);
 
 		} else
 			System.out.println(locator + " element is not enabled");
@@ -274,6 +276,18 @@ public class PredefinedActions {
 	public void pressDownArrowKey() {
 		Actions actions = new Actions(getDriver());
 		actions.sendKeys(Keys.ARROW_DOWN).perform();
+
+	}
+	
+	public void pressBackSpace() {
+		Actions actions = new Actions(getDriver());
+		actions.sendKeys(Keys.BACK_SPACE).perform();
+
+	}
+	
+	public void pressSpace() {
+		Actions actions = new Actions(getDriver());
+		actions.sendKeys(Keys.SPACE).perform();
 
 	}
 

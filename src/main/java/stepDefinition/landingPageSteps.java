@@ -1,4 +1,4 @@
-package stepDefination;
+package stepDefinition;
 
 import org.testng.Assert;
 
@@ -56,7 +56,7 @@ public class landingPageSteps {
 	}
 
 	@When("they click on the Access button")
-	public void they_click_on_the_Access_button() {
+	public void they_click_on_the_Access_button() throws InterruptedException {
 		landingPageMethods.clickOnAccessButton();
 	}
 

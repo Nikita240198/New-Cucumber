@@ -41,8 +41,9 @@ public boolean isLightModeSelected() {
 	return isElementDisplayed(propOperation.getValue("Lighticon"), true);
 }
 
-public void clickOnAccessButton() {
+public void clickOnAccessButton() throws InterruptedException {
 	clickOnElement(propOperation.getValue("AccessButton"),true);
+	Thread.sleep(3000);
 }
 
 public boolean isLoginPageDisplayed() {
