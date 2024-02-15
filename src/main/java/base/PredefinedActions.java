@@ -16,6 +16,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -205,6 +206,7 @@ public class PredefinedActions {
 			return false;
 		}
 	}
+	
 
 	public boolean waitUntilElementIsVisible(WebElement element) {
 		try {
@@ -235,6 +237,8 @@ public class PredefinedActions {
 			throw new ElementNotInteractableException(locator + " is not clickable");
 
 	}
+	
+
 
 	public void clickOnElementAfterVisible(String locator, boolean isWaitRequired) {
 		WebElement element = getElement(locator, isWaitRequired);
@@ -276,6 +280,12 @@ public class PredefinedActions {
 	public void pressDownArrowKey() {
 		Actions actions = new Actions(getDriver());
 		actions.sendKeys(Keys.ARROW_DOWN).perform();
+
+	}
+	
+	public void pressRightArrowKey() {
+		Actions actions = new Actions(getDriver());
+		actions.sendKeys(Keys.ARROW_RIGHT).build().perform();
 
 	}
 	

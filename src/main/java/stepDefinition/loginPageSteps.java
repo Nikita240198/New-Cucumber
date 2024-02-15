@@ -23,71 +23,48 @@ public class loginPageSteps {
 		loginPageMethods.EnterInValidUserName();
 	}
 
-	@When("Click on Sign in Button")
-	public void click_on_Sign_in_Button() throws InterruptedException {
+	@When("Click on Sign in button")
+	public void click_on_Sign_in_button(){
 	   loginPageMethods.ClickOnSignIn();
 	}
 
-	@Then("a validation message should be displayed indicating that the email ID is incorrect")
-	public void a_validation_message_should_be_displayed_indicating_that_the_email_ID_is_incorrect() {
+	@Then("a validation message should be displayed")
+	public void a_validation_message_should_be_displayed() {
 	    Assert.assertTrue("validation message does not appear",loginPageMethods.isValidationMessageAppear());
+	    
 	}
 
-	@When("the user clicks backspace in the username field until it's empty")
-	public void the_user_clicks_backspace_in_the_username_field_until_it_s_empty() throws InterruptedException {
-		loginPageMethods.FnameBackspace();
+	@When("the user clicks in the username field and it is empty")
+	public void the_user_clicks_in_the_username_field_and_it_is_empty() throws InterruptedException {
 		loginPageMethods.ClickOnSignIn();
 	}
 
-	@Then("a validation message for empty username should be displayed")
-	public void a_validation_message_for_empty_username_should_be_displayed() {
-		 Assert.assertTrue("validation message does not appear",loginPageMethods.isValidationMessageAppear());
-	}
 
 	@When("the user enters only spaces in the username field")
 	public void the_user_enters_only_spaces_in_the_username_field() throws InterruptedException {
 		loginPageMethods.EnterSpaceUsername();
-		loginPageMethods.ClickOnSignIn();
 	}
 	
-	@Then("a validation message for Spaces in  username should be displayed")
-	public void a_validation_message_for_spaces_in_username_Field() {
-		Assert.assertTrue("validation message does not appear",loginPageMethods.isValidationMessageAppear());
-	}
-
 
 	@When("the user enters an invalid password")
 	public void the_user_enters_an_invalid_password() throws InterruptedException {
 		loginPageMethods.EnterInValidPassword();
-		loginPageMethods.ClickOnSignIn();
+		
 	}
 
-	@Then("a validation message for invalid password should be displayed")
-	public void a_validation_message_for_invalid_password_should_be_displayed() {
-		Assert.assertTrue("validation message does not appear",loginPageMethods.isValidationMessageAppear());
+
+	@When("the user clicks and the password field is empty")
+	public void the_user_clicks_and_the_password_field_is_empty() throws InterruptedException {
+
+		loginPageMethods.EmptyPassword();
 	}
 
-	@When("the user clicks backspace in the password field until it's empty")
-	public void the_user_clicks_backspace_in_the_password_field_until_it_s_empty() throws InterruptedException {
-		loginPageMethods.PasswordBackSpace();
-		loginPageMethods.ClickOnSignIn();
-	}
-
-	@Then("a validation message for empty password should be displayed")
-	public void a_validation_message_for_empty_password_should_be_displayed() {
-		Assert.assertTrue("validation message does not appear",loginPageMethods.isValidationMessageAppear());
-	}
 
 	@When("the user enters only spaces in the password field")
 	public void the_user_enters_only_spaces_in_the_password_field() throws InterruptedException {
 		loginPageMethods.EnterSpacePassword();
-		loginPageMethods.ClickOnSignIn();
 	}
 
-	@Then("a validation message for password with only spaces should be displayed")
-	public void a_validation_message_for_password_with_only_spaces_should_be_displayed() {
-		Assert.assertTrue("validation message does not appear",loginPageMethods.isValidationMessageAppear());
-	}
 
 	@When("the user enters valid Username")
 	public void the_user_enters_valid_Username() throws InterruptedException {
@@ -97,6 +74,22 @@ public class loginPageSteps {
 	@When("user enters vaild Password")
 	public void user_enters_vaild_Password() throws InterruptedException {
 		loginPageMethods.ValidPassword();
-		loginPageMethods.ClickOnSignIn();
 	}
+	
+	@When("user should be able to view password")
+	public void user_should_be_able_to_view_password() throws InterruptedException {
+		loginPageMethods.EnabledPassword();
+	}
+	
+	@When("password is getting disabled or not")
+	public void password_is_getting_disabled_or_not() throws InterruptedException {
+		loginPageMethods.DisablePassword();
+	}
+	
+	@When("the user slides the slider to the given number")
+	public void the_user_slides_the_slider_to_the_given_number() throws InterruptedException {
+		loginPageMethods.MoveSlider();
+	}
+	
+	
 }

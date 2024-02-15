@@ -1,0 +1,111 @@
+[
+  {
+    "line": 20,
+    "elements": [
+      {
+        "start_timestamp": "2024-02-15T13:07:44.239Z",
+        "before": [
+          {
+            "result": {
+              "duration": 13979495000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefinition.AutomationHooks.setUp()"
+            }
+          }
+        ],
+        "line": 85,
+        "name": "Verify user select the slider only",
+        "description": "",
+        "id": "user-accesses-login-page-and-enters-credentials;verify-user-select-the-slider-only",
+        "after": [
+          {
+            "result": {
+              "duration": 222903000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefinition.AutomationHooks.tearDown(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 3204702000,
+              "status": "passed"
+            },
+            "line": 86,
+            "name": "the user is on the login page",
+            "match": {
+              "location": "stepDefinition.loginPageSteps.the_user_is_on_the_login_page()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 2193626000,
+              "status": "passed"
+            },
+            "line": 87,
+            "name": "the user slides the slider to the given number",
+            "match": {
+              "location": "stepDefinition.loginPageSteps.the_user_slides_the_slider_to_the_given_number()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 96189000,
+              "status": "passed"
+            },
+            "line": 88,
+            "name": "Click on Sign in button",
+            "match": {
+              "location": "stepDefinition.loginPageSteps.click_on_Sign_in_button()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 67829000,
+              "status": "passed"
+            },
+            "line": 89,
+            "name": "a validation message should be displayed",
+            "match": {
+              "location": "stepDefinition.loginPageSteps.a_validation_message_should_be_displayed()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Logintag"
+          },
+          {
+            "name": "@Logintag10"
+          }
+        ]
+      }
+    ],
+    "name": "User Accesses Login Page and Enters Credentials",
+    "description": "",
+    "id": "user-accesses-login-page-and-enters-credentials",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/featureFiles/LoginFeature.feature",
+    "tags": [
+      {
+        "name": "@Logintag",
+        "type": "Tag",
+        "location": {
+          "line": 19,
+          "column": 1
+        }
+      }
+    ]
+  }
+]

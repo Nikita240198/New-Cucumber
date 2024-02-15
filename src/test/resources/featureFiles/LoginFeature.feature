@@ -23,41 +23,67 @@ Feature: User Accesses Login Page and Enters Credentials
   Scenario: Validation message for incorrect username/email
     Given the user is on the login page
     When the user enters an incorrect email ID in the username field
-    And Click on Sign in Button
-    Then a validation message should be displayed indicating that the email ID is incorrect
+    And Click on Sign in button
+    Then a validation message should be displayed
 
   @Logintag2
   Scenario: empty username field
-    When the user clicks backspace in the username field until it's empty
-    And Click on Sign in Button
-    Then a validation message for empty username should be displayed
+    Given the user is on the login page
+    And the user clicks in the username field and it is empty
+    And Click on Sign in button
+    Then a validation message should be displayed
 
   @Logintag3
   Scenario: Validation message for username field  with only spaces
+    Given the user is on the login page
     When the user enters only spaces in the username field
-    And Click on Sign in Button
-    Then a validation message for username with only spaces should be displayed
+    And Click on Sign in button
+    Then a validation message should be displayed
 
   @Logintag4
   Scenario: Validation message for invalid password
+    Given the user is on the login page
     When the user enters an invalid password
-    And Click on Sign in Button
-    Then a validation message for invalid password should be displayed
+    And Click on Sign in button
+    Then a validation message should be displayed
 
   @Logintag5
   Scenario: empty password field
-    When the user clicks backspace in the password field until it's empty
-    And Click on Sign in Button
-    Then a validation message for empty password should be displayed
+    Given the user is on the login page
+    When the user clicks and the password field is empty
+    And Click on Sign in button
+    Then a validation message should be displayed
 
   @Logintag6
   Scenario: Validation message for password with only spaces
+    Given the user is on the login page
     When the user enters only spaces in the password field
-    And Click on Sign in Button
-    Then a validation message for password with only spaces should be displayed
+    And Click on Sign in button
+    Then a validation message should be displayed
 
   @Logintag7
   Scenario: Successful login with valid credentials
+    Given the user is on the login page
     When the user enters valid Username
     And user enters vaild Password
-    And Click on Sign in Button
+    And Click on Sign in button
+
+  @Logintag8
+  Scenario: Verify Password is enabled on click eye cion 
+    Given the user is on the login page
+    When user enters vaild Password
+    And user should be able to view password
+   
+    @Logintag9
+     Scenario: Verify Password is disabled on click eye cion 
+    Given the user is on the login page
+    When user enters vaild Password
+    Then user should be able to view password
+    And password is getting disabled or not
+    
+    @Logintag10
+    Scenario: Verify user select the slider only 
+    Given the user is on the login page
+    When the user slides the slider to the given number
+    And Click on Sign in button
+    Then a validation message should be displayed
