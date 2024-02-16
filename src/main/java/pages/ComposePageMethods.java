@@ -8,7 +8,7 @@ public class ComposePageMethods extends PredefinedActions {
 	public PropOperation propOperation;
 
 	public ComposePageMethods() {
-		propOperation = new PropOperation(ConstantPath.ComposeMailLocator);
+		propOperation = new PropOperation(ConstantPath.ComposeLocator);
 	}
 	
 	public void OpenCompose() {
@@ -17,18 +17,21 @@ public class ComposePageMethods extends PredefinedActions {
 	}
 	
 	public boolean isComposeOpen() {
-		return isElementVisible(propOperation.getValue("ToField"));
+		return isElementDisplayed(propOperation.getValue("ComposeTitle"), true);
 	}
+	
 	public void ClickOnSend() {
 		clickOnElement(propOperation.getValue("SendButton"),true);
+		sleep(3000);
 	}
 	
 	public boolean isErrorPopupAppear() {
-		return isElementVisible(propOperation.getValue("ErrorPopup"));
+		return isElementDisplayed(propOperation.getValue("ErrorPopup"),true);
 	}
 	
 	public void CloseErrorPopup() {
 		clickOnElement(propOperation.getValue("OkButton"),true);
+		sleep(3000);
 	}
 	
 	
