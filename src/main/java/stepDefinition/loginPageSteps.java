@@ -90,6 +90,17 @@ public class loginPageSteps {
 	public void the_user_slides_the_slider_to_the_given_number() throws InterruptedException {
 		loginPageMethods.MoveSlider();
 	}
-	
+
+
+	@Then("user should login Successfully and navigate to Dashboard Screen")
+	public void user_should_login_Successfully_and_navigate_to_Dashboard_Screen() {
+		  Assert.assertTrue("Dashboard is not vidsible",loginPageMethods.isComposeButtonVisible());
+	}
+
+	@Then("user selects incorrect slider value")
+	public void user_selects_incorrect_slider_value() {
+		loginPageMethods.MoveSliderRandomly();
+	}
+
 	
 }

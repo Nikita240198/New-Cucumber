@@ -69,21 +69,48 @@ Feature: User Accesses Login Page and Enters Credentials
     And Click on Sign in button
 
   @Logintag8
-  Scenario: Verify Password is enabled on click eye cion 
+  Scenario: Verify Password is enabled on click eye cion
     Given the user is on the login page
     When user enters vaild Password
     And user should be able to view password
-   
-    @Logintag9
-     Scenario: Verify Password is disabled on click eye cion 
+
+  @Logintag9
+  Scenario: Verify Password is disabled on click eye cion
     Given the user is on the login page
     When user enters vaild Password
     Then user should be able to view password
     And password is getting disabled or not
-    
-    @Logintag10
-    Scenario: Verify user select the slider only 
+
+  @Logintag10
+  Scenario: Verify user select the slider only
     Given the user is on the login page
     When the user slides the slider to the given number
     And Click on Sign in button
     Then a validation message should be displayed
+
+  @Logintag11
+  Scenario: Verify user is able to login Successsfully
+    Given the user is on the login page
+    When the user enters valid Username
+    And user enters vaild Password
+    And the user slides the slider to the given number
+    And Click on Sign in button
+    Then user should login Successfully and navigate to Dashboard Screen
+    
+    @Logintag12
+     Scenario: Verify user enter correct credential but invalid Slider
+    Given the user is on the login page
+    When the user enters valid Username
+    And user enters vaild Password
+    Then user selects incorrect slider value
+    And Click on Sign in button
+    And  a validation message should be displayed
+    
+    
+    
+    
+    
+    
+    
+    
+    

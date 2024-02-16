@@ -289,6 +289,12 @@ public class PredefinedActions {
 
 	}
 	
+	public void pressLeftArrowKey() {
+		Actions actions = new Actions(getDriver());
+		actions.sendKeys(Keys.ARROW_LEFT).build().perform();
+
+	}
+	
 	public void pressBackSpace() {
 		Actions actions = new Actions(getDriver());
 		actions.sendKeys(Keys.BACK_SPACE).perform();
@@ -313,6 +319,16 @@ public class PredefinedActions {
 		List<WebElement> elements = wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(by, count));
 		return elements;
 	}
+	
+	public void sleep(long time){
+			try {
+				Thread.sleep(time);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	
 
 	protected boolean isElementDisplayed(String locator, boolean isWaitRequired) {
 		try {
@@ -370,5 +386,12 @@ public class PredefinedActions {
 		TakesScreenshot ts = (TakesScreenshot) getDriver();
 		return ts.getScreenshotAs(OutputType.BYTES);
 	}
+	
+	
+	
+	
+	
+	
+	
 
 }
