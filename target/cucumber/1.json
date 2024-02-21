@@ -3,11 +3,11 @@
     "line": 20,
     "elements": [
       {
-        "start_timestamp": "2024-02-16T13:20:24.232Z",
+        "start_timestamp": "2024-02-21T12:47:42.012Z",
         "before": [
           {
             "result": {
-              "duration": 8946243000,
+              "duration": 10995875000,
               "status": "passed"
             },
             "match": {
@@ -15,14 +15,14 @@
             }
           }
         ],
-        "line": 37,
-        "name": "Close Alert Popup",
+        "line": 45,
+        "name": "Closing Alert Popup when user clicks anywhere",
         "description": "",
-        "id": "email-composition-and-alerts;close-alert-popup",
+        "id": "email-composition-and-alerts;closing-alert-popup-when-user-clicks-anywhere",
         "after": [
           {
             "result": {
-              "duration": 145207000,
+              "duration": 263256000,
               "status": "passed"
             },
             "match": {
@@ -35,10 +35,10 @@
         "steps": [
           {
             "result": {
-              "duration": 16175368000,
+              "duration": 16955628000,
               "status": "passed"
             },
-            "line": 38,
+            "line": 46,
             "name": "the user is logged in",
             "match": {
               "location": "stepDefinition.ComposePageSteps.the_user_is_logged_in()"
@@ -47,10 +47,10 @@
           },
           {
             "result": {
-              "duration": 3303016000,
+              "duration": 6078763000,
               "status": "passed"
             },
-            "line": 39,
+            "line": 47,
             "name": "the user clicks on the Compose Email button",
             "match": {
               "location": "stepDefinition.ComposePageSteps.the_user_clicks_on_the_Compose_Email_button()"
@@ -59,10 +59,10 @@
           },
           {
             "result": {
-              "duration": 3096394000,
+              "duration": 3237533000,
               "status": "passed"
             },
-            "line": 40,
+            "line": 48,
             "name": "the user clicks on the Send button without entering any content",
             "match": {
               "location": "stepDefinition.ComposePageSteps.the_user_clicks_on_the_Send_button_without_entering_any_content()"
@@ -71,22 +71,22 @@
           },
           {
             "result": {
-              "duration": 3104213000,
+              "duration": 3232978000,
               "status": "passed"
             },
-            "line": 41,
-            "name": "the user clicks on the OK button",
+            "line": 49,
+            "name": "the user clicks anywhere outside the popup",
             "match": {
-              "location": "stepDefinition.ComposePageSteps.the_user_clicks_on_the_OK_button()"
+              "location": "stepDefinition.ComposePageSteps.the_user_clicks_anywhere_outside_the_popup()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 40658000,
+              "duration": 3098464000,
               "status": "passed"
             },
-            "line": 42,
+            "line": 50,
             "name": "the alert popup should be closed",
             "match": {
               "location": "stepDefinition.ComposePageSteps.the_alert_popup_should_be_closed()"
@@ -99,7 +99,7 @@
             "name": "@ComposeMail"
           },
           {
-            "name": "@ComposeMailtag3"
+            "name": "@ComposeMailtag4"
           }
         ]
       }

@@ -17,6 +17,7 @@ public class ComposePageMethods extends PredefinedActions {
 	}
 	
 	public boolean isComposeOpen() {
+		
 		return isElementDisplayed(propOperation.getValue("ComposeTitle"), true);
 	}
 	
@@ -35,6 +36,9 @@ public class ComposePageMethods extends PredefinedActions {
 	}
 	
 	
-	
+	public void ClickOutsidePopup() {
+		clickOnElement(propOperation.getValue("OutsidePopup"),true);
+		sleep(3000);
+	}
 	
 }

@@ -11,7 +11,7 @@ import io.cucumber.junit.CucumberOptions;
 					dryRun = false, // step definition are not defined than set to true, if set to false than it will execute with browser
 					monochrome = true, 
 					strict = true, 
-					tags = {"@ComposeMailtag3"}, 
+					tags = {"@ComposeMailtag4"}, 
 					plugin = {
 		"json:/Users/Mind/eclipse-workspace/BlinklyCucumber/target/cucumber/1.json"
 							})

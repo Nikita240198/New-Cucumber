@@ -56,7 +56,7 @@ public class ComposePageSteps {
 
 	@When("the user clicks anywhere outside the popup")
 	public void the_user_clicks_anywhere_outside_the_popup() {
-	   
+		composePageMethods.ClickOutsidePopup();
 	}
 
 	@When("the user enters an email address in the To field")
