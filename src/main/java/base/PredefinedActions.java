@@ -173,6 +173,19 @@ public class PredefinedActions {
 			elements = getDriver().findElements(by);
 		return elements;
 	}
+	
+	protected WebElement getElementByValue(String value, boolean isWaitRequired) {
+	    WebElement element = null;
+	    By by = By.xpath("//*[normalize-space()='" + value + "']");
+	    if (isWaitRequired) {
+	        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+	        element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+	    } else {
+	        element = getDriver().findElement(by);
+	    }
+	    return element;
+	}
+
 
 	public String getAttribute(String locator, boolean isWaitRequired, String attributeName) {
 		return getElement(locator, isWaitRequired).getAttribute(attributeName);
@@ -255,6 +268,16 @@ public class PredefinedActions {
 		actions.moveToElement(element).click().build().perform();
 
 	}
+	
+	public void HoverOnElementUsingAction(String locator, boolean isWaitRequired) {
+		WebElement element = getElement(locator, isWaitRequired);
+		Actions actions = new Actions(getDriver());
+		actions.moveToElement(element).build().perform();
+
+	}
+	
+	
+	
 
 	public void clickOnElementUsingJavaScript(String locator, boolean isWaitRequired) {
 		WebElement element = getElement(locator, isWaitRequired);
@@ -305,6 +328,12 @@ public class PredefinedActions {
 		Actions actions = new Actions(getDriver());
 		actions.sendKeys(Keys.SPACE).perform();
 
+	}
+	
+	public void DoubleClick(String locator, boolean isWaitRequired) {
+		 WebElement element = getElement(locator, isWaitRequired);
+		Actions actions = new Actions(getDriver());
+		  actions.doubleClick(element).perform();
 	}
 
 	protected boolean waitUntilPageTitalToBe(String tital) {
