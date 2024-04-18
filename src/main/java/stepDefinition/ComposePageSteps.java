@@ -234,10 +234,10 @@ public class ComposePageSteps {
 
 	}
 
-	@Then("the user should be able to select the current date")
-	public void the_user_should_be_able_to_select_the_current_date() {
-		composePageMethods.ClickonSaveOnScheduleSend();
-	}
+//	@Then("the user should be able to select the current date")
+//	public void the_user_should_be_able_to_select_the_current_date() {
+//		composePageMethods.ClickonSaveOnScheduleSend();
+//	}
 
 	@Then("the user should be able to select any future date from the date picker")
 	public void the_user_should_be_able_to_select_any_future_date_from_the_date_picker() {
@@ -280,14 +280,152 @@ public class ComposePageSteps {
 
 	@Then("the user should not be able to select any past Time from the Calendar")
 	public void the_user_should_not_be_able_to_select_any_past_Time_from_the_Calendar() {
-	    
+		composePageMethods.SelectPastTimeSlot();
 	}
 
 	
-	
-	
-	
-	
-	
+	@Then("clicking outside the Time picker should close it")
+	public void clicking_outside_the_Time_picker_should_close_it() {
+		composePageMethods.CloseSelectTimePopup();
+	}
 
+	
+	@Then("On clicking on Cancel the Popup Should get closes")
+	public void on_clicking_on_Cancel_the_Popup_Should_get_closes() {
+		composePageMethods.CancelScheduleSend();
+	}
+
+	@When("the user should be able to Save")
+	public void the_user_should_be_able_to_Save() {
+		composePageMethods.ClickonSaveOnScheduleSend();
+	}
+
+	@Then("On save The time and date should get display on Compose Box")
+	public void on_save_The_time_and_date_should_get_display_on_Compose_Box() {
+		Assert.assertTrue("Schedule Date and Time is not getting showed", composePageMethods.isElementDisplayed());
+	}
+
+	@Then("On Click on Edit the schedule box should reopen")
+	public void on_Click_on_Edit_the_schedule_box_should_reopen() {
+		composePageMethods.EditScheduledTimeandDate();
+	}
+
+	@Then("On Click on Cross icon the scheedule time should get canceled")
+	public void on_Click_on_Cross_icon_the_scheedule_time_should_get_canceled() {
+		composePageMethods.CrossSchedule();
+	}
+
+	
+	@Then("user Hover on it should show tootlip with message")
+	public void user_Hover_on_it_should_show_tootlip_with_message() {
+		composePageMethods.HoverOnExpire();
+		Assert.assertEquals("Tooltip message is not same", "Toggle to set expiration", composePageMethods.isTootlipMessageissame());
+	
+	}
+	
+	@When("The User click on Set to Expire button a popup should get Open")
+	public void the_User_click_on_Set_to_Expire_button_a_popup_should_get_Open() {
+		composePageMethods.ClickSetToExpire();
+		Assert.assertTrue("popup does not get open", composePageMethods.isPopupvisible());
+		
+		
+	}
+	
+	@Then("the User Clicks on Expiration Time Filed a list should get open")
+	public void the_User_Clicks_on_Expiration_Time_Filed_a_list_should_get_open() {
+		composePageMethods.OpenExpirationDropdown();
+		Assert.assertTrue("List is ot getting displayed", composePageMethods.isExpireTimePopupOpen());
+	}
+
+	@Then("User Should be able to select expiration time for one hour")
+	public void user_Should_be_able_to_select_expiration_time_for_one_hour() {
+		composePageMethods.SelectOneHour();
+	}
+
+
+		@Then("User should be able Enter Password")
+			public void user_should_be_able_Enter_Password() throws InterruptedException {
+				composePageMethods.EnterPassword();
+					}
+
+		@Then("user should be able to Save")
+		public void user_should_be_able_to_Save() {
+			composePageMethods.SaveDateAndTime();
+		}
+
+		@Then("On save Expiration date and time should get displayed")
+		public void on_save_Expiration_date_and_time_should_get_displayed() {
+			composePageMethods.isDateAndTimeisGettingSaved();
+		}
+	
+		@Then("On Click on Cancel the popup should get closed")
+		public void on_Click_on_Cancel_the_popup_should_get_closed() {
+			composePageMethods.cancelExpirationPopup();
+		}
+
+		@Then("On Click Edit The same Set to expiry popup should get open with saved value")
+		public void on_Click_Edit_The_same_Set_to_expiry_popup_should_get_open_with_saved_value() {
+			composePageMethods.OpenEditSetToExpire();
+			Assert.assertTrue(" Date is not there", composePageMethods.isDateVisible());
+			Assert.assertTrue(" Date is not there", composePageMethods.isPasswordVisible());
+		}
+
+		@Then("User Should be able to select expiration time for one week")
+		public void user_Should_be_able_to_select_expiration_time_for_one_week() throws InterruptedException {
+			composePageMethods.SelectNewTime();
+		}
+
+		@Then("User should be able Change Password")
+		public void user_should_be_able_Change_Password() throws InterruptedException {
+			composePageMethods.ChangePassword();
+		}
+	
+		@Then("On click on cross icon saved expiring time should get removed")
+		public void on_click_on_cross_icon_saved_expiring_time_should_get_removed() {
+			composePageMethods.RemoveExpirationTime();
+		}
+		
+		
+		@When("On Hover Tooltip message should show for Vc")
+		public void on_Hover_Tooltip_message_should_show_for_Vc() {
+			composePageMethods.HoveronVC();
+			Assert.assertEquals("message is not same","Toggle visual cryptography",composePageMethods.isMessageSame());
+		}
+
+
+		@When("The User click on VC icon the icon should get enabled")
+		public void the_User_click_on_VC_icon_the_icon_should_get_enabled() {
+			composePageMethods.EnableVc();
+			 Assert.assertTrue("Vc is not enaled", composePageMethods.isVcEnabled());
+		}
+
+		@When("On click on VC icon again the icon should get disabled")
+		public void on_click_on_VC_icon_again_the_icon_should_get_disabled() {
+			composePageMethods.DisableVc();
+		}
+
+		@When("On Hover Tooltip message should show for D2I icon")
+		public void on_Hover_Tooltip_message_should_show_for_D2I_icon() {
+			composePageMethods.HoveronD2I();
+		//	Assert.assertEquals("message is not same","Toggle direct to inbox (unencrypted)",composePageMethods.isD2IMessageSame());
+		}
+
+		@When("The User click on D2I icon the icon should get enabled")
+		public void the_User_click_on_D2I_icon_the_icon_should_get_enabled() {
+			composePageMethods.EnableD2I();		
+			 Assert.assertTrue("Vc is not enaled", composePageMethods.isD2IEnabled());
+		}
+
+		@When("On click on D2I icon again the icon should get disabled")
+		public void on_click_on_D2I_icon_again_the_icon_should_get_disabled() {
+			composePageMethods.DisableD2I();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
 }

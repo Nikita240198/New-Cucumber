@@ -216,13 +216,13 @@ Feature: Email Composition and Alerts
     Then the user clicks on the Send button without entering any content
 
   @ComposeMailtag24
-  Scenario: Verify saving todays date
+  Scenario: Verify Hover on Schedule Send
     Given the user is logged in
     When the user clicks on the Compose Email button
     And the user enters an email address in the To field
     And On click on Enter email id should get enter
     And Enter the subject
-    And Verify on Hover it should show tooltip for Schedule send
+    Then Verify on Hover it should show tooltip for Schedule send
 
   @ComposeMailtag25
   Scenario: Verify saving todays date
@@ -232,9 +232,9 @@ Feature: Email Composition and Alerts
     And On click on Enter email id should get enter
     And Enter the subject
     And Verify schedule send dropdown gets open on click
-    And Open date picker
-    Then the current date should be displayed in the date picker
-    And the user should be able to select the current date
+    And the current date should be displayed in the date picker
+    And the current time should be displayed in the date picker
+    Then the user should be able to Save
 
   @ComposeMailtag26
   Scenario: Verify selecting future date
@@ -285,19 +285,170 @@ Feature: Email Composition and Alerts
   Scenario: Verify unable to select past Time
     Given the user is logged in
     When the user clicks on the Compose Email button
-    And the user enters an email address in the To field
-    And On click on Enter email id should get enter
-    And Enter the subject
+    #And the user enters an email address in the To field
+    #And On click on Enter email id should get enter
+    #And Enter the subject
     And Verify schedule send dropdown gets open on click
     And Open Time picker
     Then the user should not be able to select any past Time from the Calendar
 
   @ComposeMailtag31
-  Scenario: Verify the date picker closes when clicking outside
+  Scenario: Verify the Time picker closes when clicking outside
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    #And the user enters an email address in the To field
+    #And On click on Enter email id should get enter
+    #And Enter the subject
+    And Verify schedule send dropdown gets open on click
+    And Open Time picker
+    Then clicking outside the Time picker should close it
+
+  @ComposeMailtag32
+  Scenario: schedule time is getting save or not
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And Verify schedule send dropdown gets open on click
+    And the user should be able to Save
+    Then On save The time and date should get display on Compose Box
+
+  @ComposeMailtag33
+  Scenario: schedule time is getting Edit or not
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And Verify schedule send dropdown gets open on click
+    And the user should be able to Save
+    And On Click on Edit the schedule box should reopen
+    And Open date picker
+    Then the user should be able to select any future date from the date picker
+    And Open Time picker
+    And the user should be able to select any future Time from the Calendar
+    Then the user should be able to Save
+
+  @ComposeMailtag34
+  Scenario: schedule time is getting Canceled or not
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And Verify schedule send dropdown gets open on click
+    And Open Time picker
+    And the user should be able to Save
+    Then On Click on Cross icon the scheedule time should get canceled
+
+  @ComposeMailtag35
+  Scenario: Verify Set to expire hover message
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And user Hover on it should show tootlip with message
+
+  @ComposeMailtag36
+  Scenario: Verify Set to expire Popup Gets Open on Click
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    Then The User click on Set to Expire button a popup should get Open
+
+  @ComposeMailtag37
+  Scenario: Verify to open Expiration dropdown
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    Then The User click on Set to Expire button a popup should get Open
+    And the User Clicks onExpiraation Time Filed a list should get open
+
+  @ComposeMailtag38
+  Scenario: Verify to Select Expiration time from dropdown for one hour
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    Then The User click on Set to Expire button a popup should get Open
+    And the User Clicks on Expiration Time Filed a list should get open
+    Then User Should be able to select expiration time for one hour
+
+  @ComposeMailtag39
+  Scenario: Verify user save expiry time with password
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    Then The User click on Set to Expire button a popup should get Open
+    And the User Clicks on Expiration Time Filed a list should get open
+    And User Should be able to select expiration time for one hour
+    And User should be able Enter Password
+    And user should be able to Save
+    Then On save Expiration date and time should get displayed
+
+  @ComposeMailtag40
+  Scenario: Verify user save expiry time without password
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    Then The User click on Set to Expire button a popup should get Open
+    And the User Clicks on Expiration Time Filed a list should get open
+    And User Should be able to select expiration time for one hour
+    And user should be able to Save
+    Then On save Expiration date and time should get displayed
+
+  @ComposeMailtag41
+  Scenario: Verify user should be able to cancel Set To Expire Popup
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And The User click on Set to Expire button a popup should get Open
+    Then On Click on Cancel the popup should get closed
+
+  @ComposeMailtag42
+  Scenario: Verify Edit Popup is getting open or not
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And The User click on Set to Expire button a popup should get Open
+    And the User Clicks on Expiration Time Filed a list should get open
+    And User Should be able to select expiration time for one hour
+    And User should be able Enter Password
+    And user should be able to Save
+    Then On Click Edit The same Set to expiry popup should get open with saved value
+
+  @ComposeMailtag43
+  Scenario: Verify user is able to edit Expiration date and time
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And The User click on Set to Expire button a popup should get Open
+    And the User Clicks on Expiration Time Filed a list should get open
+    And User Should be able to select expiration time for one hour
+    And User should be able Enter Password
+    And user should be able to Save
+    Then On Click Edit The same Set to expiry popup should get open with saved value
+    When the User Clicks on Expiration Time Filed a list should get open
+    And User Should be able to select expiration time for one week
+    And User should be able Change Password
+    Then user should be able to Save
+
+  @ComposeMailtag44
+  Scenario: Verify saved time and date is getting canceled
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And The User click on Set to Expire button a popup should get Open
+    And the User Clicks on Expiration Time Filed a list should get open
+    And User Should be able to select expiration time for one hour
+    And User should be able Enter Password
+    And user should be able to Save
+    Then On click on cross icon saved expiring time should get removed
+
+  @ComposeMailtag45
+  Scenario: Verify Send VC mail
     Given the user is logged in
     When the user clicks on the Compose Email button
     And the user enters an email address in the To field
     And On click on Enter email id should get enter
     And Enter the subject
-    And Verify schedule send dropdown gets open on click
-    Then clicking outside the date picker should close it
+    And Enter the Body
+    And On Hover Tooltip message should show for Vc
+    And The User click on VC icon the icon should get enabled
+    And On click on VC icon again the icon should get disabled
+    And The User click on VC icon the icon should get enabled
+    Then the user clicks on the Send button without entering any content
+
+  @ComposeMailtag46
+  Scenario: Verify D2I mail
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And the user enters an email address in the To field
+    And On click on Enter email id should get enter
+    And Enter the subject
+    And Enter the Body
+    And On Hover Tooltip message should show for D2I icon
+    And The User click on D2I icon the icon should get enabled
+    And On click on D2I icon again the icon should get disabled
+    And The User click on D2I icon the icon should get enabled
+    Then the user clicks on the Send button without entering any content

@@ -371,6 +371,8 @@ public class PredefinedActions {
 			return false;
 		}
 	}
+	
+
 
 	public void waitUntilElementIsVisible(String locator) {
 		isElementDisplayed(locator, true);
@@ -404,6 +406,7 @@ public class PredefinedActions {
 	public void selectByText(WebElement element, String valueToSelect) {
 		select = new Select(element);
 		select.selectByVisibleText(valueToSelect);
+		
 	}
 
 	public void scrollToElement() {
