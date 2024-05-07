@@ -4,7 +4,7 @@ import java.util.Random;
 
 import org.openqa.selenium.Keys;
 
-import Blinkly.Locator.LoginLocator;
+
 import base.PredefinedActions;
 import constant.ConstantPath;
 import utility.PropOperation;

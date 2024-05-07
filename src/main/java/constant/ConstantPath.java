@@ -8,6 +8,7 @@ public static final String CONNECT_URL = "https://staging.blinkly.com";
 	public static final String LandingLocator = BASDIR+"landingLocator.properties";
 	public static final String LoginLocator = BASDIR+"loginLocator.properties";
 	public static final String ComposeLocator = BASDIR+"ComposeMailLocator.properties";
+	public static final String DashboardLocator=BASDIR+"DashboardLocator.properties";
 	
 	public static final String CHROMEDRIVER = "repace with Chromedriver path";
 	public static final String EDGEDRIVER = "repace with edgedriver path";

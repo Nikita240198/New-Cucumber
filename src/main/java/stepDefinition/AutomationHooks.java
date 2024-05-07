@@ -23,7 +23,7 @@ public class AutomationHooks extends PredefinedActions  {
 	public static boolean runHeadless;
 	@Before
 	public void setUp() throws IOException, XmlPullParserException {
-		browserName = System.getProperty("browserName", "firefox");
+		browserName = System.getProperty("browserName", "chrome");
 		useWebdriverManager = Boolean.parseBoolean(System.getProperty("useWebdriverManager", "true"));
 		runHeadless = Boolean.parseBoolean(System.getProperty("runHeadless", "false"));
 		predefinedActions.start();

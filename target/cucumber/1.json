@@ -3,11 +3,11 @@
     "line": 20,
     "elements": [
       {
-        "start_timestamp": "2024-04-18T12:28:39.728Z",
+        "start_timestamp": "2024-05-07T13:29:38.947Z",
         "before": [
           {
             "result": {
-              "duration": 17269847000,
+              "duration": 9661673000,
               "status": "passed"
             },
             "match": {
@@ -15,14 +15,14 @@
             }
           }
         ],
-        "line": 443,
-        "name": "Verify D2I mail",
+        "line": 150,
+        "name": "Verify Print on Open mail",
         "description": "",
-        "id": "email-composition-and-alerts;verify-d2i-mail",
+        "id": "verify-dashboad-features;verify-print-on-open-mail",
         "after": [
           {
             "result": {
-              "duration": 1109271000,
+              "duration": 68189000,
               "status": "passed"
             },
             "match": {
@@ -35,10 +35,10 @@
         "steps": [
           {
             "result": {
-              "duration": 16679603000,
+              "duration": 16280344000,
               "status": "passed"
             },
-            "line": 444,
+            "line": 151,
             "name": "the user is logged in",
             "match": {
               "location": "stepDefinition.ComposePageSteps.the_user_is_logged_in()"
@@ -47,143 +47,47 @@
           },
           {
             "result": {
-              "duration": 3807640000,
+              "duration": 2205927000,
               "status": "passed"
             },
-            "line": 445,
-            "name": "the user clicks on the Compose Email button",
+            "line": 152,
+            "name": "user Click on first tile it should Open mail or message",
             "match": {
-              "location": "stepDefinition.ComposePageSteps.the_user_clicks_on_the_Compose_Email_button()"
+              "location": "stepDefinition.DashboardPageSteps.user_Click_on_first_tile_it_should_Open_mail_or_message()"
             },
             "keyword": "When "
           },
           {
             "result": {
-              "duration": 3195804000,
+              "duration": 8321813000,
               "status": "passed"
             },
-            "line": 446,
-            "name": "the user enters an email address in the To field",
+            "line": 153,
+            "name": "On Hover it should show Tooltip Print on Click it should open new page",
             "match": {
-              "location": "stepDefinition.ComposePageSteps.the_user_enters_an_email_address_in_the_To_field()"
+              "location": "stepDefinition.DashboardPageSteps.on_Hover_it_should_show_Tooltip_Print_on_Click_it_should_open_new_page()"
             },
             "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 3059524000,
-              "status": "passed"
-            },
-            "line": 447,
-            "name": "On click on Enter email id should get enter",
-            "match": {
-              "location": "stepDefinition.ComposePageSteps.on_click_on_Enter_email_id_should_get_enter()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 3116182000,
-              "status": "passed"
-            },
-            "line": 448,
-            "name": "Enter the subject",
-            "match": {
-              "location": "stepDefinition.ComposePageSteps.enter_the_subject()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 3500480000,
-              "status": "passed"
-            },
-            "line": 449,
-            "name": "Enter the Body",
-            "match": {
-              "location": "stepDefinition.ComposePageSteps.enter_the_Body()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 3141653000,
-              "status": "passed"
-            },
-            "line": 450,
-            "name": "On Hover Tooltip message should show for D2I icon",
-            "match": {
-              "location": "stepDefinition.ComposePageSteps.on_Hover_Tooltip_message_should_show_for_D2I_icon()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 375210000,
-              "status": "passed"
-            },
-            "line": 451,
-            "name": "The User click on D2I icon the icon should get enabled",
-            "match": {
-              "location": "stepDefinition.ComposePageSteps.the_User_click_on_D2I_icon_the_icon_should_get_enabled()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 296997000,
-              "status": "passed"
-            },
-            "line": 452,
-            "name": "On click on D2I icon again the icon should get disabled",
-            "match": {
-              "location": "stepDefinition.ComposePageSteps.on_click_on_D2I_icon_again_the_icon_should_get_disabled()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 321421000,
-              "status": "passed"
-            },
-            "line": 453,
-            "name": "The User click on D2I icon the icon should get enabled",
-            "match": {
-              "location": "stepDefinition.ComposePageSteps.the_User_click_on_D2I_icon_the_icon_should_get_enabled()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 3296853000,
-              "status": "passed"
-            },
-            "line": 454,
-            "name": "the user clicks on the Send button without entering any content",
-            "match": {
-              "location": "stepDefinition.ComposePageSteps.the_user_clicks_on_the_Send_button_without_entering_any_content()"
-            },
-            "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "name": "@ComposeMail"
+            "name": "@AllMail"
           },
           {
-            "name": "@ComposeMailtag46"
+            "name": "@Alltag19"
           }
         ]
       }
     ],
-    "name": "Email Composition and Alerts",
+    "name": "Verify Dashboad Features",
     "description": "  I want to use this template for my feature file",
-    "id": "email-composition-and-alerts",
+    "id": "verify-dashboad-features",
     "keyword": "Feature",
-    "uri": "file:src/test/resources/featureFiles/ComposeMail.feature",
+    "uri": "file:src/test/resources/featureFiles/All.feature",
     "tags": [
       {
-        "name": "@ComposeMail",
+        "name": "@AllMail",
         "type": "Tag",
         "location": {
           "line": 19,

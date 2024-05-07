@@ -1,6 +1,8 @@
 package stepDefinition;
 
-import org.testng.Assert;
+import org.junit.Assert;
+
+import io.cucumber.java.en.Then;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -15,7 +17,7 @@ public class landingPageSteps {
 
 	@Given("the user is on the Landing screen")
 	public void the_user_is_on_the_Landing_screen() {
-		Assert.assertTrue(landingPageMethods.isLogoVisible(), "Logo is not visible");
+		Assert.assertTrue(landingPageMethods.isLogoVisible());
 	    
 	}
 
@@ -27,12 +29,12 @@ public class landingPageSteps {
 
 	@Then("the screen should refresh")
 	public void the_screen_should_refresh() {
-		Assert.assertTrue(landingPageMethods.isLogoVisible(), "Logo is not visible");
+		Assert.assertTrue(landingPageMethods.isLogoVisible());
 	}
 
 	@Given("the default theme should be light mode")
 	public void the_default_theme_should_be_light_mode()  {
-	    Assert.assertTrue(landingPageMethods.isLightmodeVisible(), "Default theme is not light mode");
+	    Assert.assertTrue(landingPageMethods.isLightmodeVisible());
 	}
 
 	@When("the user clicks on the dark mode icon")
@@ -42,7 +44,7 @@ public class landingPageSteps {
 
 	@Then("the page should switch to dark mode")
 	public void the_page_should_switch_to_dark_mode() {
-		Assert.assertTrue(landingPageMethods.isDarkModeSelected(), "Page did not switch to dark mode");
+		Assert.assertTrue(landingPageMethods.isDarkModeSelected());
 	}
 
 	@When("the user clicks on the light mode icon")
@@ -52,7 +54,7 @@ public class landingPageSteps {
 
 	@Then("the page should switch to light mode")
 	public void the_page_should_switch_to_light_mode(){
-		Assert.assertTrue(landingPageMethods.isLightModeSelected(), "Page did not switch to light mode");
+		Assert.assertTrue(landingPageMethods.isLightModeSelected());
 	}
 
 	@When("they click on the Access button")
@@ -63,7 +65,7 @@ public class landingPageSteps {
 
 @Then("they should be redirected to the login screen")
 public void they_should_be_redirected_to_the_login_screen() {
-		 Assert.assertTrue(landingPageMethods.isLoginPageDisplayed(), "Not redirected to login screen");
+		 Assert.assertTrue(landingPageMethods.isLoginPageDisplayed());
 	}
 	
 

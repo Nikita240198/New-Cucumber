@@ -3,16 +3,10 @@ package pages;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import base.PredefinedActions;
 import constant.ConstantPath;
@@ -189,9 +183,9 @@ public class ComposePageMethods extends PredefinedActions {
 	}
 
 	public void Enterbody() throws InterruptedException {
-		clickOnElement(propOperation.getValue("Body"), true);
 		setText(propOperation.getValue("Body"), true,
 				"This is an automatic generated mail \n design by Nikita \n We are using Selenium with java \n we also learning Cucumber BDD");
+
 		sleep(3000);
 	}
 
@@ -469,92 +463,441 @@ public class ComposePageMethods extends PredefinedActions {
 
 		sleep(2000);
 	}
-		
+
 	public void OpenEditSetToExpire() {
 		clickOnElement(propOperation.getValue("EditExpirationTime"), true);
 
 		sleep(2000);
 	}
-	
+
 	public boolean isDateVisible() {
 		return isElementDisplayed(propOperation.getValue("ExpirationTime"), true);
 
 	}
+
 	public boolean isPasswordVisible() {
 		return isElementDisplayed(propOperation.getValue("Password"), true);
 	}
-	
+
 	public void SelectNewTime() throws InterruptedException {
 		clickOnElement(propOperation.getValue("NewExpiringTime"), true);
 		sleep(2000);
+
+	}
+
+	public void ChangePassword() throws InterruptedException {
+		clickOnElement(propOperation.getValue("Password"), true);
+
+		setText(propOperation.getValue("Password"), true, "Qwerty@123");
+		sleep(2000);
+	}
+
+	public void ViewPassword() throws InterruptedException {
+		clickOnElement(propOperation.getValue("Password"), true);
+
+		setText(propOperation.getValue("Password"), true, "Qwerty@123");
+		sleep(3000);
+
+		clickOnElement(propOperation.getValue("ShowPassword"), true);
+	}
+
+	public void RemoveExpirationTime() {
+		clickOnElement(propOperation.getValue("CancelOnCross"), true);
+	}
+
+	public void HoveronVC() {
+		HoverOnElementUsingAction(propOperation.getValue("VC"), true);
+		sleep(3000);
+	}
+
+	public String isMessageSame() {
+		WebElement message = getElement(propOperation.getValue("VC"), true);
+		return message.getText();
+	}
+
+	public void EnableVc() {
+		clickOnElement(propOperation.getValue("VC"), true);
+	}
+
+	public boolean isVcEnabled() {
+		return isElementDisplayed(propOperation.getValue("DisabledVc"), true);
+	}
+
+	public void DisableVc() {
+		clickOnElement(propOperation.getValue("VC"), true);
+	}
+
+	public void CancelVc() {
+		clickOnElement(propOperation.getValue("CancelOnCross"), true);
+
+	}
+
+	public void HoveronD2I() {
+		HoverOnElementUsingAction(propOperation.getValue("D2I"), true);
+		sleep(3000);
+	}
+
+	public String isD2IMessageSame() {
+		WebElement message = getElement(propOperation.getValue("D2I"), true);
+		return message.getText();
+	}
+
+	public void EnableD2I() {
+		clickOnElement(propOperation.getValue("D2I"), true);
+	}
+
+	public boolean isD2IEnabled() {
+		return isElementDisplayed(propOperation.getValue("EnableD2I"), true);
+	}
+
+	public void DisableD2I() {
+		clickOnElement(propOperation.getValue("D2I"), true);
+	}
+
+	public String HoverTextFormat() {
+		HoverOnElementUsingAction(propOperation.getValue("TextFormatIcon"), true);
+		sleep(3000);
+		return null;
+	}
+
+	public String IsFormatMessageSame() {
+		WebElement message = getElement(propOperation.getValue("TextFormatIcon"), true);
+		return message.getText();
+	}
+
+	public void ClickTextFormat() {
+		clickOnElement(propOperation.getValue("TextFormatIcon"), true);
+		sleep(2000);
+	}
+
+	public boolean isTextformatOpen() {
+		return isElementDisplayed(propOperation.getValue("Undo"), true);
+	}
+
+	public String HoverUndo() {
+		HoverOnElementUsingAction(propOperation.getValue("Undo"), true);
+		sleep(3000);
+		return null;
+	}
+
+	public String isMessageUndosame() {
+		WebElement message = getElement(propOperation.getValue("Undo"), true);
+		return message.getText();
+	}
+
+	public void ClickUndo() {
+		clickOnElementUsingAction(propOperation.getValue("Undo"), true);
+		sleep(3000);
+	}
+
+	public String HoverRedo() {
+		HoverOnElementUsingAction(propOperation.getValue("Redo"), true);
+		sleep(3000);
+		return null;
+	}
+
+	public String isredomessagesame() {
+		WebElement message = getElement(propOperation.getValue("Redo"), true);
+		return message.getText();
+	}
+
+	public void ClickRedo() {
+		clickOnElement(propOperation.getValue("Redo"), true);
+		sleep(2000);
+	}
+
+	public String isTitleavailable() {
+		WebElement message = getElement(propOperation.getValue("Title"), true);
+		return message.getText();
+	}
+
+	public void CancelComposeFromCross() {
+		clickOnElement(propOperation.getValue("CloseCompose"), true);
+		sleep(3000);
+	}
+
+	public void minimizeCompose() {
+		clickOnElement(propOperation.getValue("minimizeCompose"), true);
+		sleep(2000);
+	}
+
+	public void MaximizeCompose() {
+		clickOnElement(propOperation.getValue("MaximizeCompose"), true);
+		sleep(2000);
+	}
+
+	public void DeleteCompose() {
+		clickOnElement(propOperation.getValue("Delete"), true);
+		sleep(3000);
+	}
+
+	public String HoverFontType() {
+		HoverOnElementUsingAction(propOperation.getValue("FontTypeicon"), true);
+		sleep(3000);
+		return null;
+	}
+
+	public String isMessageFontTypesame() {
+		WebElement message = getElement(propOperation.getValue("FontTypeicon"), true);
+		return message.getText();
+	}
+
+	public void ChangeFontType() throws InterruptedException {
+		clickOnElement(propOperation.getValue("FontTypeicon"), true);
+		sleep(3000);
+		setText(propOperation.getValue("FontTypeicon"), true, "Sans-serif");
+	}
+
+	public String HoverFontSize() {
+		HoverOnElementUsingAction(propOperation.getValue("FontSizeicon"), true);
+		sleep(3000);
+		return null;
+	}
+
+	public String isMessageFontSizesame() {
+		WebElement message = getElement(propOperation.getValue("FontSizeicon"), true);
+		return message.getText();
+	}
+
+	public void ChangeFontSize() {
+		clickOnElement(propOperation.getValue("FontSizeicon"), true);
+		sleep(3000);
+
+		clickOnElement(propOperation.getValue("SelectFontSize"), true);
+		sleep(3000);
+
+	}
+
+	public String HoverB() {
+		HoverOnElementUsingAction(propOperation.getValue("BoldIcon"), true);
+		sleep(3000);
+		return null;
+	}
+
+	public String isMessageforBissame() {
+		WebElement message = getElement(propOperation.getValue("BoldIcon"), true);
+		return message.getText();
+	}
+
+	public void ChangetoB() {
+		clickOnElement(propOperation.getValue("BoldIcon"), true);
+		sleep(3000);
+
+	}
+
+	public String HoverI() {
+		HoverOnElementUsingAction(propOperation.getValue("ItalicIcon"), true);
+		sleep(3000);
+		return null;
+	}
+
+	public String isMessageforIissame() {
+		WebElement message = getElement(propOperation.getValue("ItalicIcon"), true);
+		return message.getText();
+	}
+
+	public void ChangetoI() {
+		clickOnElement(propOperation.getValue("ItalicIcon"), true);
+		sleep(3000);
+
+	}
+
+	public String HoverU() {
+		HoverOnElementUsingAction(propOperation.getValue("UnderlineIcon"), true);
+		sleep(3000);
+		return null;
+	}
+
+	public String isMessageforUissame() {
+		WebElement message = getElement(propOperation.getValue("UnderlineIcon"), true);
+		return message.getText();
+	}
+
+	public void ChangetoU() {
+		clickOnElement(propOperation.getValue("UnderlineIcon"), true);
+		sleep(3000);
+
+	}
+
+	public String HoverS() {
+		HoverOnElementUsingAction(propOperation.getValue("StrikethroughIcon"), true);
+		sleep(3000);
+		return null;
+	}
+
+	public String isMessageforSissame() {
+		WebElement message = getElement(propOperation.getValue("StrikethroughIcon"), true);
+		return message.getText();
+	}
+
+	public void ChangetoS() {
+		clickOnElement(propOperation.getValue("StrikethroughIcon"), true);
+		sleep(3000);
+
+	}
+
+	public String HoverAllignement() {
+		HoverOnElementUsingAction(propOperation.getValue("AlignmentIcon"), true);
+		sleep(3000);
+		return null;
+	}
+
+	public String isMessageforAllignmentissame() {
+		WebElement message = getElement(propOperation.getValue("AlignmentIcon"), true);
+		return message.getText();
+	}
+
+	public void ChangeAlignment() {
+		clickOnElement(propOperation.getValue("AlignmentIcon"), true);
+		sleep(3000);
+//		
+//		List<WebElement> element =getAllElements(propOperation.getValue("AlignmentIcon"),true);
+//		
+//	if(element.size()>1) {
+//		 WebElement secondElement = element.get(1);
+//	        secondElement.click();
+//	}
+//	else{
+//		 System.out.println("There is no element at the second index.");
+//	}
+		clickOnElement(propOperation.getValue("SelectAlignment"), true);
+		sleep(3000);
+		
+		
 		
 	}
 	
-public void ChangePassword() throws InterruptedException {
-	clickOnElement(propOperation.getValue("Password"), true);
+	public String HoverBulletList() {
+		HoverOnElementUsingAction(propOperation.getValue("BulletList"), true);
+		sleep(3000);
+		return null;
+	}
+
+	public String isMessageforbulletlistissame() {
+		WebElement message = getElement(propOperation.getValue("BulletList"), true);
+		return message.getText();
+	}
+
+	public void AddbulletList() {
+		clickOnElement(propOperation.getValue("BulletList"), true);
+		sleep(3000);
+
+		
+	}
 	
-	setText(propOperation.getValue("Password"), true, "Qwerty@123");
-	sleep(2000);
-}
+	public String HoverNumberList() {
+		HoverOnElementUsingAction(propOperation.getValue("NumberList"), true);
+		sleep(3000);
+		return null;
+	}
 
-public void ViewPassword() throws InterruptedException {
-	clickOnElement(propOperation.getValue("Password"), true);
+	public String isMessageforNumListissame() {
+		WebElement message = getElement(propOperation.getValue("NumberList"), true);
+		return message.getText();
+	}
+
+	public void AddNumberList() {
+		clickOnElement(propOperation.getValue("NumberList"), true);
+		sleep(3000);
+
+		
+	}
 	
-	setText(propOperation.getValue("Password"), true, "Qwerty@123");
-	sleep(3000);
+	public String HoverIndent() {
+		HoverOnElementUsingAction(propOperation.getValue("Indendt"), true);
+		sleep(3000);
+		return null;
+	}
+
+	public String isMessageforIndentissame() {
+		WebElement message = getElement(propOperation.getValue("Indendt"), true);
+		return message.getText();
+	}
+
+	public void AddIndent() {
+		clickOnElement(propOperation.getValue("Indendt"), true);
+		sleep(3000);
+
+		
+	}
 	
-	clickOnElement(propOperation.getValue("ShowPassword"), true);
-}
+	public String HoverOutdent() {
+		HoverOnElementUsingAction(propOperation.getValue("OutDent"), true);
+		sleep(3000);
+		return null;
+	}
 
-public void RemoveExpirationTime() {
-	clickOnElement(propOperation.getValue("CancelOnCross"), true);
-}
+	public String isMessageforOutdentissame() {
+		WebElement message = getElement(propOperation.getValue("OutDent"), true);
+		return message.getText();
+	}
 
-public void HoveronVC() {
-	HoverOnElementUsingAction(propOperation.getValue("VC"), true);
-	sleep(3000);
-}
+	public void AddOutdent() {
+		clickOnElement(propOperation.getValue("OutDent"), true);
+		sleep(3000);
 
-public String isMessageSame() {
-	WebElement message = getElement(propOperation.getValue("VC"), true);
-	return message.getText();
-}
+		
+	}
+	
+	public String HoverBlockquote() {
+		HoverOnElementUsingAction(propOperation.getValue("BlockQuote"), true);
+		sleep(3000);
+		return null;
+	}
 
-public void EnableVc() {
-	clickOnElement(propOperation.getValue("VC"), true);
-}
+	public String isMessageforQuoteissame() {
+		WebElement message = getElement(propOperation.getValue("BlockQuote"), true);
+		return message.getText();
+	}
 
-public boolean isVcEnabled() {
-	return isElementDisplayed(propOperation.getValue("DisabledVc"), true);
-}
+	public void AddBlockQuote() {
+		clickOnElement(propOperation.getValue("BlockQuote"), true);
+		sleep(3000);
 
-public void DisableVc() {
-	clickOnElement(propOperation.getValue("VC"), true);
-}
+		
+	}
+	
+	public String HoverTx() {
+		HoverOnElementUsingAction(propOperation.getValue("ClearFormat"), true);
+		sleep(3000);
+		return null;
+	}
 
-public void HoveronD2I() {
-	HoverOnElementUsingAction(propOperation.getValue("D2I"), true);
-	sleep(3000);
-}
+	public String isMessageforTxissame() {
+		WebElement message = getElement(propOperation.getValue("ClearFormat"), true);
+		return message.getText();
+	}
 
-public String isD2IMessageSame() {
-	WebElement message = getElement(propOperation.getValue("D2I"), true);
-	return message.getText();
-}
+	public void ClearFormat() {
+		clickOnElement(propOperation.getValue("ClearFormat"), true);
+		sleep(3000);
 
-public void EnableD2I() {
-	clickOnElement(propOperation.getValue("D2I"), true);
-}
-
-public boolean isD2IEnabled() {
-	return isElementDisplayed(propOperation.getValue("DisabledD2I"), true);
-}
-
-
-public void DisableD2I() {
-	clickOnElement(propOperation.getValue("D2I"), true);
-}
-
-
+		
+	}
+//	public void Attachments() throws AWTException {
+//		clickOnElement(propOperation.getValue("OpenAttachment"), true);
+//		sleep(3000);
+//	
+//		WebElement upload = getElement(propOperation.getValue("OpenAttachment"), true);
+//		Screen screen = new Screen();
+//
+//		try {
+//            // Capture the file chooser dialog
+//			 screen.click("/Users/Mind/Documents/Upload Files.png");
+//			  screen.type("/Users/Mind/Documents/Upload Files.png");
+//	            screen.type(Key.ENTER);
+//		
+//	 Thread.sleep(5000);
+//
+//    } catch (Exception e) {
+//        e.printStackTrace();
+//    } 
+//	}
+	
+	
+	
+	
+	
+	
 
 }

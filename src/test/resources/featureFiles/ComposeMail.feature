@@ -350,7 +350,7 @@ Feature: Email Composition and Alerts
     Given the user is logged in
     When the user clicks on the Compose Email button
     Then The User click on Set to Expire button a popup should get Open
-    And the User Clicks onExpiraation Time Filed a list should get open
+    And the User Clicks on Expiration Time Filed a list should get open
 
   @ComposeMailtag38
   Scenario: Verify to Select Expiration time from dropdown for one hour
@@ -452,3 +452,213 @@ Feature: Email Composition and Alerts
     And On click on D2I icon again the icon should get disabled
     And The User click on D2I icon the icon should get enabled
     Then the user clicks on the Send button without entering any content
+
+  @ComposeMailtag47
+  Scenario: Verify Cancel Vc
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And The User click on VC icon the icon should get enabled
+    Then Click on Cancel buttton Of Vc
+
+  @ComposeMailtag48
+  Scenario: Verify Cancel Vc
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And The User click on D2I icon the icon should get enabled
+    Then Click on Cancel buttton Of D2I
+
+  @ComposeMailtag49
+  Scenario: Verify Open text Format
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And Enter the Body
+    And On Hover Tooltip message should show for Text Format
+    And On Click on text Format it should Open a popup
+
+  @ComposeMailtag50
+  Scenario: Verify Undo and Redo on Text format
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And Enter the Body
+    And On Click on text Format it should Open a popup
+    And On Hover Undo it should show tooltip with message
+    And On Click on Undo it will undo action
+    And On Hover Redo it will show tooltip with message
+    And on click on Redo it will redo action
+
+  @ComposeMailtag51
+  Scenario: Check Title on Compose box
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    Then Verify title is present
+
+  @ComposeMailtag52
+  Scenario: Check compose box get minimize
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And Verify Compose gets minimize
+    Then On click on Maximize Compose should reopen
+
+  @ComposeMailtag53
+  Scenario: Make Compose Compact or maximize
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    Then On click on Maximize Compose should reopen
+    And On click on Maximize Compose should reopen
+
+  @ComposeMailtag54
+  Scenario: Close Compose Box
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On click on Cross Compose box should get closed
+
+  @ComposeMailtag55
+  Scenario: Delete Compose Box
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    Then On click on Delete icon Compose box should get closed
+
+  @ComposeMailtag56
+  Scenario: Open Attachment Popup
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On click on Attachment icon system Files Popup should get open
+    Then User Should be able to add attachmetns
+
+  @ComposeMailtag57
+  Scenario: Change Font type in Compose mail
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On Click on text Format it should Open a popup
+    Then Enter the Body
+    And On Hover Font type should show Tooltip message
+    And On Click on Font Type a dropdown should get open and  on select any option font type should get changed
+
+  @ComposeMailtag58
+  Scenario: Change Font size in Compose mail
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On Click on text Format it should Open a popup
+    And Enter the Body
+    And On Hover Font size should show Tooltip message
+    And On Click on Font size a dropdown should get open and  on select any option font size should get changed
+
+  @ComposeMailtag59
+  Scenario: Change Text in Bold
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On Click on text Format it should Open a popup
+    And Enter the Body
+    And On Hover B Icon should show Tooltip message
+    And On Click on B Icon  text should change to Bold
+
+  @ComposeMailtag60
+  Scenario: Change Text in Italic
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On Click on text Format it should Open a popup
+    And Enter the Body
+    And On Hover I Icon should show Tooltip message
+    Then On Click on I icon the text should change to Italic
+
+  @ComposeMailtag61
+  Scenario: Add Underline
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On Click on text Format it should Open a popup
+    And Enter the Body
+    And On Hover U icon should show Tooltip message
+    Then On Click on U icon the text should change to Underline
+
+  @ComposeMailtag62
+  Scenario: Add Strikethorough
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On Click on text Format it should Open a popup
+    And Enter the Body
+    And On Hover S icon should show Tooltip message
+    Then On Click on S icon the text should change to StrikeThrough
+
+  @ComposeMailtag63
+  Scenario: Change Allignment
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On Click on text Format it should Open a popup
+    And Enter the Body
+    And On Hover Alignment icon should show Tooltip message
+    And On Click on Alignment it should open a dropdown and Alignment should get changed
+
+  @ComposeMailtag64
+  Scenario: Add Bullets
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On Click on text Format it should Open a popup
+    And Enter the Body
+    And On Hover Bullet List icon should show Tooltip message
+    And On Click on Bullet List icon it should add bullets
+
+  @ComposeMailtag65
+  Scenario: Add Number List
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On Click on text Format it should Open a popup
+    And Enter the Body
+    And On Hover Number List icon should show Tooltip message
+    And On Click on Number List icon it should add Number
+
+  @ComposeMailtag66
+  Scenario: Add Indent
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On Click on text Format it should Open a popup
+    And Enter the Body
+    And On Hover indent icon should show Tooltip message
+    And On Click on indent  icon it should add moves toward right
+
+  @ComposeMailtag67
+  Scenario: Add Outdent
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On Click on text Format it should Open a popup
+    And Enter the Body
+    And On Click on indent  icon it should add moves toward right
+    And On Hover outdent icon should show Tooltip message
+    And On Click on outdent List icon it should moves toward left
+
+  @ComposeMailtag68
+  Scenario: Add BlockQuote
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On Click on text Format it should Open a popup
+    And Enter the Body
+    And On Hover BLockquote icon should show Tooltip message
+    And On Click on BLockquote icon it should add BlockQuote
+
+  @ComposeMailtag69
+  Scenario: Clear Text Format
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On Click on text Format it should Open a popup
+    And Enter the Body
+    And On Click on BLockquote icon it should add BlockQuote
+    And On Hover Tx icon should show Tooltip message
+    And On Click on Tx icon it should add clear latest Text format
+
+  @ComposeMailtag70
+  Scenario: Close Text Format
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And On Click on text Format it should Open a popup
+    And On Click on text Format it should Open a popup
+
+ @ComposeMailtag71
+  Scenario: Create Draft
+  Given the user is logged in
+    When the user clicks on the Compose Email button
+    And the user enters an email address in the To field
+    Then On click on Enter email id should get enter
+    And On click on Cross Compose box should get closed
+    
+    
+    
+    

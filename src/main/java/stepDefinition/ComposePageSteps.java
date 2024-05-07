@@ -1,5 +1,7 @@
 package stepDefinition;
 
+import java.awt.AWTException;
+
 import org.junit.Assert;
 
 import io.cucumber.java.en.Given;
@@ -421,7 +423,244 @@ public class ComposePageSteps {
 			composePageMethods.DisableD2I();
 		}
 		
+		@Then("Click on Cancel buttton Of Vc")
+		public void click_on_Cancel_buttton_Of_Vc() {
+			composePageMethods.RemoveExpirationTime();
+		}
+
+		@Then("Click on Cancel buttton Of D2I")
+		public void click_on_Cancel_buttton_Of_D2I() {
+			composePageMethods.RemoveExpirationTime();
+		}
 		
+		@Then("Verify title is present")
+		public void verify_title_is_present() {
+			Assert.assertEquals("Text Format messageis not same","Compose email",composePageMethods.isTitleavailable());
+		}
+		
+		@Then("Verify Close Compose from Cancel")
+		public void verify_Close_Compose_from_Cancel() {
+			composePageMethods.CancelComposeFromCross();
+		}
+
+		
+		@When("On Hover Tooltip message should show for Text Format")
+		public void on_Hover_Tooltip_message_should_show_for_Text_Format() {
+			composePageMethods.HoverTextFormat();
+			Assert.assertEquals("Text Format messageis not same","Text format",composePageMethods.IsFormatMessageSame());
+		}
+
+		@When("On Click on text Format it should Open a popup")
+		public void on_Click_on_text_Format_it_should_Open_a_popup() {
+			composePageMethods.ClickTextFormat();
+			//Assert.assertTrue("Text format is not getting opened", composePageMethods.isTextformatOpen());
+		}
+
+		@When("On Hover Undo it should show tooltip with message")
+		public void on_Hover_Undo_it_should_show_tooltip_with_message() {
+			composePageMethods.HoverUndo();
+			Assert.assertEquals("Undo Message is not same","Undo", composePageMethods.isMessageUndosame());
+		}
+
+		@When("On Click on Undo it will undo action")
+		public void on_Click_on_Undo_it_will_undo_action() {
+		  composePageMethods.ClickUndo();
+		 
+		}
+
+		@When("On Hover Redo it will show tooltip with message")
+		public void on_Hover_Redo_it_will_show_tooltip_with_message() {
+			composePageMethods.HoverRedo();
+			Assert.assertEquals("Redo mesage is not same", "Redo", composePageMethods.isredomessagesame());
+		}
+
+		@When("on click on Redo it will redo action")
+		public void on_click_on_Redo_it_will_redo_action() {
+			composePageMethods.ClickRedo();
+		}
+
+		@When("Verify Compose gets minimize")
+		public void verify_Compose_gets_minimize() {
+		   
+			composePageMethods.minimizeCompose();
+			
+		}
+
+		@Then("On click on Maximize Compose should reopen")
+		public void on_click_on_Maximize_Compose_should_reopen() {
+			composePageMethods.MaximizeCompose();
+			
+		}
+
+		@When("On click on Cross Compose box should get closed")
+		public void on_click_on_Cross_Compose_box_should_get_closed() {
+		   
+			composePageMethods.CancelComposeFromCross();
+		}
+
+
+		@Then("On click on Delete icon Compose box should get closed")
+		public void on_click_on_Delete_icon_Compose_box_should_get_closed() {
+			composePageMethods.DeleteCompose();
+		}
+
+//		@Then("On click on Attachment icon system Files Popup should get open")
+//		public void on_click_on_Attachment_icon_system_Files_Popup_should_get_open() throws AWTException {
+//			composePageMethods.Attachments();
+//		}
+
+
+		@When("On Hover Font type should show Tooltip message")
+		public void on_Hover_Font_type_should_show_Tooltip_message() {
+			composePageMethods.HoverFontType();
+			Assert.assertEquals("Font type mesage is not same", "Font type", composePageMethods.isMessageFontTypesame());
+
+		}
+
+		@Then("On Click on Font Type a dropdown should get open and  on select any option font type should get changed")
+		public void on_Click_on_Font_Type_a_dropdown_should_get_open_and_on_select_any_option_font_type_should_get_changed() throws InterruptedException {
+			composePageMethods.ChangeFontType();
+		}
+
+
+		@When("On Hover Font size should show Tooltip message")
+		public void on_Hover_Font_size_should_show_Tooltip_message() {
+			composePageMethods.HoverFontSize();
+			Assert.assertEquals("Font type mesage is not same", "Font size", composePageMethods.isMessageFontSizesame());
+		}
+
+		@When("On Click on Font size a dropdown should get open and  on select any option font size should get changed")
+		public void on_Click_on_Font_size_a_dropdown_should_get_open_and_on_select_any_option_font_size_should_get_changed() {
+			composePageMethods.ChangeFontSize();
+		}
+
+		@When("On Hover B Icon should show Tooltip message")
+		public void on_Hover_B_Icon_should_show_Tooltip_message() {
+			composePageMethods.HoverB();
+			Assert.assertEquals("Font type mesage is not same", "Font weight", composePageMethods.isMessageforBissame());
+		}
+
+		@When("On Click on B Icon  text should change to Bold")
+		public void on_Click_on_B_Icon_text_should_change_to_Bold() {
+			composePageMethods.ChangetoB();
+		}
+
+		@When("On Hover I Icon should show Tooltip message")
+		public void on_Hover_I_Icon_should_show_Tooltip_message() {
+			composePageMethods.HoverI();
+			Assert.assertEquals("Font type mesage is not same", "Font style", composePageMethods.isMessageforIissame());
+		}
+
+		@Then("On Click on I icon the text should change to Italic")
+		public void on_Click_on_I_icon_the_text_should_change_to_Italic() {
+			composePageMethods.ChangetoI();
+		}
+
+		@When("On Hover U icon should show Tooltip message")
+		public void on_Hover_U_icon_should_show_Tooltip_message() {
+			composePageMethods.HoverU();
+			Assert.assertEquals("Font type mesage is not same", "Underline", composePageMethods.isMessageforUissame());
+		}
+
+		@Then("On Click on U icon the text should change to Underline")
+		public void on_Click_on_U_icon_the_text_should_change_to_Underline() {
+			composePageMethods.ChangetoU();
+		}
+
+		@When("On Hover S icon should show Tooltip message")
+		public void on_Hover_S_icon_should_show_Tooltip_message() {
+			composePageMethods.HoverS();
+			Assert.assertEquals("Font type mesage is not same", "Underline", composePageMethods.isMessageforSissame());
+		}
+
+		@Then("On Click on S icon the text should change to StrikeThrough")
+		public void on_Click_on_S_icon_the_text_should_change_to_StrikeThrough() {
+			composePageMethods.ChangetoS();
+			
+		}
+		
+		@When("On Hover Alignment icon should show Tooltip message")
+		public void on_Hover_Alignment_icon_should_show_Tooltip_message() {
+			composePageMethods.HoverAllignement();
+			Assert.assertEquals("Font type mesage is not same", "Align", composePageMethods.isMessageforAllignmentissame());
+		}
+
+		@When("On Click on Alignment it should open a dropdown and Alignment should get changed")
+		public void on_Click_on_Alignment_it_should_open_a_dropdown_and_Alignment_should_get_changed() {
+			composePageMethods.ChangeAlignment();
+		}
+		
+		@When("On Hover Bullet List icon should show Tooltip message")
+		public void on_Hover_Bullet_List_icon_should_show_Tooltip_message() {
+			composePageMethods.HoverBulletList();
+			Assert.assertEquals("Font type mesage is not same", "List", composePageMethods.isMessageforbulletlistissame()); 
+		}
+
+		@When("On Click on Bullet List icon it should add bullets")
+		public void on_Click_on_Bullet_List_icon_it_should_add_bullets() {
+			composePageMethods.AddbulletList();
+		}
+
+		@When("On Hover Number List icon should show Tooltip message")
+		public void on_Hover_Number_List_icon_should_show_Tooltip_message() {
+			composePageMethods.HoverNumberList();
+			Assert.assertEquals("Font type mesage is not same", "List", composePageMethods.isMessageforNumListissame()); 
+		}
+
+		@When("On Click on Number List icon it should add Number")
+		public void on_Click_on_Number_List_icon_it_should_add_Number() {
+			composePageMethods.AddNumberList();
+		}
+
+		@When("On Hover indent icon should show Tooltip message")
+		public void on_Hover_indent_icon_should_show_Tooltip_message() {
+			composePageMethods.HoverIndent();
+			Assert.assertEquals("Font type mesage is not same", "Indent", composePageMethods.isMessageforIndentissame()); 
+		}
+
+		@When("On Click on indent  icon it should add moves toward right")
+		public void on_Click_on_indent_icon_it_should_add_moves_toward_right() {
+			composePageMethods.AddIndent();
+		}
+
+		@When("On Hover outdent icon should show Tooltip message")
+		public void on_Hover_outdent_icon_should_show_Tooltip_message() {
+			composePageMethods.HoverOutdent();
+			Assert.assertEquals("Font type mesage is not same", "Outdent", composePageMethods.isMessageforOutdentissame());  
+		}
+
+		@When("On Click on outdent List icon it should moves toward left")
+		public void on_Click_on_outdent_List_icon_it_should_moves_toward_left() {
+			composePageMethods.AddOutdent();
+		}
+
+		@When("On Hover BLockquote icon should show Tooltip message")
+		public void on_Hover_BLockquote_icon_should_show_Tooltip_message() {
+			composePageMethods.HoverBlockquote();
+			Assert.assertEquals("Font type mesage is not same", "Blockquote", composePageMethods.isMessageforQuoteissame());  
+		}
+
+		@When("On Click on BLockquote icon it should add BlockQuote")
+		public void on_Click_on_BLockquote_icon_it_should_add_BlockQuote() {
+			composePageMethods.AddBlockQuote();
+		}
+
+		@When("On Hover Tx icon should show Tooltip message")
+		public void on_Hover_Tx_icon_should_show_Tooltip_message() {
+			composePageMethods.HoverTx();
+			Assert.assertEquals("Font type mesage is not same", "Clear", composePageMethods.isMessageforTxissame());  
+		}
+
+		@When("On Click on Tx icon it should add clear latest Text format")
+		public void on_Click_on_Tx_icon_it_should_add_clear_latest_Text_format() {
+			composePageMethods.ClearFormat();
+		}
+		
+//		@Then("User Should be able to add attachmetns")
+//		public void user_Should_be_able_to_add_attachmetns() throws AWTException {
+//			composePageMethods.Attachments();
+//		}
+
 		
 		
 		

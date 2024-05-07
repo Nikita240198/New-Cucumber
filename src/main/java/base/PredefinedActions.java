@@ -193,14 +193,22 @@ public class PredefinedActions {
 
 	public void setText(String locator, boolean isWaitRequired, String text) throws InterruptedException {
 		WebElement element = getElement(locator, isWaitRequired);
+		System.out.println(element+"is");
 		if (element.isEnabled()) {
 			
+			element.clear();
 			element.sendKeys(text);
+			element.sendKeys(Keys.COMMAND+"A");
 			System.out.println(text);
 
 		} else
 			System.out.println(locator + " element is not enabled");
-	}
+		
+		  
+		}
+	
+
+	
 
 	public void setText(WebElement element, boolean isWaitRequired, String text) {
 		if (element.isEnabled()) {

@@ -44,6 +44,8 @@
 			<version>5.7.0</version>
 		</dependency>
 
+
+
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>gherkin</artifactId>
@@ -74,13 +76,8 @@
 			<version>2.16.1</version>
 		</dependency>
 
-
-
-		<dependency>
-			<groupId>AutomationBlinky</groupId>
-			<artifactId>NewBlinkly</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		
+		
 	</dependencies>
 
 	<build>
