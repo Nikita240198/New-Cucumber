@@ -659,6 +659,12 @@ Feature: Email Composition and Alerts
     Then On click on Enter email id should get enter
     And On click on Cross Compose box should get closed
     
+    @ComposeMailtag72
+     Scenario: Sent Bulk Mail
+    Given the user is logged in
+    When Sent Email in bulk
+    
+    
     
     
     

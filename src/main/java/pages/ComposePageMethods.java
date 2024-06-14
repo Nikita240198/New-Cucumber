@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 
 import base.PredefinedActions;
@@ -31,7 +33,7 @@ public class ComposePageMethods extends PredefinedActions {
 
 	public void ClickOnSend() {
 		clickOnElement(propOperation.getValue("SendButton"), true);
-		sleep(3000);
+		sleep(7000);
 	}
 
 	public boolean isErrorPopupAppear() {
@@ -49,7 +51,7 @@ public class ComposePageMethods extends PredefinedActions {
 	}
 
 	public void EnterRecipient() throws InterruptedException {
-		setText(propOperation.getValue("ToField"), true, "ankita@staging.blinkly.com");
+		setText(propOperation.getValue("ToField"), true, "dharmaraj@staging.blinkly.com");
 		sleep(3000);
 	}
 
@@ -183,6 +185,8 @@ public class ComposePageMethods extends PredefinedActions {
 	}
 
 	public void Enterbody() throws InterruptedException {
+		clickOnElement(propOperation.getValue("Body"), true);
+		sleep(3000);
 		setText(propOperation.getValue("Body"), true,
 				"This is an automatic generated mail \n design by Nikita \n We are using Selenium with java \n we also learning Cucumber BDD");
 
@@ -894,8 +898,23 @@ public class ComposePageMethods extends PredefinedActions {
 //    } 
 //	}
 	
+	public void Subjetcone(int i) throws InterruptedException {
+		setText(propOperation.getValue("Subject"), true, "Subject " + i);
+		sleep(3000);
+	}
 	
-	
+
+
+	 public void EnterBodyInBulk(int count) throws InterruptedException {
+	        for (int i =0; i < count; i++) {
+	            OpenCompose();
+	            EnterRecipient();
+	            Subjetcone(i+1);
+	            Enterbody();
+	            ClickOnSend();
+	        }
+	    }
+
 	
 	
 	

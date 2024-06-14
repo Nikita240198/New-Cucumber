@@ -126,7 +126,7 @@ public class PredefinedActions {
 	}
 
 	public void tearDown() {
-		getDriver().close();
+		getDriver().quit();
 	}
 
 	private By getLocatorBy(String locator) {
@@ -284,7 +284,7 @@ public class PredefinedActions {
 
 	}
 	
-	
+
 	
 
 	public void clickOnElementUsingJavaScript(String locator, boolean isWaitRequired) {
@@ -382,8 +382,8 @@ public class PredefinedActions {
 	
 
 
-	public void waitUntilElementIsVisible(String locator) {
-		isElementDisplayed(locator, true);
+	public boolean waitUntilElementIsVisible(String locator) {
+		return isElementDisplayed(locator, true);
 	}
 
 	public boolean isElementVisible(String locator) {
@@ -417,9 +417,12 @@ public class PredefinedActions {
 		
 	}
 
-	public void scrollToElement() {
-		JavascriptExecutor js = (JavascriptExecutor) getDriver();
-		js.executeScript("scrollBy(0, 4500)");
+	public void scrollToElement(String locator, boolean isWaitRequired) {
+		   WebElement element = getDriver().findElement(By.xpath(locator));
+		   
+		    JavascriptExecutor js = (JavascriptExecutor) getDriver();
+
+		    js.executeScript("scrollBy(0, 4500)");
 	}
 
 	public byte[] takeScreenshot() {

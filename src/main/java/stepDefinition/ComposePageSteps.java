@@ -1,6 +1,8 @@
 package stepDefinition;
 
 import java.awt.AWTException;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Assert;
 
@@ -207,6 +209,7 @@ public class ComposePageSteps {
 
 	@When("Enter the subject")
 	public void enter_the_subject()  throws InterruptedException {
+		
 		composePageMethods.EnterSubject();
 	}
 
@@ -660,11 +663,16 @@ public class ComposePageSteps {
 //		public void user_Should_be_able_to_add_attachmetns() throws AWTException {
 //			composePageMethods.Attachments();
 //		}
+		
+		
+		
+		@When("Sent Email in bulk")
+		public void sent_Email_in_bulk() throws InterruptedException {
+		        int count = 20; // Number of times to send the email
+		        composePageMethods.EnterBodyInBulk(count);
 
-		
-		
-		
-		
-		
+			
+		}
+
 		
 }

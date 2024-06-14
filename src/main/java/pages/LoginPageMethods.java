@@ -51,7 +51,7 @@ public class LoginPageMethods extends PredefinedActions {
 	}
 
 	public void EmptyPassword() throws InterruptedException {
-		setText(propOperation.getValue("Username"), true, "dharmaraj");
+		setText(propOperation.getValue("Username"), true, "priya");
 		Thread.sleep(3000);
 		clickOnElement(propOperation.getValue("Password"), true);
 	}
@@ -69,7 +69,7 @@ public class LoginPageMethods extends PredefinedActions {
 
 	public void ValidUserName() throws InterruptedException {
 		clickOnElement(propOperation.getValue("Username"), true);
-		setText(propOperation.getValue("Username"), true, "dharmaraj");
+		setText(propOperation.getValue("Username"), true, "pramod");
 		sleep(3000);
 	}
 

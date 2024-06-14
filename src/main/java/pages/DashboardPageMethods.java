@@ -1,11 +1,16 @@
 package pages;
 
 import java.util.List;
+import java.util.Set;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import base.PredefinedActions;
 import constant.ConstantPath;
+import stepDefinition.AutomationHooks;
 import utility.PropOperation;
 
 public class DashboardPageMethods extends PredefinedActions {
@@ -71,8 +76,9 @@ public class DashboardPageMethods extends PredefinedActions {
 		sleep(3000);
 	}
 
-	public boolean isTooltipMessageSame() {
-		return isElementDisplayed(propOperation.getValue("DeleteMessage"), true);
+	public String getTooltipMessage() {
+	    String tooltipElement = getElementText(propOperation.getValue("DeleteMessage"), true);
+	    return tooltipElement;
 	}
 
 	public void ClickDelete() {
@@ -185,17 +191,19 @@ public class DashboardPageMethods extends PredefinedActions {
 	}
 	
 	public boolean DeleteFromHover() {
-		HoverOnElementUsingAction(propOperation.getValue("HoveronMail"), true);
+		HoverOnElementUsingAction(propOperation.getValue("HoverOnMail"), true);
 		sleep(3000);
-		clickOnElement(propOperation.getValue("HoverDeleteonMail"), true);
+		
+		clickOnElement(propOperation.getValue("DeleteonMail"), true);
 		sleep(2000);
-		return isElementDisplayed(propOperation.getValue("DeleteConfirmationPopup"),true);
+return isElementDisplayed(propOperation.getValue("DeleteConfirmationPopup"),true);
+		
 		
 	}
 	
 	
 	public void	MarkAsReadFromHover(){
-		HoverOnElementUsingAction(propOperation.getValue("HoverIcon"), true);
+		HoverOnElementUsingAction(propOperation.getValue("HoverOnMail"), true);
 		sleep(3000);
 		clickOnElement(propOperation.getValue("HovermailIocnclick"), true);
 		sleep(2000);
@@ -240,6 +248,9 @@ public class DashboardPageMethods extends PredefinedActions {
 		sleep(5000);
 	}
 	
+	
+	
+	
 	public boolean HoverNewWindow(String expectedTooltipMessage) {
 		HoverOnElementUsingAction(propOperation.getValue("NewWindow"), true);
 		sleep(3000);
@@ -250,10 +261,121 @@ public class DashboardPageMethods extends PredefinedActions {
 	
 	
 	public void ClickonNewwindow() {
+		String mainWindowHandle = getDriver().getWindowHandle();
+		
 		clickOnElement(propOperation.getValue("NewWindow"), true);
-		sleep(5000);
+		sleep(5000);	
+		
+	
+	}
+	
+	public boolean isWindowOpened() {
+	    // Get all window handles
+	    Set<String> allWindowHandles = getDriver().getWindowHandles();
+
+	    // Return true if the count of window handles is greater than 1, indicating a new window is opened
+	    return allWindowHandles.size() > 1;
+
 	}
 	
 	
 	
+	public void SearchLable() throws InterruptedException {
+		clickOnElement(propOperation.getValue("SearchInputField"), true);
+		sleep(5000);
+		setText(propOperation.getValue("SearchInputField"), true,"Lab");
+		
+	}
+	
+	public boolean OpenEllipses(String expectedTooltipMessage) {
+		HoverOnElementUsingAction(propOperation.getValue("Ellipses"), true);
+		sleep(3000);
+
+		return isElementDisplayed(propOperation.getValue("Ellipses"), true)
+				&& getElementText(propOperation.getValue("EllipsesMessage"), true).equals(expectedTooltipMessage);
+
+	}
+	
+	public boolean ClickEllipses() {
+		clickOnElement(propOperation.getValue("Ellipses"), true);
+		sleep(2000);
+		return isElementDisplayed(propOperation.getValue("SpamFromEllipses"), true);
+	}
+	
+	public void ClickSpaminEllipses() {
+		clickOnElement(propOperation.getValue("SpamFromEllipses"), true);
+		sleep(2000);
+		
+	}
+	public void ClickDeleteinEllipses() {
+		clickOnElement(propOperation.getValue("DeleteFromEllipses"), true);
+		sleep(2000);
+		
+	}
+	
+//
+//	public String gettextkMarkAsReadEllipse() {
+//		String tooltipMessage = getAttribute(propOperation.getValue("MarkAsReadUnread"), true, "title");
+//		System.out.println(tooltipMessage);
+//		return tooltipMessage;
+//	}
+	
+	
+	public void ClikcMarkAsReadEllipses() {
+		clickOnElement(propOperation.getValue("MarkAsReadUnread"), true);
+		sleep(2000);
+	}
+	
+	
+	public void ClickLabel() {
+		clickOnElement(propOperation.getValue("Ellipselable"), true);
+		sleep(2000);
+	}
+	
+	public boolean AddFromEllipses() {
+		clickOnElement(propOperation.getValue("LabelsEllipse"), true);
+		sleep(2000);
+		return isElementDisplayed(propOperation.getValue("LabelsEllipsePopup"), true);
+		
+	}
+	
+	public void SelectLabelFromEllipse() {
+		clickOnElement(propOperation.getValue("FirstLableEllipses"), true);
+		sleep(2000);
+	}
+	
+	public void ChangeListView() {
+		clickOnElement(propOperation.getValue("ListView"), true);
+		sleep(2000);
+	}
+	
+	public boolean SendReplyFromIcon() {
+		 String replyIconLocator = propOperation.getValue("ReplyIcon");
+		    System.out.println("ReplyIcon Locator: " + replyIconLocator); // Debug statement
+		    clickOnElement(replyIconLocator, true);
+		    sleep(2000);
+		
+		return isElementDisplayed(propOperation.getValue("OpenEditor"), true);
+		
+	}
+	
+	public boolean scrolleditor() {
+		 waitUntilElementIsVisible("7000");
+	    scrollToElement(propOperation.getValue("SendButton"), true); // Scroll to send button
+	    waitUntilElementIsVisible("7000");
+	    return isElementDisplayed(propOperation.getValue("SendButton"), true);
+	}
+
+	
+public boolean IsmailPresent() {
+	List<WebElement> EmailList = getAllElements(propOperation.getValue("Mailicon"), true);
+	System.out.println(EmailList);
+
+	return 	!EmailList.isEmpty();
+			
+
+	}
 }
+	
+	
+	

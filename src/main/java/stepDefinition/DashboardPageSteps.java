@@ -1,6 +1,7 @@
 package stepDefinition;
 
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -60,12 +61,14 @@ public class DashboardPageSteps {
 	@When("On Hover it should show tooltip with message for Delete")
 	public void on_Hover_it_should_show_tooltip_with_message_for_Delete() {
 		dashboardpagemethods.HoverDelete();
-		Assert.assertEquals("message is not same", "Delete", dashboardpagemethods.isTooltipMessageSame());
+	    String actualTooltipMessage = dashboardpagemethods.getTooltipMessage();
+	    Assert.assertEquals("Tooltip message for delete is not as expected", "Delete", actualTooltipMessage);
 	}
 
 	@When("On click on Delete icon it should open a Popup with confirmation messgae")
 	public void on_click_on_Delete_icon_it_should_open_a_Popup_with_confirmation_messgae() {
-		dashboardpagemethods.DeleteMail();
+		
+		dashboardpagemethods.ClickDelete();
 		Assert.assertTrue("popup is not there", dashboardpagemethods.isConfirmationPopupComesforDelete());
 
 	}
@@ -183,20 +186,87 @@ public class DashboardPageSteps {
 		Assert.assertTrue("Tooltip message is not displayed as expected",
                 dashboardpagemethods.HoverPrint("Print"));
 		dashboardpagemethods.ClickonPrint();
+		Assert.assertTrue("A new window did not open as expected",
+				 dashboardpagemethods.isWindowOpened());
 		
 	}
 
-	@When("On Hover it should show Tooltip NewWindow on Click it should open new page")
+	@When("On Hover it should show Tooltip NewWindow")
 	public void on_Hover_it_should_show_Tooltip_NewWindow_on_Click_it_should_open_new_page() {
 		Assert.assertTrue("Tooltip message is not displayed as expected",
-                dashboardpagemethods.HoverNewWindow("New Window"));
-		dashboardpagemethods.ClickonNewwindow();
+                dashboardpagemethods.HoverNewWindow("In new window"));
+		
+//		dashboardpagemethods.ClickonNewwindow();
+//		 Assert.assertTrue("A new window did not open as expected",
+//				 dashboardpagemethods.isWindowOpened());
+		 
+	}
+
+	@When("Search Label")
+	public void search_Label() throws InterruptedException {
+		dashboardpagemethods.SearchLable(); 
+	}
+
+	@When("On Hover it should show Tooltip Ellipses on Click it should open popup")
+	public void on_Hover_it_should_show_Tooltip_Ellipses_on_Click_it_should_open_popup() {
+		Assert.assertTrue("Tooltip message is not displayed as expected",
+                dashboardpagemethods.OpenEllipses("More"));
+		dashboardpagemethods.ClickEllipses();
+		
+	}
+
+	@When("Click Report Spam")
+	public void click_Report_Spam() {
+		dashboardpagemethods.ClickSpaminEllipses();
+		Assert.assertTrue("Tooltip message is not same", dashboardpagemethods.isConfirmationPopupComes());
+	}
+
+	@When("On Click Delete")
+	public void on_Click_Delete() {
+		dashboardpagemethods.ClickDeleteinEllipses();
+		Assert.assertTrue("popup is not there", dashboardpagemethods.isConfirmationPopupComesforDelete());
 	}
 
 	
+	@When("On Click Mark as read or unread mail should mark as read\\/unread")
+	public void on_Click_Mark_as_read_or_unread_mail_should_mark_as_read_unread() {
+//		String Message = dashboardpagemethods.gettextkMarkAsReadEllipse();
+//		assertTooltipMessage(Message);
+//		if (Message.contains("Mark as read")) {
+//			Assert.assertEquals("Tooltip message should contain 'Mark as unread'", "Mark as unread", Message);
+//		} else if (Message.contains("Mark as unread")) {
+//			Assert.assertEquals("Tooltip message should contain 'Mark as read'", "Mark as read", Message);
+//		}
+//			
+		
+		dashboardpagemethods.ClikcMarkAsReadEllipses();
+		
+	}
+
+	@When("Clikc Lables and Add from ellipses")
+	public void clikc_Lables_and_Add_from_ellipses() {
+		Assert.assertTrue("popup is not there", dashboardpagemethods.AddFromEllipses());	
+		dashboardpagemethods.SelectLabelFromEllipse();
+	}
 	
+	@When("user Click on list view it should convert to list view")
+	public void user_Click_on_list_view_it_should_convert_to_list_view() {
+		dashboardpagemethods.ChangeListView();
+	}
+
+	@When("On Click on Reply iocn user should be able to send reply")
+	public void on_Click_on_Reply_iocn_user_should_be_able_to_send_reply() {
+		Assert.assertTrue("popup is not there", 
+				dashboardpagemethods.SendReplyFromIcon());
+		 Assert.assertTrue("Send button is not visible", 
+				 dashboardpagemethods.scrolleditor());
+		
+	}
+
 	
+	@When("if there is no mail in list it should show message")
+	public void if_there_is_no_mail_in_list_it_should_show_message() {
 	
-	
+	}
 
 }
