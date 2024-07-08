@@ -47,7 +47,7 @@ Feature: Verify Dashboad Features
     Then On clikc on Cancel the mail should move to spam
 
   @Alltag5
-  Scenario: Delete single mail to spam From Header
+  Scenario: Delete single mail From Header
     Given the user is logged in
     When On click on checkbox mail it should select mail
     And On Hover it should show tooltip with message for Delete
@@ -171,11 +171,11 @@ Feature: Verify Dashboad Features
   Scenario: Verify New Window on Open mail
     Given the user is logged in
     When user Click on first tile it should Open mail or message
-    And On Hover it should show Tooltip NewWindow 
+    And On Hover it should show Tooltip NewWindow
     Then On Click On newindow it should navigate to next tab
 
   @Alltag23
-  Scenario: Verify ellipses on Open mail
+  Scenario: Verify ellipses on Open mail and send mail to spam
     Given the user is logged in
     When user Click on first tile it should Open mail or message
     And On Hover it should show Tooltip Ellipses on Click it should open popup
@@ -204,7 +204,7 @@ Feature: Verify Dashboad Features
     And On Click Mark as read or unread mail should mark as read/unread
 
   @Alltag27
-  Scenario: Verify Delete from ellipses
+  Scenario: Verify Add Labels from ellipses
     Given the user is logged in
     When user Click on first tile it should Open mail or message
     And On Hover it should show Tooltip Ellipses on Click it should open popup
@@ -218,7 +218,6 @@ Feature: Verify Dashboad Features
     And Enter the Body
     Then the user clicks on the Send button without entering any content
 
-  
   @Alltag29
   Scenario: Verify Reply After open mail from button with multiple recipient
     Given the user is logged in
@@ -245,12 +244,58 @@ Feature: Verify Dashboad Features
     And Enter Recipient
     And Enter the Body
     Then the user clicks on the Send button without entering any content
-    
-    
-    @Alltag32
-     Scenario: Verify no mail in list
+
+  @Alltag32
+  Scenario: Verify no mail in list
     Given the user is logged in
     When if there is no mail in list it should show message
+
+  @Alltag33
+  Scenario: Verify Report spam from second ellipses
+    Given the user is logged in
+    When user Click on first tile it should Open mail or message
+    And On Hover on second ellipses it should show Tooltip on Click it should open popup
+    And on Click on report spam it should show confirmation popup
+    Then On click on Ok the mail should move to spam
+
+  @Alltag34
+  Scenario: Verify Cancel Report spam from second ellipses
+    Given the user is logged in
+    When user Click on first tile it should Open mail or message
+    And On Hover on second ellipses it should show Tooltip on Click it should open popup
+    And on Click on report spam it should show confirmation popup
+    Then On clikc on Cancel the mail should move to spam
+
+  @Alltag35
+  Scenario: Verify Print from second ellipses
+    Given the user is logged in
+    When user Click on first tile it should Open mail or message
+    And On Hover on second ellipses it should show Tooltip on Click it should open popup
+    Then On click on print It should open Popup
+
+  @Alltag36
+  Scenario: Verify Original get downloaded from second ellipses
+    Given the user is logged in
+    When user Click on first tile it should Open mail or message
+    And On Hover on second ellipses it should show Tooltip on Click it should open popup
+    Then On click on Original It should open save Popup
+
+  @Alltag37
+  Scenario: Verify mail gets Deleted from second ellipses
+    Given the user is logged in
+    When user Click on first tile it should Open mail or message
+    And On Hover on second ellipses it should show Tooltip on Click it should open popup
+    And On click on Delete It should Confirmation popup
+    Then On click on Ok the mail should get Delete
+
+  @Alltag38
+  Scenario: Verify mail gets cancel on delete from second ellipses
+    Given the user is logged in
+    When user Click on first tile it should Open mail or message
+    And On Hover on second ellipses it should show Tooltip on Click it should open popup
+    And On click on Delete It should Confirmation popup
+    Then On clikc on Cancel the mail should not get Deleted
     
+
     
-    
+   

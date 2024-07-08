@@ -662,7 +662,7 @@ Feature: Email Composition and Alerts
     @ComposeMailtag72
      Scenario: Sent Bulk Mail
     Given the user is logged in
-    When Sent Email in bulk
+    Then Sent Email in bulk
     
     
     

@@ -1,5 +1,7 @@
 package stepDefinition;
 
+import java.awt.AWTException;
+
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
@@ -266,7 +268,48 @@ public class DashboardPageSteps {
 	
 	@When("if there is no mail in list it should show message")
 	public void if_there_is_no_mail_in_list_it_should_show_message() {
-	
+		if(dashboardpagemethods.IsMailPresent()) {
+			Assert.assertTrue("There are no messages to read" ,dashboardpagemethods.getMessageElement());
+		
+	            System.out.println("Messages are present.");
+		}
+		else {
+			  System.out.println("There are no messages to read.");
+		}
 	}
+	
+	@When("On Hover on second ellipses it should show Tooltip on Click it should open popup")
+	public void and_On_Hover_on_second_ellipses_it_should_show_Tooltip_on_Click_it_should_open_popup() {
+		dashboardpagemethods.SpamFromSecondEliiplse();
+		
+	}
+	
+	@When("on Click on report spam it should show confirmation popup")
+	public void on_Click_on_report_spam_it_should_show_confirmation_popup() {
+		dashboardpagemethods.ClikcReportSpamSecondEllipse();
+	}
+	
+	
+	@Then("On click on print It should open Popup")
+	public void on_click_on_print_It_should_open_Popup() {
+		dashboardpagemethods.ClikcPrintSecondEllipse();
+	}
+	
+	@Then("On click on Original It should open save Popup")
+	public void on_click_on_Original_It_should_open_save_Popup() throws AWTException {
+		dashboardpagemethods.ClickOnOriginal();
+	}
+	
+	@When("On click on Delete It should Confirmation popup")
+	public void on_click_on_Delete_It_should_Confirmation_popup() {
+	    
+	}
+
+
+	
+	
+	
+	
+
 
 }

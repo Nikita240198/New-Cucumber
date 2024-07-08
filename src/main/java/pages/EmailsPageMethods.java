@@ -14,11 +14,10 @@ import utility.PropOperation;
 
 public class EmailsPageMethods extends PredefinedActions {
 	public PropOperation propOperation;
-	private JavascriptExecutor js;
+	
 
 	public EmailsPageMethods() {
 		propOperation = new PropOperation(ConstantPath.EmailPageLocator);
-		js = (JavascriptExecutor) getDriver();
 	}
 
 	public void ClickEmail() {
@@ -79,22 +78,17 @@ public class EmailsPageMethods extends PredefinedActions {
 	}
 	
 	
-//	public void LoadAllmail() {
-//		HoverOnElementUsingAction(propOperation.getValue("FirstTile"), true);
-//		sleep(3000);
-//		
-//		scrollToElement(propOperation.getValue("Scrollpage"), true);
-//	}
-	
-    public void LoadAllmail() {
-    	HoverOnElementUsingAction(propOperation.getValue("FirstTile"), true);
+public void LoadAllmail() {
+	HoverOnElementUsingAction(propOperation.getValue("FirstTile"), true);
+	 sleep(3000);
+	 clickOnElement(propOperation.getValue("Scroller"), true);
 		sleep(3000);
 		
-		clickOnElement(propOperation.getValue("AllComponent"), true);
-		sleep(3000);
 		
-		scrollToElement(propOperation.getValue("AllComponent"), true);
-		
-    }
+		scrollToBottom();
+	 
+	 
+}
+
 
 }

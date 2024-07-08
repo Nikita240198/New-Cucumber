@@ -51,7 +51,7 @@ public class ComposePageMethods extends PredefinedActions {
 	}
 
 	public void EnterRecipient() throws InterruptedException {
-		setText(propOperation.getValue("ToField"), true, "dharmaraj@staging.blinkly.com");
+		setText(propOperation.getValue("ToField"), true, "pramod@staging.blinkly.com");
 		sleep(3000);
 	}
 
@@ -906,6 +906,7 @@ public class ComposePageMethods extends PredefinedActions {
 
 
 	 public void EnterBodyInBulk(int count) throws InterruptedException {
+		 
 	        for (int i =0; i < count; i++) {
 	            OpenCompose();
 	            EnterRecipient();

@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
@@ -417,13 +418,41 @@ public class PredefinedActions {
 		
 	}
 
-	public void scrollToElement(String locator, boolean isWaitRequired) {
-		   WebElement element = getDriver().findElement(By.xpath(locator));
-		   
-		    JavascriptExecutor js = (JavascriptExecutor) getDriver();
-
-		    js.executeScript("scrollBy(0, 4500)");
+	
+//	public void scrollToElement() {
+//		JavascriptExecutor js = (JavascriptExecutor) getDriver();
+//		js.executeScript("scrollBy(0, 45000)");
+//
+//	}
+	
+	public void scrollToElement() {
+	    JavascriptExecutor js = (JavascriptExecutor) getDriver();
+	    js.executeScript("scrollBy(0, 45000)");
 	}
+
+	public void scrollToBottom() {
+	    JavascriptExecutor js = (JavascriptExecutor) getDriver();
+
+	    long lastHeight = (long) js.executeScript("return document.body.scrollHeight");
+
+	    while (true) {
+	        js.executeScript("window.scrollBy(0, document.body.scrollHeight);");
+
+	        try {
+	            Thread.sleep(3000); // Adjust sleep time as needed
+	        } catch (InterruptedException e) {
+	            e.printStackTrace();
+	        }
+
+	        long newHeight = (long) js.executeScript("return document.body.scrollHeight");
+	        if (newHeight == lastHeight) {
+	            break;
+	        }
+	        lastHeight = newHeight;
+	    }
+	}
+
+
 
 	public byte[] takeScreenshot() {
 		TakesScreenshot ts = (TakesScreenshot) getDriver();

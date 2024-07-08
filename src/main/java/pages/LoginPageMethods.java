@@ -69,7 +69,7 @@ public class LoginPageMethods extends PredefinedActions {
 
 	public void ValidUserName() throws InterruptedException {
 		clickOnElement(propOperation.getValue("Username"), true);
-		setText(propOperation.getValue("Username"), true, "pramod");
+		setText(propOperation.getValue("Username"), true, "ankita");
 		sleep(3000);
 	}
 

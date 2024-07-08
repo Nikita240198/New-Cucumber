@@ -666,9 +666,9 @@ public class ComposePageSteps {
 		
 		
 		
-		@When("Sent Email in bulk")
+		@Then("Sent Email in bulk")
 		public void sent_Email_in_bulk() throws InterruptedException {
-		        int count = 20; // Number of times to send the email
+		        int count = 500; // Number of times to send the email
 		        composePageMethods.EnterBodyInBulk(count);
 
 			
