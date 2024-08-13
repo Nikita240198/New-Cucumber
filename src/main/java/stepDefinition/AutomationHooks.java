@@ -23,7 +23,7 @@ public class AutomationHooks extends PredefinedActions  {
 	public static boolean runHeadless;
 	@Before
 	public void setUp() throws IOException, XmlPullParserException {
-		browserName = System.getProperty("browserName", "chrome");
+		browserName = System.getProperty("browserName", "chrome"); 
 		useWebdriverManager = Boolean.parseBoolean(System.getProperty("useWebdriverManager", "true"));
 		runHeadless = Boolean.parseBoolean(System.getProperty("runHeadless", "false"));
 		predefinedActions.start();
@@ -66,7 +66,7 @@ public class AutomationHooks extends PredefinedActions  {
 
 		if (responseEntity.getStatusCode().is2xxSuccessful()) {
 			System.out.println("Jira ticket created successfully!");
-			System.out.println("Issue Key: " + responseEntity.getBody());
+			System.out.println("Issue Key: " + responseEntity.getBody()); 
 		} else {
 			System.err.println("Failed to create Jira ticket. Status code: " + responseEntity.getStatusCodeValue());
 			System.err.println("Response: " + responseEntity.getBody());

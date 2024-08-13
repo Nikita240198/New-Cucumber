@@ -22,7 +22,7 @@ public class EmailsPageMethods extends PredefinedActions {
 
 	public void ClickEmail() {
 		clickOnElement(propOperation.getValue("Emails"), true);
-		sleep(3000);
+		sleep(3000); 
 	}
 
 	public boolean isMessageVisible() {

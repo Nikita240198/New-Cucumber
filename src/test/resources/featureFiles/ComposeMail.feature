@@ -651,20 +651,187 @@ Feature: Email Composition and Alerts
     And On Click on text Format it should Open a popup
     And On Click on text Format it should Open a popup
 
- @ComposeMailtag71
+  @ComposeMailtag71
   Scenario: Create Draft
-  Given the user is logged in
+    Given the user is logged in
     When the user clicks on the Compose Email button
     And the user enters an email address in the To field
     Then On click on Enter email id should get enter
     And On click on Cross Compose box should get closed
-    
-    @ComposeMailtag72
-     Scenario: Sent Bulk Mail
+
+  @ComposeMailtag72
+  Scenario: Sent Bulk Mail
     Given the user is logged in
     Then Sent Email in bulk
+
+  @ComposeMailtag73
+  Scenario: Enter multiple email address in To field
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    Then user enters multiple email address in TO field
+
+  @ComposeMailtag74
+  Scenario: Enter multiple email address in Cc field
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And the user clicks on the CC field
+    Then user enters multiple email address in Cc field
+
+  @ComposeMailtag75
+  Scenario: Enter multiple email address in Bcc field
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And the user clicks on the Bcc field
+    Then user enters multiple email address in Bcc field
+
+  @ComposeMailtag76
+  Scenario: Enter drag Single email address in To field to Cc Field
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And the user enters an email address in the To field
+    And On click on Enter email id should get enter
+    And the user clicks on the CC field
+    Then on drag and drop Email should drag from To field to Cc Field
+
+  @ComposeMailtag77
+  Scenario: Enter drag Single email address in  To field to BCc Field
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And the user enters an email address in the To field
+    And On click on Enter email id should get enter
+    And the user clicks on the Bcc field
+    Then on drag and drop Email should drag from To field to BCc Field
+
+  @ComposeMailtag78
+  Scenario: Enter drag Single email address in To from Cc and Bcc Field
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And the user clicks on the CC field
+    And the user enters an email address in the CC field
+    And On click on Enter email id should get enter
+    And the user clicks on the Bcc field
+    And the user enters an email address in the Bcc field
+    And On click on Enter email id should get enter
+    Then User drag Cc and Bcc mail in To field
+
+  @ComposeMailtag79
+  Scenario: Enter drag Single email address from multiple mail from To to Cc field
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And user enters multiple email address in TO field
+    And the user clicks on the CC field
+    Then on drag and drop Email should drag from Cc field to To Field
+
+  @ComposeMailtag80
+  Scenario: Multiple drag and drop
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And user enters multiple email address in TO field
+    And the user clicks on the CC field
+    Then user enters multiple email address in Cc field
+    And the user clicks on the Bcc field
+    Then user enters multiple email address in Bcc field
+    And User Perform drag drop in shuffling
+
+  @ComposeMailtag81
+  Scenario: Hover and Open on Emoji popup
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And Hover on emoji it should show tooltip with message
+    Then on click on Emoji icon it shouldo open
+
+  #user cannot select any emoji from popup it is not covering in DOM it has shadow element
+  @ComposeMailtag82
+  Scenario: Create a link
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And Hover on link it should show tooltip with message
+    Then user can create new link on empty compose
+
+  @ComposeMailtag83
+  Scenario: Create link when user does not enter any thing
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And User click on link icon
+    And clikc on insert
+    Then validation message should be present
+
+  @ComposeMailtag84
+  Scenario: Create link when user enter only text no Url
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And User click on link icon
+    And User enter only text
+    Then validation message for Url field should be present
+
+  @ComposeMailtag85
+  Scenario: Create link when user enter only Url
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And User click on link icon
+    And User enter only Url
+    And clikc on insert
+    Then validation message should be present
+
+  @ComposeMailtag86
+  Scenario: Edit Created Link
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And User click on link icon
+    And user can create new link on empty compose
+    And On click on Link it should show created link in popup
+    And On click on Edit value should be prefilled
+    Then User can change value on save
+
+  @ComposeMailtag87
+  Scenario: Remove Created Link
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And User click on link icon
+    And user can create new link on empty compose
+    And On click on Link it should show created link in popup
+    Then on click on Remove link should get removed
+
+  @ComposeMailtag88
+  Scenario: Create link after select text 
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And select some text
+    And User click on link icon
+    And User enter only Url
+    Then click Insert
+
+  @ComposeMailtag89
+  Scenario: Verify User navigate through link
+    Given the user is logged in
+    When the user clicks on the Compose Email button
+    And Hover on link it should show tooltip with message
+    And user can create new link on empty compose
+    And On click on Link it should show created link in popup
+    Then on click on link user should navigate to next page
     
-    
+    @ComposeMailtag90
+  Scenario: Verify link with doubleclick
+   Given the user is logged in
+    When the user clicks on the Compose Email button
+    And Hover on link it should show tooltip with message
+    And user can create new link on empty compose
+  Then user Doubele click and verify Link
+  And On click on Link it should show created link in popup
+  
+  
+   @ComposeMailtag91
+  Scenario:Send Bulk mail with All options needed
+  Given the user is logged in
+  When User Sends bulk mail with all options present
+  
+  
+  
+  
+  
+  
+  
+  
     
     
     

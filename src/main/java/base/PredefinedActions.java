@@ -17,7 +17,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -159,6 +159,10 @@ public class PredefinedActions {
 			element = getDriver().findElement(by);
 		return element;
 	}
+	
+	
+
+
 
 	protected List<WebElement> getAllElements(String locator, boolean isWaitRequired) {
 		By by = getLocatorBy(locator);
@@ -208,7 +212,11 @@ public class PredefinedActions {
 		  
 		}
 	
-
+	public void setTextUsingJS(String locator, boolean isWaitRequired, String text) {
+	    WebElement element = getElement(locator, isWaitRequired);
+	    JavascriptExecutor js = (JavascriptExecutor) getDriver();
+	    js.executeScript("arguments[0].innerHTML = arguments[1];", element, text);
+	}
 	
 
 	public void setText(WebElement element, boolean isWaitRequired, String text) {
@@ -239,6 +247,8 @@ public class PredefinedActions {
 			return false;
 		}
 	}
+	
+
 
 	public boolean isElementClickable(String locator, boolean isWaitRequired) {
 		WebElement element = getElement(locator, isWaitRequired);
@@ -303,7 +313,7 @@ public class PredefinedActions {
 
 	}
 
-	public void pressEnterKey() {
+	public void pressEnterKey() { 
 		Actions actions = new Actions(getDriver());
 		actions.sendKeys(Keys.ENTER).perform();
 
@@ -336,6 +346,13 @@ public class PredefinedActions {
 	public void pressSpace() {
 		Actions actions = new Actions(getDriver());
 		actions.sendKeys(Keys.SPACE).perform();
+
+	}
+	
+	public void pressWIndowAndAll() {
+		Actions actions = new Actions(getDriver());
+		
+		  actions.keyDown(Keys.COMMAND).sendKeys("a").perform();
 
 	}
 	
@@ -396,6 +413,18 @@ public class PredefinedActions {
 		wait.until(ExpectedConditions.invisibilityOf(getElement(locator, true)));
 	}
 
+	public boolean waitUntilElementIsVisibleOne(WebElement element) {
+	    try {
+	        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+	        wait.until(ExpectedConditions.visibilityOf(element));
+	        return true;
+	    } catch (Exception e) {
+	        return false;
+	    }
+	}
+
+	
+	
 	public String getElementText(String locator, boolean isWaitRequired) {
 		return getElement(locator, isWaitRequired).getText();
 	}
@@ -412,12 +441,17 @@ public class PredefinedActions {
 		return element.getText();
 	}
 
+
 	public void selectByText(WebElement element, String valueToSelect) {
 		select = new Select(element);
 		select.selectByVisibleText(valueToSelect);
 		
 	}
 
+	public void ScrollPage(String locator) {
+		 JavascriptExecutor js = (JavascriptExecutor) getDriver();
+		 js.executeScript("arguments[0].scrollIntoView();",locator);
+	}
 	
 //	public void scrollToElement() {
 //		JavascriptExecutor js = (JavascriptExecutor) getDriver();
@@ -425,10 +459,19 @@ public class PredefinedActions {
 //
 //	}
 	
-	public void scrollToElement() {
+//	public void scrollToElement() {
+//	    JavascriptExecutor js = (JavascriptExecutor) getDriver();
+//	    js.executeScript("scrollBy(0, 1000)");
+//	}
+	
+	public void scrollToElement(WebElement element) {
 	    JavascriptExecutor js = (JavascriptExecutor) getDriver();
-	    js.executeScript("scrollBy(0, 45000)");
+	    js.executeScript("arguments[0].scrollIntoView(true);", element);
+	    sleep(1000); // Adjust sleep duration if necessary
 	}
+
+
+
 
 	public void scrollToBottom() {
 	    JavascriptExecutor js = (JavascriptExecutor) getDriver();
@@ -461,7 +504,7 @@ public class PredefinedActions {
 	
 	
 	
-	
+
 	
 	
 	

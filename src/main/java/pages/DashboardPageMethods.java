@@ -12,13 +12,14 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import base.PredefinedActions;
 import constant.ConstantPath;
 import stepDefinition.AutomationHooks;
 import utility.PropOperation;
 
-public class DashboardPageMethods extends PredefinedActions {
+public class DashboardPageMethods extends PredefinedActions { 
 	public PropOperation propOperation;
 
 	public DashboardPageMethods() {
@@ -147,7 +148,7 @@ public class DashboardPageMethods extends PredefinedActions {
 	}
 
 	public void ClickApplyOnly() {
-		clickOnElement(propOperation.getValue("Apply"), true);
+		clickOnElement(propOperation.getValue("ApplyLabel"), true);
 		sleep(5000);
 
 	}
@@ -181,7 +182,7 @@ public class DashboardPageMethods extends PredefinedActions {
 	public void closePopup() {
 
 		clickOnElementUsingAction(propOperation.getValue("CancelLabel"), true);
-		sleep(7000);
+		sleep(2000);
 	}
 
 	public void SelectGlobalCheckbox() {
@@ -213,6 +214,11 @@ public class DashboardPageMethods extends PredefinedActions {
 		sleep(2000);
 		return isElementDisplayed(propOperation.getValue("SubjectPresent"), true);
 
+	}
+	
+	public void OpenFirstmails() {
+		clickOnElement(propOperation.getValue("FirstMail"), true);
+		sleep(2000);
 	}
 
 	public void HoverExpandmail() {
@@ -274,6 +280,7 @@ public class DashboardPageMethods extends PredefinedActions {
 	public void SearchLable() throws InterruptedException {
 		clickOnElement(propOperation.getValue("SearchInputField"), true);
 		sleep(5000);
+
 		setText(propOperation.getValue("SearchInputField"), true, "Lab");
 
 	}
@@ -339,22 +346,12 @@ public class DashboardPageMethods extends PredefinedActions {
 		sleep(2000);
 	}
 
-	public boolean SendReplyFromIcon() {
-		String replyIconLocator = propOperation.getValue("ReplyIcon");
-		System.out.println("ReplyIcon Locator: " + replyIconLocator); // Debug statement
-		clickOnElement(replyIconLocator, true);
-		sleep(2000);
-
-		return isElementDisplayed(propOperation.getValue("OpenEditor"), true);
-
-	}
-
-	public boolean scrolleditor() {
-		waitUntilElementIsVisible("7000");
-		scrollToElement(); // Scroll to send button
-		waitUntilElementIsVisible("7000");
-		return isElementDisplayed(propOperation.getValue("SendButton"), true);
-	}
+//	public boolean scrolleditor() {
+//		waitUntilElementIsVisible("7000");
+//		scrollToElement(); // Scroll to send button
+//		waitUntilElementIsVisible("7000");
+//		return isElementDisplayed(propOperation.getValue("SendButton"), true);
+//	}
 
 	public boolean IsMailPresent() {
 		List<WebElement> EmailList = getAllElements(propOperation.getValue("EmailList"), true);
@@ -365,35 +362,32 @@ public class DashboardPageMethods extends PredefinedActions {
 	}
 
 	public boolean getMessageElement() {
-        if (IsMailPresent()) {
-        	return isElementDisplayed(propOperation.getValue("EmailList"), true);
-        } else {
-        	return isElementDisplayed(propOperation.getValue("NoMail"), true);
-        }
-	
-}
-	
-	
+		if (IsMailPresent()) {
+			return isElementDisplayed(propOperation.getValue("EmailList"), true);
+		} else {
+			return isElementDisplayed(propOperation.getValue("NoMail"), true);
+		}
+
+	}
+
 	public void SpamFromSecondEliiplse() {
 		HoverOnElementUsingAction(propOperation.getValue("SecondEllipse"), true);
 		sleep(3000);
 		clickOnElement(propOperation.getValue("SecondEllipse"), true);
 		sleep(2000);
-		
+
 	}
-	
+
 	public void ClikcReportSpamSecondEllipse() {
 		clickOnElement(propOperation.getValue("SecondReportSpam"), true);
 		sleep(2000);
-		
-		
+
 	}
-	
-	
+
 	public void ClikcPrintSecondEllipse() {
 		clickOnElement(propOperation.getValue("SecondEllipsePrint"), true);
 		sleep(2000);
-		
+
 		Set<String> handler = getDriver().getWindowHandles();
 
 		Iterator<String> it = handler.iterator();
@@ -405,34 +399,129 @@ public class DashboardPageMethods extends PredefinedActions {
 		System.out.println("Child window id:" + childWindowId);
 
 		getDriver().switchTo().window(childWindowId);
-		
+
 		sleep(3000);
 		System.out.println("child window pop up title" + getDriver().getTitle());
 
-		//getDriver().close();
+		// getDriver().close();
 
 		getDriver().switchTo().window(parentWindowId);
 
-	
-
 		System.out.println("parent window title" + getDriver().getTitle());
 	}
-	
-	
+
 	public void ClickOnOriginal() throws AWTException {
 		clickOnElement(propOperation.getValue("original"), true);
 		sleep(2000);
-		
+
 		Robot robot = new Robot();
-		
+
 		robot.keyPress(KeyEvent.VK_ENTER);
-        robot.keyRelease(KeyEvent.VK_ENTER);
-        
-        sleep(2000);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+
+		sleep(2000);
 	}
-	
-	public void DeleteFromSeconellipse() {
+
+	public void GetFirstMailOnRightClick() throws InterruptedException {
+		HoverOnElementUsingAction(propOperation.getValue("FirstTile"), true);
+
+		scrollToBottom();
+		WebElement element = getElement(propOperation.getValue("FirstMail"), true);
+		Actions actions = new Actions(getDriver());
+		actions.contextClick(element).perform();
+		Thread.sleep(2000); // Sleep after the action if necessary
+	}
+
+	public boolean isPopUpVisible() {
+		List<WebElement> elements = getAllElements(propOperation.getValue("PopupOnRightClick"), true);
+		for (WebElement element : elements) {
+			System.out.println(element.getText());
+		}
+
+		return isElementDisplayed(propOperation.getValue("PopupOnRightClick"), true);
+
+	}
+
+	public void SendTospamFromRightClick() {
+		clickOnElement(propOperation.getValue("ReportSpamFromPopup"), true);
+		sleep(2000);
+
+	}
+
+	public void DeleteAfterRightClick() {
+		clickOnElement(propOperation.getValue("DeletefromPopup"), true);
+		sleep(2000);
+	}
+
+	public void MarkAsReadAfterRightClick() {
+		clickOnElement(propOperation.getValue("Markasreadfrompopup"), true);
+		sleep(2000);
+	}
+
+	public void SelectLabelFroRightClick() {
+		clickOnElement(propOperation.getValue("Addlabelfrompopup"), true);
+		sleep(2000);
+	}
+
+	public boolean isLablepopupvisible() {
+		return isElementDisplayed(propOperation.getValue("AddLabelPopup"), true);
+
+	}
+
+	public void clickReplyiCon() {
+		clickOnElement(propOperation.getValue("ReplyIcon"), true);
+		sleep(3000);
+
+	}
+
+	public void ScrollPage() {
+	    WebElement sendButtonElement = getElement(propOperation.getValue("SendButton"), false); // Initially, no wait
+
+	    if (sendButtonElement == null) {
+	        System.out.println("Send button element not found.");
+	        return;
+	    }
+
+	    scrollToElement(sendButtonElement);
+
+	    // Wait for the element to be visible after scrolling
+	    if (!waitUntilElementIsVisibleOne(sendButtonElement)) {
+	        // Handle the scenario where the element is not visible
+	        System.out.println("Send button is not visible after scrolling.");
+	    }
+	}
+
+
+	public void AddAnotherRecipient() throws InterruptedException {
+		clickOnElement(propOperation.getValue("ClickSideRecipient"), true);
+		sleep(3000);
 		
+		 setText(propOperation.getValue("AnotherRecipient"), false,"pramod@staging.blinkly.com");
+		 pressEnterKey();
+		 
+		 sleep(2000);
+			
+		 setText(propOperation.getValue("AnotherRecipient"), false,"ankita@staging.blinkly.com");
+		 pressEnterKey();
+		 
+	}
+	
+	public void ClickReplyButton() {
+		clickOnElement(propOperation.getValue("ReplyButton"), true);
+		sleep(3000);
+	}
+	
+	
+	
+	public void ClickForwardIcon() { 
+		clickOnElement(propOperation.getValue("ForwardIcon"), true);
+		sleep(3000);
+	}
+	
+	
+	public void ClickForwardButton() { 
+		clickOnElement(propOperation.getValue("ForwardButton"), true);
+		sleep(3000);
 	}
 	
 	
@@ -440,8 +529,5 @@ public class DashboardPageMethods extends PredefinedActions {
 	
 	
 	
-	
-	
-	
-	
+
 }

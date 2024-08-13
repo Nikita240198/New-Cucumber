@@ -6,11 +6,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import base.PredefinedActions;
+import ch.qos.logback.core.util.Duration;
 import constant.ConstantPath;
 import utility.PropOperation;
 
@@ -21,8 +28,35 @@ public class ComposePageMethods extends PredefinedActions {
 		propOperation = new PropOperation(ConstantPath.ComposeLocator);
 	}
 
+//	public void OpenCompose() {
+//		WebElement element =getElement(propOperation.getValue("ComposeButton"), true);
+//		
+//		waitUntilElementIsClickable(element);
+//		
+//		clickOnElement(propOperation.getValue("ComposeButton"), true);
+//		sleep(3000);
+//	}
+
 	public void OpenCompose() {
-		clickOnElement(propOperation.getValue("ComposeButton"), true);
+		// Retrieve the Compose button element once
+		WebElement element = getElement(propOperation.getValue("ComposeButton"), true);
+
+		// Wait until the element is clickable
+		if (waitUntilElementIsClickable(element)) {
+			try {
+				// Attempt to click the element
+				element.click();
+			} catch (ElementClickInterceptedException e) {
+				// Handle the element click intercepted scenario
+				System.out.println("Element click intercepted, attempting to scroll and retry.");
+				scrollToElement(element);
+				element.click();
+			}
+		} else {
+			System.out.println("Compose button is not clickable.");
+		}
+
+		// Pause for a moment after clicking
 		sleep(3000);
 	}
 
@@ -51,7 +85,7 @@ public class ComposePageMethods extends PredefinedActions {
 	}
 
 	public void EnterRecipient() throws InterruptedException {
-		setText(propOperation.getValue("ToField"), true, "pramod@staging.blinkly.com");
+		setText(propOperation.getValue("ToField"), true, "testprajwalone@staging.blinkly.com");
 		sleep(3000);
 	}
 
@@ -90,9 +124,11 @@ public class ComposePageMethods extends PredefinedActions {
 	}
 
 	public void EditEmail1() throws InterruptedException {
-		clickOnElement(propOperation.getValue("ToField"), true);
-		setText(propOperation.getValue("ToField"), true, "nivesh@staging.blinkly.com");
-		sleep(3000);
+		clickOnElement(propOperation.getValue("inputEdit"), true);
+		setText(propOperation.getValue("inputEdit"), true, "abcd");
+		sleep(2000);
+		pressEnterKey();
+		sleep(2000);
 	}
 
 	public void CancelMail() {
@@ -147,7 +183,7 @@ public class ComposePageMethods extends PredefinedActions {
 	}
 
 	public void EnterBcc() throws InterruptedException {
-		setText(propOperation.getValue("inputBcc"), true, "ankita@staging.blinkly.com");
+		setText(propOperation.getValue("inputBcc"), true, "pramod@staging.blinkly.com");
 	}
 
 	public void ClickBackinBcc() {
@@ -184,13 +220,66 @@ public class ComposePageMethods extends PredefinedActions {
 		sleep(3000);
 	}
 
-	public void Enterbody() throws InterruptedException {
-		clickOnElement(propOperation.getValue("Body"), true);
-		sleep(3000);
-		setText(propOperation.getValue("Body"), true,
-				"This is an automatic generated mail \n design by Nikita \n We are using Selenium with java \n we also learning Cucumber BDD");
+//	public void Enterbody() throws InterruptedException {
+//		sleep(7000);
+//	
+//		setText(propOperation.getValue("Body"), true,
+//				"From the list above, let’s choose “illustration” as our rhetorical purpose.We’ll walk through a 5-step process for building a paragraph that illustrates a point in an argumen For each step there is an explanation and example. Our example paragraph will be about human misconceptions of piranhas ");
+//
+//		sleep(3000);
+//	}
 
-		sleep(3000);
+	public void EnterBody() throws InterruptedException {
+		String bodyLocator = propOperation.getValue("Body");
+
+		String largeText = "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, ..."
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, ..."
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, ..."
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, ..."
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, ..."
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, ..."
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, ..."
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, ..."
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"; // Add
+																																											// the
+																																											// rest
+																																											// of
+																																											// your
+																																											// text
+																																											// here
+
+		setTextUsingJS(bodyLocator, true, largeText);
 	}
 
 	public void HoverScheduleSend() {
@@ -442,6 +531,13 @@ public class ComposePageMethods extends PredefinedActions {
 	public void SelectOneHour() {
 
 		clickOnElement(propOperation.getValue("ExpireDropDownLocator"), true);
+		sleep(2000);
+
+	}
+
+	public void SelectThreeMonts() {
+
+		clickOnElement(propOperation.getValue("ThreeMonthExpire"), true);
 		sleep(2000);
 
 	}
@@ -766,11 +862,9 @@ public class ComposePageMethods extends PredefinedActions {
 //	}
 		clickOnElement(propOperation.getValue("SelectAlignment"), true);
 		sleep(3000);
-		
-		
-		
+
 	}
-	
+
 	public String HoverBulletList() {
 		HoverOnElementUsingAction(propOperation.getValue("BulletList"), true);
 		sleep(3000);
@@ -786,9 +880,8 @@ public class ComposePageMethods extends PredefinedActions {
 		clickOnElement(propOperation.getValue("BulletList"), true);
 		sleep(3000);
 
-		
 	}
-	
+
 	public String HoverNumberList() {
 		HoverOnElementUsingAction(propOperation.getValue("NumberList"), true);
 		sleep(3000);
@@ -804,9 +897,8 @@ public class ComposePageMethods extends PredefinedActions {
 		clickOnElement(propOperation.getValue("NumberList"), true);
 		sleep(3000);
 
-		
 	}
-	
+
 	public String HoverIndent() {
 		HoverOnElementUsingAction(propOperation.getValue("Indendt"), true);
 		sleep(3000);
@@ -822,9 +914,8 @@ public class ComposePageMethods extends PredefinedActions {
 		clickOnElement(propOperation.getValue("Indendt"), true);
 		sleep(3000);
 
-		
 	}
-	
+
 	public String HoverOutdent() {
 		HoverOnElementUsingAction(propOperation.getValue("OutDent"), true);
 		sleep(3000);
@@ -840,9 +931,8 @@ public class ComposePageMethods extends PredefinedActions {
 		clickOnElement(propOperation.getValue("OutDent"), true);
 		sleep(3000);
 
-		
 	}
-	
+
 	public String HoverBlockquote() {
 		HoverOnElementUsingAction(propOperation.getValue("BlockQuote"), true);
 		sleep(3000);
@@ -858,9 +948,8 @@ public class ComposePageMethods extends PredefinedActions {
 		clickOnElement(propOperation.getValue("BlockQuote"), true);
 		sleep(3000);
 
-		
 	}
-	
+
 	public String HoverTx() {
 		HoverOnElementUsingAction(propOperation.getValue("ClearFormat"), true);
 		sleep(3000);
@@ -876,7 +965,6 @@ public class ComposePageMethods extends PredefinedActions {
 		clickOnElement(propOperation.getValue("ClearFormat"), true);
 		sleep(3000);
 
-		
 	}
 //	public void Attachments() throws AWTException {
 //		clickOnElement(propOperation.getValue("OpenAttachment"), true);
@@ -897,25 +985,390 @@ public class ComposePageMethods extends PredefinedActions {
 //        e.printStackTrace();
 //    } 
 //	}
-	
+
 	public void Subjetcone(int i) throws InterruptedException {
-		setText(propOperation.getValue("Subject"), true, "Subject " + i);
+		setText(propOperation.getValue("Subject"), true, "Subject new  " + i);
 		sleep(3000);
 	}
+
+	public void MultipleRecipientInToField() throws InterruptedException {
+//		setText(propOperation.getValue("ToField"), true, "nikitabaragl@staging.blinkly.com");
+//		pressEnterKey();
+//	sleep(2000);
+		setText(propOperation.getValue("ToField"), true, "testprajwalone@staging.blinkly.com");//
+		pressSpace();
+		sleep(2000);
+		setText(propOperation.getValue("ToField"), true, "mansi@staging.blinkly.com");
+		pressEnterKey();
+		
+	}
+
+	public void MultipleRecipientInCCField() throws InterruptedException {
+		setText(propOperation.getValue("inputCc"), true, "praveen@staging.blinkly.com");
+		pressEnterKey();
+		sleep(2000);
+		setText(propOperation.getValue("inputCc"), true, "priya@staging.blinkly.com");
+		pressSpace();
+		sleep(2000);
+
+	}
+
+	public void MultipleRecipientInBCCField() throws InterruptedException {
+		setText(propOperation.getValue("inputBcc"), true, "nivesh@staging.blinkly.com");
+		pressEnterKey();
+		sleep(2000);
+		setText(propOperation.getValue("inputBcc"), true, "sourabh@staging.blinkly.com");
+		pressSpace();
+		sleep(2000);
+
+	}
+
+	public void DragDropTotoCc() {
+
+		WebElement sourceElement = getElement(propOperation.getValue("DragFromTo"), true);
+		WebElement targetElement = getElement(propOperation.getValue("inputCc"), true);
+
+		Actions act = new Actions(getDriver());
+		act.dragAndDrop(sourceElement, targetElement).perform();
+		sleep(2000);
+
+	}
+
+	public void DragDropTotoBcc() {
+
+		WebElement sourceElement = getElement(propOperation.getValue("DragFromTo"), true);
+		WebElement targetElement = getElement(propOperation.getValue("inputBcc"), true);
+
+		Actions act = new Actions(getDriver());
+		act.dragAndDrop(sourceElement, targetElement).perform();
+		sleep(2000);
+
+	}
+
+	public void CcBcctoTo() {
+
+		WebElement sourceElement = getElement(propOperation.getValue("Ccpill"), true);
+		WebElement targetElement = getElement(propOperation.getValue("ToField"), true);
+
+		Actions act = new Actions(getDriver());
+
+		WebElement sourceElementOne = getElement(propOperation.getValue("Bccpill"), true);
+		WebElement targetElementOne = getElement(propOperation.getValue("ToField"), true);
+		sleep(3000);
+		act.dragAndDrop(sourceElement, targetElement).perform();
+		sleep(2000);
+		act.dragAndDrop(sourceElementOne, targetElementOne).perform();
+		sleep(2000);
+
+	}
+
+	public void MultipleTotoCc() {
+		Actions act = new Actions(getDriver());
+		WebElement Topill = getElement(propOperation.getValue("DragFromTo"), true);
+		WebElement Ccfield = getElement(propOperation.getValue("inputCc"), true);
+		act.dragAndDrop(Topill, Ccfield).perform();
+		sleep(3000);
+
+	}
+
+	public void PerformMultipleDragDrop() {
+		Actions act = new Actions(getDriver());
+
+		WebElement Tofield = getElement(propOperation.getValue("ToField"), true);
+		WebElement Topill = getElement(propOperation.getValue("DragFromTo"), true);
+		WebElement Ccfield = getElement(propOperation.getValue("inputCc"), true);
+		WebElement Bccfield = getElement(propOperation.getValue("inputBcc"), true);
+		WebElement CcPill = getElement(propOperation.getValue("Ccpill"), true);
+		WebElement Bccpill = getElement(propOperation.getValue("Bccpill"), true);
+
+		// Perform drag and drop from Topill to Ccfield
+		Topill = getElement(propOperation.getValue("DragFromTo"), true);
+		Ccfield = getElement(propOperation.getValue("inputCc"), true);
+		act.dragAndDrop(Topill, Ccfield).perform();
+		sleep(3000);
+
+		// Perform drag and drop from Topill to Ccfield
+		Topill = getElement(propOperation.getValue("DragFromTo"), true);
+		Ccfield = getElement(propOperation.getValue("inputCc"), true);
+		act.dragAndDrop(Topill, Ccfield).perform();
+		sleep(3000);
+		// Perform drag and drop from Topill to Bccfield
+
+		Topill = getElement(propOperation.getValue("DragFromTo"), true);
+		Bccfield = getElement(propOperation.getValue("inputBcc"), true);
+		act.dragAndDrop(Topill, Bccfield).perform();
+		sleep(3000);
+
+		// Perform drag and drop from CcPill to Tofield
+		CcPill = getElement(propOperation.getValue("Ccpill"), true);
+		Tofield = getElement(propOperation.getValue("ToField"), true);
+		act.dragAndDrop(CcPill, Tofield).perform();
+		sleep(3000);
+
+		// Perform drag and drop from Bccpill to Tofield
+		Bccpill = getElement(propOperation.getValue("Bccpill"), true);
+		Tofield = getElement(propOperation.getValue("ToField"), true);
+		act.dragAndDrop(Bccpill, Tofield).perform();
+		sleep(3000);
+
+		// Perform drag and drop from CcPill to Bccfield
+
+		CcPill = getElement(propOperation.getValue("Ccpill"), true);
+		Bccfield = getElement(propOperation.getValue("inputBcc"), true);
+		act.dragAndDrop(CcPill, Bccfield).perform();
+		sleep(3000);
+
+		// Perform drag and drop from BCcPill to Ccfield
+
+		Bccpill = getElement(propOperation.getValue("Bccpill"), true);
+		Ccfield = getElement(propOperation.getValue("inputCc"), true);
+		act.dragAndDrop(Bccpill, Ccfield).perform();
+		sleep(3000);
+
+	}
+
+	public void DropAtBegining() {
+
+		// Perform drag and drop from Topill to Ccfield
+
+		WebElement Topill = getElement(propOperation.getValue("ToField"), true);
+		WebElement Ccfield = getElement(propOperation.getValue("inputCc"), true);
+		WebElement CcPill = getElement(propOperation.getValue("Ccpill"), true);
+		Actions act = new Actions(getDriver());
+		// Perform drag and drop from Topill to Ccfield
+		act.clickAndHold(Topill).moveToElement(CcPill).release().perform();
+		sleep(3000);
+	}
+
+	public String HoverEmoji() {
+		HoverOnElementUsingAction(propOperation.getValue("ComposeEmoji"), true);
+		sleep(3000);
+		WebElement message = getElement(propOperation.getValue("ComposeEmoji"), true);
+		return message.getText();
+
+	}
+
+	public void ClickEmoji() {
+		clickOnElement(propOperation.getValue("ComposeEmoji"), true);
+		sleep(3000);
+
+	}
+
+	public String HoverLink() {
+		HoverOnElementUsingAction(propOperation.getValue("Link"), true);
+		sleep(3000);
+		WebElement message = getElement(propOperation.getValue("Link"), true);
+		return message.getText();
+	}
+
+	public void ClickLink() {
+		clickOnElement(propOperation.getValue("Link"), true);
+		sleep(3000);
+	}
+
+	public void CreateLink() throws InterruptedException {
+		clickOnElement(propOperation.getValue("inputLinkText"), true);
+
+		setText(propOperation.getValue("inputLinkText"), true, "TextLink");
+		sleep(2000);
+
+		clickOnElement(propOperation.getValue("UrlText"), true);
+
+		setText(propOperation.getValue("UrlText"), true, "https://www.google.com/");
+		sleep(2000);
+
+		clickOnElement(propOperation.getValue("insertLink"), true);
+	}
+
+	public String ClickInsert() {
+		clickOnElement(propOperation.getValue("insertLink"), true);
+		WebElement message = getElement(propOperation.getValue("validationmessagelink"), true);
+		return message.getText();
+
+	}
+
+	public String EnteronlyLinkText() throws InterruptedException {
+		clickOnElement(propOperation.getValue("inputLinkText"), true);
+
+		setText(propOperation.getValue("inputLinkText"), true, "TextLink");
+		sleep(2000);
+
+		clickOnElement(propOperation.getValue("insertLink"), true);
+
+		WebElement message = getElement(propOperation.getValue("validationmessagelink"), true);
+		return message.getText();
+
+	}
+
+	public void OnlyUrl() throws InterruptedException {
+		clickOnElement(propOperation.getValue("UrlText"), true);
+
+		setText(propOperation.getValue("UrlText"), true, "ww.abcd.com");
+
+		sleep(2000);
+
+	}
+
+	public void ClickCreatedLink() {
+		clickOnElement(propOperation.getValue("CreatedLink"), true);
+	}
+
+	public boolean isPopupDispalyed() {
+		return isElementDisplayed(propOperation.getValue("LinkTooltip"), true);
+	}
+
+	public boolean ClickEditLink() {
+		clickOnElement(propOperation.getValue("EditLink"), true);
+
+		return isElementDisplayed(propOperation.getValue("LinkAfterEdit"), true);
+
+	}
+
+	public void EditLink() throws InterruptedException {
+
+//		clickOnElement(propOperation.getValue("LinkAfterEdit"), true);
+
+		setText(propOperation.getValue("LinkAfterEdit"), true, "www.gmail.com");
+		sleep(5000);
+
+		clickOnElement(propOperation.getValue("EditLink"), true);
+	}
+
+	public void RemoveLink() {
+		clickOnElement(propOperation.getValue("RemoveLink"), true);
+		sleep(5000);
+	}
+
+	public void SelectText() throws InterruptedException {
+		clickOnElement(propOperation.getValue("Body"), true);
+		sleep(3000);
+
+		setText(propOperation.getValue("Body"), true, "Thisisanautomaticgeneratedmail");
+
+		sleep(3000);
+
+		pressWIndowAndAll();
+		sleep(3000);
+
+	}
+
+	public void ClickInsert1() {
+		clickOnElement(propOperation.getValue("insertLink"), true);
+		sleep(3000);
+
+	}
+
+	public void ClickCeatedLink() {
+		clickOnElement(propOperation.getValue("LinkInPopup"), true);
+		sleep(3000);
+		Set<String> handler = getDriver().getWindowHandles();
+
+		Iterator<String> it = handler.iterator();
+
+		String parentWindowId = it.next();
+		System.out.println("parent window id:" + parentWindowId);
+
+		String childWindowId = it.next();
+		System.out.println("Child window id:" + childWindowId);
+
+		getDriver().switchTo().window(childWindowId);
+
+		sleep(3000);
+		System.out.println("child window pop up title" + getDriver().getTitle());
+
+		getDriver().close();
+
+		getDriver().switchTo().window(parentWindowId);
+
+		sleep(3000);
+
+		System.out.println("parent window title" + getDriver().getTitle());
+	}
+
+	public void DoubleclickLink() {
+		DoubleClick(propOperation.getValue("CreatedLink"), true);
+		sleep(2000);
+
+	}
+
+	public void EnterBodyInBulk(int count) throws InterruptedException {
+
+		for (int i = 486; i < count; i++) {
+
+			OpenCompose();
+			MultipleRecipientInToField();
+			PressEnter();
+			Subjetcone(i + 1);
+			EnterBody();
+			ClickOnSend();
+
+		}
+	}
+
+	public void BulkmailWithAllOptions(int count) throws InterruptedException {
+		for (int i =0 ; i < count; i++) {
+			// send normal mail
+			OpenCompose();
+			MultipleRecipientInToField();
+			PressEnter();
+			Subjetcone(i + 1);
+			EnterBody();
+			ClickOnSend();
+			sleep(3000);
+
+			// send schedule mail
+//			OpenCompose();
+//			MultipleRecipientInToField();
+//			PressEnter();
+//			Subjetcone(i + 1);
+//			EnterBody();
+//			OpenSechduleSend();
+//			ClickonSaveOnScheduleSend();
+//			ClickOnSend();
+//			sleep(3000);
+
+//			// send mail with expiration time
+//			OpenCompose();
+//			MultipleRecipientInToField();
+//			PressEnter();
+//			Subjetcone(i + 1);
+//			EnterBody();
+//			ClickSetToExpire();
+//			OpenExpirationDropdown();
+//			SelectThreeMonts();
+//			SaveDateAndTime();
+//			ClickOnSend();
+//			sleep(3000);
+//			
+			
+			//send mail with VC Enabled
+			
+//			OpenCompose();
+//			MultipleRecipientInToField();
+//			PressEnter();
+//			Subjetcone(i + 1);
+//			EnterBody();
+//			EnableVc();
+//			ClickOnSend();
+//			sleep(3000);
+			
+			//send mail to blinkly and non blinkly
+//			OpenCompose();
+//			MultipleRecipientInToField();
+//			setText(propOperation.getValue("ToField"), true, "nikitabargalmindruby@gmail.com");
+//			pressEnterKey();
+//			Subjetcone(i + 1);
+//			EnterBody();
+//			EnableD2I();
+//			ClickOnSend();
+//			sleep(3000);
+
+		}
+
+	}
 	
-
-
-	 public void EnterBodyInBulk(int count) throws InterruptedException {
-		 
-	        for (int i =0; i < count; i++) {
-	            OpenCompose();
-	            EnterRecipient();
-	            Subjetcone(i+1);
-	            Enterbody();
-	            ClickOnSend();
-	        }
-	    }
-
+	
+	
 	
 	
 	

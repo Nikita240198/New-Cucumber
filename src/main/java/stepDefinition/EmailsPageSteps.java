@@ -11,10 +11,8 @@ import pages.LandingPageMethods;
 import pages.LoginPageMethods;
 
 public class EmailsPageSteps {
-//	LoginPageMethods loginPageMethods = new LoginPageMethods();
-//	LandingPageMethods landingPageMethods = new LandingPageMethods();
-//	DashboardPageMethods dashboardpagemethods = new DashboardPageMethods();
-	EmailsPageMethods emailsPageMethod = new EmailsPageMethods();
+
+	EmailsPageMethods emailsPageMethod = new EmailsPageMethods();  
 	
 	
 	@When("On click on Emails Tab it should navigate to emails page")

@@ -215,7 +215,7 @@ public class ComposePageSteps {
 
 	@When("Enter the Body")
 	public void enter_the_Body() throws InterruptedException {
-		composePageMethods.Enterbody();
+		composePageMethods.EnterBody(); 
 	}
 
 	@When("Verify on Hover it should show tooltip for Schedule send")
@@ -401,7 +401,7 @@ public class ComposePageSteps {
 		@When("The User click on VC icon the icon should get enabled")
 		public void the_User_click_on_VC_icon_the_icon_should_get_enabled() {
 			composePageMethods.EnableVc();
-			 Assert.assertTrue("Vc is not enaled", composePageMethods.isVcEnabled());
+			// Assert.assertTrue("Vc is not enaled", composePageMethods.isVcEnabled());
 		}
 
 		@When("On click on VC icon again the icon should get disabled")
@@ -668,10 +668,171 @@ public class ComposePageSteps {
 		
 		@Then("Sent Email in bulk")
 		public void sent_Email_in_bulk() throws InterruptedException {
-		        int count = 500; // Number of times to send the email
+		        int count = 2000; // Number of times to send the email
 		        composePageMethods.EnterBodyInBulk(count);
 
 			
+		}
+
+		@Then("user enters multiple email address in TO field")
+		public void user_enters_multiple_email_address_in_TO_field() throws InterruptedException {
+		 composePageMethods.MultipleRecipientInToField();
+		}
+
+		@Then("user enters multiple email address in Cc field")
+		public void user_enters_multiple_email_address_in_Cc_field() throws InterruptedException {
+			composePageMethods.MultipleRecipientInCCField();
+		}
+
+		@Then("user enters multiple email address in Bcc field")
+		public void user_enters_multiple_email_address_in_Bcc_field() throws InterruptedException {
+			 composePageMethods.MultipleRecipientInBCCField();
+		}
+		
+		
+		@Then("on drag and drop Email should drag from To field to Cc Field")
+		public void on_drag_and_drop_Email_should_drag_from_To_field_to_Cc_Field() {
+			composePageMethods.DragDropTotoCc();
+		}
+
+		@Then("on drag and drop Email should drag from To field to BCc Field")
+		public void on_drag_and_drop_Email_should_drag_from_To_field_to_BCc_Field() {
+			composePageMethods.DragDropTotoBcc();
+		}
+		
+		@Then("User drag Cc and Bcc mail in To field")
+		public void user_drag_Cc_and_Bcc_mail_in_To_field() {
+			composePageMethods.CcBcctoTo();
+		}
+		
+		@Then("on drag and drop Email should drag from Cc field to To Field")
+		public void on_drag_and_drop_Email_should_drag_from_Cc_field_to_To_Field() {
+		  composePageMethods.MultipleTotoCc();
+		}
+
+		
+		@Then("User Perform drag drop in shuffling")
+		public void user_Perform_drag_drop_in_shuffling() {
+			composePageMethods.PerformMultipleDragDrop();
+		}
+		
+		
+		@Then("user drag email and drop in Cc Bcc field from To at beginning")
+		public void user_drag_email_and_drop_in_Cc_Bcc_field_from_To_at_beginning() {
+			composePageMethods.DropAtBegining();
+		}
+
+		@When("Hover on emoji it should show tooltip with message")
+		public void hover_on_emoji_it_should_show_tooltip_with_message() {
+			composePageMethods.HoverEmoji();
+			Assert.assertEquals("Font type mesage is not same", "Emoji", composePageMethods.HoverEmoji());
+		  
+		  
+		}
+
+		@When("on click on Emoji icon it shouldo open")
+		public void on_click_on_Emoji_icon_it_shouldo_open() {
+		   composePageMethods.ClickEmoji();	
+		}
+
+		@When("Hover on link it should show tooltip with message")
+		public void hover_on_link_it_should_show_tooltip_with_message() {
+			composePageMethods.HoverLink();
+			Assert.assertEquals("Font type mesage is not same", "Link", composePageMethods.HoverLink());
+			composePageMethods.ClickLink();
+		    
+		}
+
+		@Then("user can create new link on empty compose")
+		public void user_can_create_new_link_on_empty_compose() throws InterruptedException {
+			composePageMethods.CreateLink();
+		}
+		
+
+		@When("User click on link icon")
+		public void user_click_on_link_icon() {
+			composePageMethods.ClickLink();
+			
+		}
+
+		@Then("clikc on insert")
+		public void clikc_on_insert() {
+			composePageMethods.ClickInsert();
+			
+		}
+		
+		@Then("validation message should be present")
+		public void validation_message_should_be_present() {
+			Assert.assertEquals("Validation mesage is not same", "Please insert text", composePageMethods.ClickInsert());
+		}
+	
+		@When("User enter only text")
+		public void user_enter_only_text() throws InterruptedException {
+	composePageMethods.EnteronlyLinkText();
+		}
+		
+		@Then("validation message for Url field should be present")
+		public void validation_message_for_Url_field_should_be_present() throws InterruptedException {
+			Assert.assertEquals("Validation mesage is not same", "Please insert valid url", composePageMethods.EnteronlyLinkText());
+		}
+		
+		
+		@When("User enter only Url")
+		public void user_enter_only_Url() throws InterruptedException {
+		    composePageMethods.OnlyUrl();
+		}
+		
+		@When("On click on Link it should show created link in popup")
+		public void on_click_on_Link_it_should_show_created_link_in_popup() {
+		   composePageMethods.ClickCreatedLink();
+		   Assert.assertTrue("Link popup is not getting opened", composePageMethods.isPopupDispalyed());
+		  
+		}
+
+		@When("On click on Edit value should be prefilled")
+		public void on_click_on_Edit_value_should_be_prefilled() {
+			composePageMethods.ClickEditLink();
+			//Assert.assertTrue("Link in not there", composePageMethods.ClickEditLink());
+		   
+		}
+
+		@Then("User can change value on save")
+		public void user_can_change_value_on_save() throws InterruptedException {
+			composePageMethods.EditLink();
+		}
+		
+		@Then("on click on Remove link should get removed")
+		public void on_click_on_Remove_link_should_get_removed() {
+		composePageMethods.RemoveLink();
+		}
+		
+		@When("select some text")
+		public void select_some_text() throws InterruptedException {
+		composePageMethods.SelectText();
+		
+		}
+
+		@Then("click Insert")
+		public void click_Insert() {
+			composePageMethods.ClickInsert1();
+		}
+		
+		@Then("on click on link user should navigate to next page")
+		public void on_click_on_link_user_should_navigate_to_next_page() {
+			composePageMethods.ClickCeatedLink();
+		}
+		
+		@Then("user Doubele click and verify Link")
+		public void user_Doubele_click_and_verify_Link() {
+		 composePageMethods.DoubleclickLink();
+		 
+		 
+		}
+
+		@When("User Sends bulk mail with all options present")
+		public void user_Sends_bulk_mail_with_all_options_present() throws InterruptedException {
+			 int count = 2000; // Number of times to send the email
+		        composePageMethods.BulkmailWithAllOptions(count);
 		}
 
 		

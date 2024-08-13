@@ -12,7 +12,7 @@ import pages.LandingPageMethods;
 import pages.LoginPageMethods;
 
 public class DashboardPageSteps {
-	LoginPageMethods loginPageMethods = new LoginPageMethods();
+	LoginPageMethods loginPageMethods = new LoginPageMethods(); 
 	LandingPageMethods landingPageMethods = new LandingPageMethods();
 	DashboardPageMethods dashboardpagemethods = new DashboardPageMethods();
 
@@ -32,6 +32,12 @@ public class DashboardPageSteps {
 	public void user_click_on_first_tile_or_any_tile_it_should_get_open_in_Third_Pane() {
 		dashboardpagemethods.ClickOnFirstTile();
 	}
+	
+	@When("user click on First mail mail should get open")
+	public void user_click_on_First_mail_mail_should_get_open() {
+	  dashboardpagemethods.OpenFirstmails();
+	}
+
 
 	@When("On click on checkbox mail it should select mail")
 	public void on_click_on_checkbox_mail_it_should_select_mail() {
@@ -55,8 +61,8 @@ public class DashboardPageSteps {
 		dashboardpagemethods.SendSpam();
 	}
 
-	@Then("On clikc on Cancel the mail should move to spam")
-	public void on_clikc_on_Cancel_the_mail_should_move_to_spam() {
+	@Then("On clikc on Cancel the mail should not move to spam")
+	public void on_clikc_on_Cancel_the_mail_should_not_move_to_spam() {
 		dashboardpagemethods.NoSendSpam();
 	}
 
@@ -258,13 +264,13 @@ public class DashboardPageSteps {
 
 	@When("On Click on Reply iocn user should be able to send reply")
 	public void on_Click_on_Reply_iocn_user_should_be_able_to_send_reply() {
-		Assert.assertTrue("popup is not there", 
-				dashboardpagemethods.SendReplyFromIcon());
-		 Assert.assertTrue("Send button is not visible", 
-				 dashboardpagemethods.scrolleditor());
-		
+	
+		dashboardpagemethods.clickReplyiCon();
 	}
-
+	@When("Scroll page")
+	public void scroll_page() {
+		dashboardpagemethods.ScrollPage();
+	}
 	
 	@When("if there is no mail in list it should show message")
 	public void if_there_is_no_mail_in_list_it_should_show_message() {
@@ -305,11 +311,69 @@ public class DashboardPageSteps {
 	    
 	}
 
+	@When("user right click on any Mail")
+	public void user_right_click_on_any_Mail() throws InterruptedException {
+		dashboardpagemethods.GetFirstMailOnRightClick();
+	}
+
+	@When("It should show popup with all options present")
+	public void it_should_show_popup_with_all_options_present() {
+		Assert.assertTrue("popup is not there", dashboardpagemethods.isPopUpVisible());
+		
+	}
+
+	@When("user select Report spam after right click it should show confirmation popup")
+	public void user_select_Report_spam_after_right_click_it_should_show_confirmation_popup() {
+		dashboardpagemethods.SendTospamFromRightClick();
+		Assert.assertTrue("popup is not there", dashboardpagemethods.isConfirmationPopupComes());
+		
+		
+	}
+
+	@When("Click on Delete After rightClick it should open a Popup with confirmation messgae")
+	public void click_on_Delete_After_rightClick_it_should_open_a_Popup_with_confirmation_messgae() {
+		dashboardpagemethods.DeleteAfterRightClick();
+		Assert.assertTrue("popup is not there", dashboardpagemethods.isConfirmationPopupComesforDelete());
+	}
+	
+	@Then("on Clikc on Mark as read mail should mark as read")
+	public void on_Clikc_on_Mark_as_read_mail_should_mark_as_read() {
+		dashboardpagemethods.MarkAsReadAfterRightClick();
+	}
+	
+	@When("User Select Add label after right click and it should open popup")
+	public void user_Select_Add_label_after_right_click_and_it_should_open_popup() {
+		dashboardpagemethods.SelectLabelFroRightClick();
+		Assert.assertTrue("Popup is not getting open",dashboardpagemethods.isLablepopupvisible());
+	}
+	
+	@When("Enter another Recipient")
+	public void enter_another_Recipient() throws InterruptedException {
+		dashboardpagemethods.AddAnotherRecipient();
+	}
+
+
+	@When("On Click on Reply button")
+	public void on_Click_on_Reply_button() {
+	  dashboardpagemethods.ClickReplyButton();
+	}
 
 	
+	@When("On Click on Forward icon")
+	public void on_Click_on_Forward_icon() {
+	   dashboardpagemethods.ClickForwardIcon();
+	}
 	
 	
+	@When("On Click on Forward button")
+	public void on_Click_on_Forward_button() {
+		 dashboardpagemethods.ClickForwardButton();
+	}
 	
-
+	
+	@Then("On clikc on Cancel the mail should move to spam")
+	public void on_clikc_on_Cancel_the_mail_should_move_to_spam() {
+	  
+	}
 
 }

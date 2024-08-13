@@ -25,7 +25,7 @@ public class LoginPageMethods extends PredefinedActions {
 
 	public void ClickOnSignIn() {
 		clickOnElement(propOperation.getValue("Sign-In"), true);
-		sleep(5000);
+		sleep(7000);
 
 	}
 
@@ -69,7 +69,7 @@ public class LoginPageMethods extends PredefinedActions {
 
 	public void ValidUserName() throws InterruptedException {
 		clickOnElement(propOperation.getValue("Username"), true);
-		setText(propOperation.getValue("Username"), true, "ankita");
+		setText(propOperation.getValue("Username"), true, "rishabh");
 		sleep(3000);
 	}
 

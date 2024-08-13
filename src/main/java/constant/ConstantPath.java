@@ -10,6 +10,7 @@ package constant;
 		public static final String ComposeLocator = BASDIR+"ComposeMailLocator.properties";
 		public static final String DashboardLocator=BASDIR+"DashboardLocator.properties";
 		public static final String EmailPageLocator=BASDIR+"EmailsLocator.properties";
+		public static final String CreateDraftPageLocator=BASDIR+"CreateDraftLocator.properties";
 		
 		public static final String CHROMEDRIVER = "repace with Chromedriver path";
 		public static final String EDGEDRIVER = "repace with edgedriver path";
