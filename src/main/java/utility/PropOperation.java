@@ -7,6 +7,7 @@ import java.util.Properties;
 
 public class PropOperation {
 	public Properties properties;
+	
 	public PropOperation(String filePath) {
 		File file = new File(filePath);
 		try {
@@ -17,7 +18,10 @@ public class PropOperation {
 			e.printStackTrace();
 		}
 	}
+	
 	public String getValue(String key) {
 		return properties.getProperty(key);
 	}
+	
+	
 }

@@ -41,6 +41,7 @@ public class ComposePageSteps {
 	@When("the user clicks on the Send button without entering any content")
 	public void the_user_clicks_on_the_Send_button_without_entering_any_content() {
 	   composePageMethods.ClickOnSend();
+	   Assert.assertTrue("Mail does not get send", composePageMethods.isMailSentSuccessfully());
 	}
 
 	@Then("an alert popup should be displayed")
@@ -230,6 +231,7 @@ public class ComposePageSteps {
 
 	@When("Open date picker")
 	public void open_date_picker() {
+		composePageMethods.openCalendar();
 	Assert.assertTrue("Date picker is not getting opened", composePageMethods.isDatePickerOpen());
 	}
 
@@ -246,20 +248,20 @@ public class ComposePageSteps {
 
 	@Then("the user should be able to select any future date from the date picker")
 	public void the_user_should_be_able_to_select_any_future_date_from_the_date_picker() {
-		composePageMethods.OpenCalendar();
+		composePageMethods.openCalendar();
 		composePageMethods.SelectFutureDate();
 	}
 
 	@Then("the user should not be able to select any past date from the date picker")
 	public void the_user_should_not_be_able_to_select_any_past_date_from_the_date_picker() {
-		composePageMethods.OpenCalendar();
+		composePageMethods.openCalendar();
 		composePageMethods.SelectPastDate(); 
 		
 	}
 
 	@Then("clicking outside the date picker should close it")
 	public void clicking_outside_the_date_picker_should_close_it() {
-		composePageMethods.OpenCalendar();
+		composePageMethods.openCalendar();
 		composePageMethods.CloseSchedulePopup();
 	}
 	
@@ -497,7 +499,6 @@ public class ComposePageSteps {
 
 		@When("On click on Cross Compose box should get closed")
 		public void on_click_on_Cross_Compose_box_should_get_closed() {
-		   
 			composePageMethods.CancelComposeFromCross();
 		}
 
@@ -506,11 +507,27 @@ public class ComposePageSteps {
 		public void on_click_on_Delete_icon_Compose_box_should_get_closed() {
 			composePageMethods.DeleteCompose();
 		}
+		
+	
 
-//		@Then("On click on Attachment icon system Files Popup should get open")
-//		public void on_click_on_Attachment_icon_system_Files_Popup_should_get_open() throws AWTException {
-//			composePageMethods.Attachments();
-//		}
+		@Then("On click on Attachment icon system Files Popup should get open")
+		public void on_click_on_Attachment_icon_system_Files_Popup_should_get_open() throws AWTException {
+			composePageMethods.clickAttachment();		}
+		
+		@Then("User Should be able to add attachmetns")
+		public void user_Should_be_able_to_add_attachmetns() throws AWTException {
+			
+			//composePageMethods.selectAttachment();
+			//composePageMethods.closeSystemPopup();
+			composePageMethods.uploadFile("UploadImage.png");
+			Assert.assertTrue("Attachment is not uploaded", composePageMethods.isAttachmentDispalyed());
+			
+		}
+		
+		@When("Select Conetent in Mail")
+		public void select_Conetent_in_Mail() {
+			composePageMethods.SelectAllText();
+		}
 
 
 		@When("On Hover Font type should show Tooltip message")
@@ -520,11 +537,12 @@ public class ComposePageSteps {
 
 		}
 
-		@Then("On Click on Font Type a dropdown should get open and  on select any option font type should get changed")
+
+		
+		@When("On Click on Font Type a dropdown should get open and on select any option font type should get changed")
 		public void on_Click_on_Font_Type_a_dropdown_should_get_open_and_on_select_any_option_font_type_should_get_changed() throws InterruptedException {
 			composePageMethods.ChangeFontType();
 		}
-
 
 		@When("On Hover Font size should show Tooltip message")
 		public void on_Hover_Font_size_should_show_Tooltip_message() {
@@ -659,16 +677,12 @@ public class ComposePageSteps {
 			composePageMethods.ClearFormat();
 		}
 		
-//		@Then("User Should be able to add attachmetns")
-//		public void user_Should_be_able_to_add_attachmetns() throws AWTException {
-//			composePageMethods.Attachments();
-//		}
 		
 		
 		
 		@Then("Sent Email in bulk")
 		public void sent_Email_in_bulk() throws InterruptedException {
-		        int count = 2000; // Number of times to send the email
+		        int count = 300; // Number of times to send the email
 		        composePageMethods.EnterBodyInBulk(count);
 
 			

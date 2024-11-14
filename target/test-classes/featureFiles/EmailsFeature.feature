@@ -27,15 +27,17 @@ Feature: Verify Emails Features
     When On click on Emails Tab it should navigate to emails page
 
   @Emailstag2
-  Scenario: User Open Chat or email
+  Scenario: User Open email
     Given the user is logged in
-    When On click on Emails Tab it should navigate to emails page
-    And User click on first tile or any tile it should get open in Third Pane
+    When On click on Emails Tab
+    And It should navigate to emails page
+    Then User click on first tile or any tile it should get open in Third Pane
 
   @Emailstag3
   Scenario: Sent single mail to spam From Header
     Given the user is logged in
-    When On click on Emails Tab it should navigate to emails page
+     When On click on Emails Tab
+    And It should navigate to emails page
     And On click on checkbox mail it should select mail
     And On Hover it should show tooltip with message
     And On click on Spam icon it should open a Popup with confirmation messgae
@@ -44,15 +46,17 @@ Feature: Verify Emails Features
   @Emailstag4
   Scenario: Cancel mail to spam
     Given the user is logged in
-    When On click on Emails Tab it should navigate to emails page
+     When On click on Emails Tab
+    And It should navigate to emails page
     And On click on checkbox mail it should select mail
     And On click on Spam icon it should open a Popup with confirmation messgae
-    Then On clikc on Cancel the mail should move to spam
+   Then On click on Cancel the mail should not move to spam
 
   @Emailstag5
   Scenario: Delete single mail to spam From Header
     Given the user is logged in
-    When On click on Emails Tab it should navigate to emails page
+     When On click on Emails Tab
+    And It should navigate to emails page
     And On click on checkbox mail it should select mail
     And On Hover it should show tooltip with message for Delete
     And On click on Delete icon it should open a Popup with confirmation messgae
@@ -61,7 +65,8 @@ Feature: Verify Emails Features
   @Emailstag6
   Scenario: Cancel mail to get Delete
     Given the user is logged in
-    When On click on Emails Tab it should navigate to emails page
+     When On click on Emails Tab
+    And It should navigate to emails page
     And On click on checkbox mail it should select mail
     And On click on Delete icon it should open a Popup with confirmation messgae
     Then On clikc on Cancel the mail should not get Deleted
@@ -69,7 +74,8 @@ Feature: Verify Emails Features
   @Emailstag7
   Scenario: verify Mark as read from Header
     Given the user is logged in
-    When On click on Emails Tab it should navigate to emails page
+  When On click on Emails Tab
+    And It should navigate to emails page
     And On click on checkbox mail it should select mail
     And On Hover it should show tooltip with message for mark as read/unread
     Then On click On Mailbox icon The email shoudld mark as read or unread
@@ -77,7 +83,8 @@ Feature: Verify Emails Features
   @Emailstag8
   Scenario: verify Add label without any value select
     Given the user is logged in
-    When On click on Emails Tab it should navigate to emails page
+    When On click on Emails Tab
+    And It should navigate to emails page
     And On click on checkbox mail it should select mail
     And On Hover it should show tooltip with message for Add Lable
     And On click On Add Lable it should open popup
@@ -130,7 +137,8 @@ Feature: Verify Emails Features
   @Emailstag14
   Scenario: Verify Select All and sent to Delete
     Given the user is logged in
-    When On click on Emails Tab it should navigate to emails page
+    When On click on Emails Tab
+    And It should navigate to emails page
     And user select global chekbox all mail shoul get selected
     And On Hover it should show tooltip with message for Delete
     And On click on Delete icon it should open a Popup with confirmation messgae
@@ -273,7 +281,7 @@ Feature: Verify Emails Features
     When On click on Emails Tab it should navigate to emails page
     And user right click on any Mail
     And user select Report spam after right click it should show confirmation popup
-    Then On clikc on Cancel the mail should not move to spam
+    Then On click on Cancel the mail should not move to spam
 
   @Emailstag35
   Scenario: Verify Deleet mail on right click

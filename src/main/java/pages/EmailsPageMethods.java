@@ -79,12 +79,7 @@ public class EmailsPageMethods extends PredefinedActions {
 	
 	
 public void LoadAllmail() {
-	HoverOnElementUsingAction(propOperation.getValue("FirstTile"), true);
-	 sleep(3000);
-	 clickOnElement(propOperation.getValue("Scroller"), true);
-		sleep(3000);
-		
-		
+	
 		scrollToBottom();
 	 
 	 

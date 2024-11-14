@@ -235,6 +235,7 @@ Feature: Email Composition and Alerts
     And the current date should be displayed in the date picker
     And the current time should be displayed in the date picker
     Then the user should be able to Save
+    And the user clicks on the Send button without entering any content
 
   @ComposeMailtag26
   Scenario: Verify selecting future date
@@ -356,7 +357,7 @@ Feature: Email Composition and Alerts
   Scenario: Verify to Select Expiration time from dropdown for one hour
     Given the user is logged in
     When the user clicks on the Compose Email button
-    Then The User click on Set to Expire button a popup should get Open
+    And The User click on Set to Expire button a popup should get Open
     And the User Clicks on Expiration Time Filed a list should get open
     Then User Should be able to select expiration time for one hour
 
@@ -503,8 +504,8 @@ Feature: Email Composition and Alerts
   Scenario: Make Compose Compact or maximize
     Given the user is logged in
     When the user clicks on the Compose Email button
-    Then On click on Maximize Compose should reopen
     And On click on Maximize Compose should reopen
+    Then On click on Maximize Compose should reopen
 
   @ComposeMailtag54
   Scenario: Close Compose Box
@@ -519,20 +520,26 @@ Feature: Email Composition and Alerts
     Then On click on Delete icon Compose box should get closed
 
   @ComposeMailtag56
-  Scenario: Open Attachment Popup
+  Scenario: Send Mail With Attachment
     Given the user is logged in
     When the user clicks on the Compose Email button
+    And the user enters an email address in the To field
+    And On click on Enter email id should get enter
+    And Enter the subject
+    And Enter the Body
     And On click on Attachment icon system Files Popup should get open
-    Then User Should be able to add attachmetns
+    And User Should be able to add attachmetns
+    Then the user clicks on the Send button without entering any content
 
   @ComposeMailtag57
   Scenario: Change Font type in Compose mail
     Given the user is logged in
     When the user clicks on the Compose Email button
     And On Click on text Format it should Open a popup
-    Then Enter the Body
+    And Enter the Body
+    And Select Conetent in Mail
     And On Hover Font type should show Tooltip message
-    And On Click on Font Type a dropdown should get open and  on select any option font type should get changed
+    And On Click on Font Type a dropdown should get open and on select any option font type should get changed
 
   @ComposeMailtag58
   Scenario: Change Font size in Compose mail
@@ -540,6 +547,7 @@ Feature: Email Composition and Alerts
     When the user clicks on the Compose Email button
     And On Click on text Format it should Open a popup
     And Enter the Body
+    And Select Conetent in Mail
     And On Hover Font size should show Tooltip message
     And On Click on Font size a dropdown should get open and  on select any option font size should get changed
 
@@ -549,6 +557,7 @@ Feature: Email Composition and Alerts
     When the user clicks on the Compose Email button
     And On Click on text Format it should Open a popup
     And Enter the Body
+    And Select Conetent in Mail
     And On Hover B Icon should show Tooltip message
     And On Click on B Icon  text should change to Bold
 
@@ -558,6 +567,7 @@ Feature: Email Composition and Alerts
     When the user clicks on the Compose Email button
     And On Click on text Format it should Open a popup
     And Enter the Body
+    And Select Conetent in Mail
     And On Hover I Icon should show Tooltip message
     Then On Click on I icon the text should change to Italic
 
@@ -567,6 +577,7 @@ Feature: Email Composition and Alerts
     When the user clicks on the Compose Email button
     And On Click on text Format it should Open a popup
     And Enter the Body
+    And Select Conetent in Mail
     And On Hover U icon should show Tooltip message
     Then On Click on U icon the text should change to Underline
 
@@ -576,6 +587,7 @@ Feature: Email Composition and Alerts
     When the user clicks on the Compose Email button
     And On Click on text Format it should Open a popup
     And Enter the Body
+    And Select Conetent in Mail
     And On Hover S icon should show Tooltip message
     Then On Click on S icon the text should change to StrikeThrough
 
@@ -585,6 +597,7 @@ Feature: Email Composition and Alerts
     When the user clicks on the Compose Email button
     And On Click on text Format it should Open a popup
     And Enter the Body
+    And Select Conetent in Mail
     And On Hover Alignment icon should show Tooltip message
     And On Click on Alignment it should open a dropdown and Alignment should get changed
 
@@ -594,6 +607,8 @@ Feature: Email Composition and Alerts
     When the user clicks on the Compose Email button
     And On Click on text Format it should Open a popup
     And Enter the Body
+    And Select Conetent in Mail
+    And Select Conetent in Mail
     And On Hover Bullet List icon should show Tooltip message
     And On Click on Bullet List icon it should add bullets
 
@@ -603,6 +618,7 @@ Feature: Email Composition and Alerts
     When the user clicks on the Compose Email button
     And On Click on text Format it should Open a popup
     And Enter the Body
+    And Select Conetent in Mail
     And On Hover Number List icon should show Tooltip message
     And On Click on Number List icon it should add Number
 
@@ -612,6 +628,7 @@ Feature: Email Composition and Alerts
     When the user clicks on the Compose Email button
     And On Click on text Format it should Open a popup
     And Enter the Body
+    And Select Conetent in Mail
     And On Hover indent icon should show Tooltip message
     And On Click on indent  icon it should add moves toward right
 
@@ -621,6 +638,7 @@ Feature: Email Composition and Alerts
     When the user clicks on the Compose Email button
     And On Click on text Format it should Open a popup
     And Enter the Body
+    And Select Conetent in Mail
     And On Click on indent  icon it should add moves toward right
     And On Hover outdent icon should show Tooltip message
     And On Click on outdent List icon it should moves toward left
@@ -631,6 +649,7 @@ Feature: Email Composition and Alerts
     When the user clicks on the Compose Email button
     And On Click on text Format it should Open a popup
     And Enter the Body
+    And Select Conetent in Mail
     And On Hover BLockquote icon should show Tooltip message
     And On Click on BLockquote icon it should add BlockQuote
 
@@ -640,6 +659,7 @@ Feature: Email Composition and Alerts
     When the user clicks on the Compose Email button
     And On Click on text Format it should Open a popup
     And Enter the Body
+    And Select Conetent in Mail
     And On Click on BLockquote icon it should add BlockQuote
     And On Hover Tx icon should show Tooltip message
     And On Click on Tx icon it should add clear latest Text format
@@ -793,7 +813,7 @@ Feature: Email Composition and Alerts
     Then on click on Remove link should get removed
 
   @ComposeMailtag88
-  Scenario: Create link after select text 
+  Scenario: Create link after select text
     Given the user is logged in
     When the user clicks on the Compose Email button
     And select some text
@@ -809,29 +829,17 @@ Feature: Email Composition and Alerts
     And user can create new link on empty compose
     And On click on Link it should show created link in popup
     Then on click on link user should navigate to next page
-    
-    @ComposeMailtag90
+
+  @ComposeMailtag90
   Scenario: Verify link with doubleclick
-   Given the user is logged in
+    Given the user is logged in
     When the user clicks on the Compose Email button
     And Hover on link it should show tooltip with message
     And user can create new link on empty compose
-  Then user Doubele click and verify Link
-  And On click on Link it should show created link in popup
-  
-  
-   @ComposeMailtag91
-  Scenario:Send Bulk mail with All options needed
-  Given the user is logged in
-  When User Sends bulk mail with all options present
-  
-  
-  
-  
-  
-  
-  
-  
-    
-    
-    
+    Then user Doubele click and verify Link
+    And On click on Link it should show created link in popup
+
+  @ComposeMailtag91
+  Scenario: Send Bulk mail with All options needed
+    Given the user is logged in
+    When User Sends bulk mail with all options present

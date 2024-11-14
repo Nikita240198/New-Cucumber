@@ -6,17 +6,11 @@ import java.awt.event.KeyEvent;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-
 import base.PredefinedActions;
 import constant.ConstantPath;
-import stepDefinition.AutomationHooks;
 import utility.PropOperation;
 
 public class DashboardPageMethods extends PredefinedActions { 
@@ -56,6 +50,7 @@ public class DashboardPageMethods extends PredefinedActions {
 				&& getElementText(propOperation.getValue("ReportSpamMessage"), true).equals(expectedTooltipMessage);
 
 	}
+	
 
 	public void ClickSpam() {
 		clickOnElement(propOperation.getValue("ReportspamHeader"), true);
@@ -67,10 +62,19 @@ public class DashboardPageMethods extends PredefinedActions {
 	}
 
 	public void SendSpam() {
-		clickOnElement(propOperation.getValue("YesSpam"), true);
-		sleep(5000);
+		clickOnElement(propOperation.getValue("YesSpam"), true); 
+		sleep(13000);
 	}
 
+	public boolean isSnackbarForInbox() {
+		
+		   WebElement locator = getElement(propOperation.getValue("MovedToInboxSnackbar"), false);
+		   
+		   waitUntilElementIsVisible(locator);
+		   
+		return isElementDisplayed(propOperation.getValue("MovedToInboxSnackbar"), true);
+	}
+	
 	public void NoSendSpam() {
 		clickOnElement(propOperation.getValue("NoSpam"), true);
 		sleep(3000);
@@ -97,6 +101,11 @@ public class DashboardPageMethods extends PredefinedActions {
 
 	public void DeleteMail() {
 		clickOnElement(propOperation.getValue("YesDelete"), true);
+		sleep(5000);
+	}
+	
+	public void deleteFromSecondEllipsis() {
+		clickOnElement(propOperation.getValue("DeleteFromSecondEllipsis"), true);
 		sleep(5000);
 	}
 
@@ -132,6 +141,10 @@ public class DashboardPageMethods extends PredefinedActions {
 //	public boolean ismessagelableDisplay() {
 //		return isElementDisplayed(propOperation.getValue("AddLAbel"), true);
 //	}
+	
+	public boolean isValidationForLabelVisible() {
+		return isElementDisplayed(propOperation.getValue("AddLAbel"), true);
+	}
 
 	public boolean hoverAndCheckTooltipLable(String expectedTooltipMessage) {
 		HoverOnElementUsingAction(propOperation.getValue("LabelHeader"), true);
@@ -152,6 +165,25 @@ public class DashboardPageMethods extends PredefinedActions {
 		sleep(5000);
 
 	}
+	
+	public void scrollToBottom() {
+		 WebElement createElementElement = getElement(propOperation.getValue("CreatenewLabel"), false); // Initially, no wait
+
+		    if (createElementElement == null) {
+		        System.out.println("Send button element not found.");
+		        return;
+		    }
+
+		    scrollToElement(createElementElement);
+
+		    // Wait for the element to be visible after scrolling
+		    if (!waitUntilElementIsVisibleOne(createElementElement)) {
+		        // Handle the scenario where the element is not visible
+		        System.out.println("Send button is not visible after scrolling.");
+		    }
+	}
+	
+	
 
 	public void CreateNewLabel() throws InterruptedException {
 		// click on create label button
@@ -203,7 +235,7 @@ public class DashboardPageMethods extends PredefinedActions {
 	}
 
 	public void MarkAsReadFromHover() {
-		HoverOnElementUsingAction(propOperation.getValue("HoverOnMail"), true);
+		HoverOnElementUsingAction(propOperation.getValue("FirstTile"), true);
 		sleep(3000);
 		clickOnElement(propOperation.getValue("HovermailIocnclick"), true);
 		sleep(2000);
@@ -219,6 +251,13 @@ public class DashboardPageMethods extends PredefinedActions {
 	public void OpenFirstmails() {
 		clickOnElement(propOperation.getValue("FirstMail"), true);
 		sleep(2000);
+	}
+	
+	public boolean isMailOpen() {
+		clickOnElement(propOperation.getValue("FirstTile"), true);
+		sleep(2000);
+		return isElementDisplayed(propOperation.getValue("SubjectPresent"), true);
+
 	}
 
 	public void HoverExpandmail() {
@@ -355,7 +394,7 @@ public class DashboardPageMethods extends PredefinedActions {
 
 	public boolean IsMailPresent() {
 		List<WebElement> EmailList = getAllElements(propOperation.getValue("EmailList"), true);
-		System.out.println(EmailList);
+		System.out.println("Emails list size"+EmailList);
 
 		return !EmailList.isEmpty();
 
@@ -422,16 +461,55 @@ public class DashboardPageMethods extends PredefinedActions {
 		sleep(2000);
 	}
 
+//	public void GetFirstMailOnRightClick() throws InterruptedException {
+//		HoverOnElementUsingAction(propOperation.getValue("FirstTile"), true);
+//
+//		scrollToBottom();
+//		WebElement element = getElement(propOperation.getValue("FirstMail"), true);
+//		Actions actions = new Actions(getDriver());
+//		actions.contextClick(element).perform();
+//		Thread.sleep(2000); // Sleep after the action if necessary
+//	}
+
 	public void GetFirstMailOnRightClick() throws InterruptedException {
-		HoverOnElementUsingAction(propOperation.getValue("FirstTile"), true);
+	    // Hover over the first tile
+	    HoverOnElementUsingAction(propOperation.getValue("FirstTile"), true);
 
-		scrollToBottom();
-		WebElement element = getElement(propOperation.getValue("FirstMail"), true);
-		Actions actions = new Actions(getDriver());
-		actions.contextClick(element).perform();
-		Thread.sleep(2000); // Sleep after the action if necessary
+	    // Try to locate the first mail without scrolling
+	    WebElement mailElement = null;
+	    try {
+	        mailElement = getElement(propOperation.getValue("FirstMail"), false); // Don't wait too long initially
+	    } catch (NoSuchElementException e) {
+	        // Mail not found initially, so scroll to bottom
+	        scrollToBottom();
+	        mailElement = getElement(propOperation.getValue("FirstMail"), true); // Now try again with wait
+	    }
+
+	    if (mailElement != null) {
+	        // Perform right-click action on the first mail
+	        Actions actions = new Actions(getDriver());
+	        actions.contextClick(mailElement).perform();
+	        Thread.sleep(5000); // Optional delay after right-click
+	    } else {
+	        System.out.println("No mail element found.");
+	    }
 	}
-
+	
+	public void waitUntilPopupIsVisible() {
+	    String popupLocator = propOperation.getValue("PopupOnRightClick");
+	    System.out.println(popupLocator);
+	    waitUntilElementIsVisible(popupLocator); // Ensure popup is visible before continuing
+	}
+	
+//	public void waitUntilPopupIsVisible() {
+//	    String popupLocator = propOperation.getValue("PopupOnRightClick");
+//	    System.out.println("Waiting for popup: " + popupLocator);
+//
+//	    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(15));
+//	    wait.until(driver -> isElementDisplayed(popupLocator, false)); // Check popup visibility dynamically
+//	}
+	
+	
 	public boolean isPopUpVisible() {
 		List<WebElement> elements = getAllElements(propOperation.getValue("PopupOnRightClick"), true);
 		for (WebElement element : elements) {

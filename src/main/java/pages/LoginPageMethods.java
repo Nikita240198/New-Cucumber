@@ -69,7 +69,7 @@ public class LoginPageMethods extends PredefinedActions {
 
 	public void ValidUserName() throws InterruptedException {
 		clickOnElement(propOperation.getValue("Username"), true);
-		setText(propOperation.getValue("Username"), true, "rishabh");
+		setText(propOperation.getValue("Username"), true, "nikitabargal");
 		sleep(3000);
 	}
 
@@ -108,6 +108,8 @@ public class LoginPageMethods extends PredefinedActions {
 
 		return isElementDisplayed(propOperation.getValue("ComposeButton"), true);
 	}
+	
+
 
 	public void MoveSliderRandomly() {
 		clickOnElement(propOperation.getValue("Slider"), true);

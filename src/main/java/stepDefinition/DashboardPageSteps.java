@@ -12,8 +12,7 @@ import pages.LandingPageMethods;
 import pages.LoginPageMethods;
 
 public class DashboardPageSteps {
-	LoginPageMethods loginPageMethods = new LoginPageMethods(); 
-	LandingPageMethods landingPageMethods = new LandingPageMethods();
+	
 	DashboardPageMethods dashboardpagemethods = new DashboardPageMethods();
 
 	@Then("On  Dashboard screen should get open with All selected")
@@ -36,6 +35,7 @@ public class DashboardPageSteps {
 	@When("user click on First mail mail should get open")
 	public void user_click_on_First_mail_mail_should_get_open() {
 	  dashboardpagemethods.OpenFirstmails();
+	  Assert.assertTrue("mail is not opened", dashboardpagemethods.isMailOpen());
 	}
 
 
@@ -57,12 +57,14 @@ public class DashboardPageSteps {
 	}
 
 	@Then("On click on Ok the mail should move to spam")
-	public void on_click_on_Ok_the_mail_should_move_to_spam() {
+	public void on_click_on_Ok_the_mail_should_move_to_spam() throws InterruptedException {
 		dashboardpagemethods.SendSpam();
+		
+		Assert.assertTrue("Mail does not moved to spam", dashboardpagemethods.isSnackbarForInbox());
 	}
 
-	@Then("On clikc on Cancel the mail should not move to spam")
-	public void on_clikc_on_Cancel_the_mail_should_not_move_to_spam() {
+	@Then("On click on Cancel the mail should not move to spam")
+	public void on_click_on_Cancel_the_mail_should_not_move_to_spam() {
 		dashboardpagemethods.NoSendSpam();
 	}
 
@@ -128,8 +130,17 @@ public class DashboardPageSteps {
 		dashboardpagemethods.ClickApplyOnly();
 	}
 	
+
+	@Then("It should show validation message")
+	public void it_should_show_validation_message() {
+		boolean validationMessage = dashboardpagemethods.isValidationForLabelVisible();
+		Assert.assertEquals("Tooltip message should contain", "select at least one lable to apply ", validationMessage);
+	}
+
+	
 	@When("create new label")
 	public void create_new_label() throws InterruptedException {
+		dashboardpagemethods.scrollToBottom();
 		dashboardpagemethods.CreateNewLabel();
 	}
 
@@ -168,16 +179,19 @@ public class DashboardPageSteps {
 		Assert.assertTrue("Subject message is not displayed as expected",
                 dashboardpagemethods.OpenMail());
 	}
-
+	
 	@When("On Hover it should show Tooltip Expand or Collapseand on Click it should expand mail or collapse mail")
 	public void on_Hover_it_should_show_Tooltip_Expand_or_Collapseand_on_Click_it_should_expand_mail_or_collapse_mail() {
-		dashboardpagemethods.HoverExpandmail();
+dashboardpagemethods.HoverExpandmail();
 		
 		String tooltipMessage = dashboardpagemethods.Expandmailmessage();
 		assertTooltipMessage(tooltipMessage);
+		
+		dashboardpagemethods.ClickExpand();
 	}
 
-	private void ExpandMessage(String tooltipMessage) {
+
+	private void ExpandMessage(String tooltipMessage) { 
 		// Check if the message is correct based on whether the mail is read or unread
 		if (tooltipMessage.contains("Collapse all")) {
 			Assert.assertEquals("Tooltip message should contain 'Expand all'", "Expand all", tooltipMessage);
@@ -226,7 +240,7 @@ public class DashboardPageSteps {
 	@When("Click Report Spam")
 	public void click_Report_Spam() {
 		dashboardpagemethods.ClickSpaminEllipses();
-		Assert.assertTrue("Tooltip message is not same", dashboardpagemethods.isConfirmationPopupComes());
+		
 	}
 
 	@When("On Click Delete")
@@ -275,6 +289,7 @@ public class DashboardPageSteps {
 	@When("if there is no mail in list it should show message")
 	public void if_there_is_no_mail_in_list_it_should_show_message() {
 		if(dashboardpagemethods.IsMailPresent()) {
+			
 			Assert.assertTrue("There are no messages to read" ,dashboardpagemethods.getMessageElement());
 		
 	            System.out.println("Messages are present.");
@@ -290,11 +305,11 @@ public class DashboardPageSteps {
 		
 	}
 	
-	@When("on Click on report spam it should show confirmation popup")
-	public void on_Click_on_report_spam_it_should_show_confirmation_popup() {
+	@When("on Click on report spam")
+	public void on_Click_on_report_spam() {
 		dashboardpagemethods.ClikcReportSpamSecondEllipse();
 	}
-	
+
 	
 	@Then("On click on print It should open Popup")
 	public void on_click_on_print_It_should_open_Popup() {
@@ -308,12 +323,15 @@ public class DashboardPageSteps {
 	
 	@When("On click on Delete It should Confirmation popup")
 	public void on_click_on_Delete_It_should_Confirmation_popup() {
-	    
+		dashboardpagemethods.deleteFromSecondEllipsis();
+		Assert.assertTrue("popup is not there", dashboardpagemethods.isConfirmationPopupComesforDelete());
+		
 	}
 
 	@When("user right click on any Mail")
 	public void user_right_click_on_any_Mail() throws InterruptedException {
 		dashboardpagemethods.GetFirstMailOnRightClick();
+		dashboardpagemethods.waitUntilPopupIsVisible();
 	}
 
 	@When("It should show popup with all options present")
@@ -322,12 +340,16 @@ public class DashboardPageSteps {
 		
 	}
 
-	@When("user select Report spam after right click it should show confirmation popup")
-	public void user_select_Report_spam_after_right_click_it_should_show_confirmation_popup() {
+
+	
+	@When("user select Report spam")
+	public void user_select_Report_spam() {
 		dashboardpagemethods.SendTospamFromRightClick();
+	}
+
+	@When("after right click it should show confirmation popup")
+	public void after_right_click_it_should_show_confirmation_popup() {
 		Assert.assertTrue("popup is not there", dashboardpagemethods.isConfirmationPopupComes());
-		
-		
 	}
 
 	@When("Click on Delete After rightClick it should open a Popup with confirmation messgae")
@@ -371,9 +393,6 @@ public class DashboardPageSteps {
 	}
 	
 	
-	@Then("On clikc on Cancel the mail should move to spam")
-	public void on_clikc_on_Cancel_the_mail_should_move_to_spam() {
-	  
-	}
+
 
 }

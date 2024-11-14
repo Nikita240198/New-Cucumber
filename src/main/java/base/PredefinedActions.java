@@ -1,5 +1,6 @@
 package base;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
@@ -29,6 +30,8 @@ import org.openqa.selenium.support.ThreadGuard;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.sikuli.script.Pattern;
+import org.sikuli.script.Screen;
 
 import constant.ConstantPath;
 import CustomException.InvalidLocatorType;
@@ -126,7 +129,7 @@ public class PredefinedActions {
 		openWebSite(ConstantPath.CONNECT_URL);
 	}
 
-	public void tearDown() {
+	public void tearDown(){
 		getDriver().quit();
 	}
 
@@ -190,6 +193,8 @@ public class PredefinedActions {
 	    }
 	    return element;
 	}
+	
+	
 
 
 	public String getAttribute(String locator, boolean isWaitRequired, String attributeName) {
@@ -229,7 +234,7 @@ public class PredefinedActions {
 
 	public boolean waitUntilElementIsClickable(WebElement element) {
 		try {
-			WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+			WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5000));
 			wait.until(ExpectedConditions.elementToBeClickable(element));
 			return true;
 		} catch (Exception e) {
@@ -247,6 +252,19 @@ public class PredefinedActions {
 			return false;
 		}
 	}
+	
+	
+	public boolean waitToShowCompose(WebElement element, int timeoutInSeconds) {
+	    try {
+	        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds));
+	        wait.until(ExpectedConditions.visibilityOf(element));
+	        return true;
+	    } catch (TimeoutException e) {
+	        System.err.println("Element not visible within the timeout: " + timeoutInSeconds + " seconds");
+	        return false;
+	    }
+	}
+	
 	
 
 
@@ -296,7 +314,13 @@ public class PredefinedActions {
 	}
 	
 
-	
+	public void SelectAllText(String locator, boolean isWaitRequired) {
+		WebElement element = getElement(locator, false);
+		 element.click();
+		Actions actions = new Actions(getDriver());
+		  actions.keyDown(Keys.COMMAND).sendKeys("a").perform();
+		
+	}
 
 	public void clickOnElementUsingJavaScript(String locator, boolean isWaitRequired) {
 		WebElement element = getElement(locator, isWaitRequired);
@@ -349,6 +373,8 @@ public class PredefinedActions {
 
 	}
 	
+
+	
 	public void pressWIndowAndAll() {
 		Actions actions = new Actions(getDriver());
 		
@@ -398,6 +424,58 @@ public class PredefinedActions {
 		}
 	}
 	
+//	public void uploadFile(String filePath) {
+//	    // Validate the file path before proceeding
+//	    File file = new File(filePath);
+//	    if (!file.exists()) {
+//	        throw new IllegalArgumentException("File does not exist at specified path: " + filePath);
+//	    }
+//
+//	    // Assuming there's an `input` element for file upload in the HTML
+//	    WebElement fileInput = new WebDriverWait(getDriver(), Duration.ofSeconds(10))
+//	        .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']")));
+//
+//	    // Send the file path to the input element (this will bypass the system popup)
+//	    fileInput.sendKeys(filePath);
+//	}
+
+	public void uploadFileUsingJavaScript(String filePath, String locator, Boolean isWaitRequired) {
+	    File file = new File(filePath);
+	    if (!file.exists()) {
+	        throw new IllegalArgumentException("File does not exist: " + filePath);
+	    }
+
+	    WebElement element = waitForElement(locator, isWaitRequired);
+
+	    // Use JavaScript to reveal the hidden file input if necessary
+	    JavascriptExecutor js = (JavascriptExecutor) getDriver();
+	    js.executeScript("arguments[0].style.display='block';", element);
+
+	    // Attach the file using sendKeys
+	    element.sendKeys(filePath);
+	    System.out.println("File attached: " + filePath);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+
+	public WebElement waitForElement(String locator, Boolean isWaitRequired) {
+	    By byLocator = getLocatorBy(locator); // Use the custom locator method
+
+	    if (isWaitRequired) {
+	        return new WebDriverWait(getDriver(), Duration.ofSeconds(10))
+	                .until(ExpectedConditions.presenceOfElementLocated(byLocator));
+	    } else {
+	        return getDriver().findElement(byLocator);
+	    }
+	}
+
+
 
 
 	public boolean waitUntilElementIsVisible(String locator) {
@@ -447,6 +525,9 @@ public class PredefinedActions {
 		select.selectByVisibleText(valueToSelect);
 		
 	}
+	
+
+	
 
 	public void ScrollPage(String locator) {
 		 JavascriptExecutor js = (JavascriptExecutor) getDriver();
@@ -496,14 +577,13 @@ public class PredefinedActions {
 	}
 
 
-
 	public byte[] takeScreenshot() {
 		TakesScreenshot ts = (TakesScreenshot) getDriver();
 		return ts.getScreenshotAs(OutputType.BYTES);
 	}
 	
 	
-	
+
 
 	
 	

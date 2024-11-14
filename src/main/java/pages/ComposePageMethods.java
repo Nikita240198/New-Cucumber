@@ -1,23 +1,28 @@
 package pages;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.sikuli.script.Pattern;
+import org.sikuli.script.Screen;
 import base.PredefinedActions;
-import ch.qos.logback.core.util.Duration;
 import constant.ConstantPath;
 import utility.PropOperation;
 
@@ -65,9 +70,30 @@ public class ComposePageMethods extends PredefinedActions {
 		return isElementDisplayed(propOperation.getValue("ComposeTitle"), true);
 	}
 
+//	public void ClickOnSend() {
+//		
+//		clickOnElement(propOperation.getValue("SendButton"), true);
+//		WebElement element = getElement(propOperation.getValue("ComposeButton"), true);
+//		waitUntilElementIsVisible(element);
+//	}
+	
 	public void ClickOnSend() {
-		clickOnElement(propOperation.getValue("SendButton"), true);
-		sleep(7000);
+	    // Click on the Send button
+	    clickOnElement(propOperation.getValue("SendButton"), true);
+
+	    // Ensure the Compose button is visible, indicating the email was sent
+	    WebElement element = getElement(propOperation.getValue("CancelAfterSend"), true);
+	    
+	    if (waitToShowCompose(element, 30)) {  // Increase timeout to 30 seconds
+	        System.out.println("Email sent successfully, Compose button is visible.");
+	    } else {
+	        System.err.println("Failed to send the email, Compose button not visible.");
+	    }
+		}
+
+	
+	public boolean isMailSentSuccessfully() {
+		return isElementDisplayed(propOperation.getValue("CancelAfterSend"), true);
 	}
 
 	public boolean isErrorPopupAppear() {
@@ -85,7 +111,7 @@ public class ComposePageMethods extends PredefinedActions {
 	}
 
 	public void EnterRecipient() throws InterruptedException {
-		setText(propOperation.getValue("ToField"), true, "testprajwalone@staging.blinkly.com");
+		setText(propOperation.getValue("ToField"), true, "mansi@staging.blinkly.com");
 		sleep(3000);
 	}
 
@@ -237,47 +263,9 @@ public class ComposePageMethods extends PredefinedActions {
 				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
 				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
 				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, ..."
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, ..."
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, ..."
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, ..."
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, ..."
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, ..."
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, ..."
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"
-				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences,"; // Add
-																																											// the
-																																											// rest
-																																											// of
-																																											// your
-																																											// text
-																																											// here
+				+ "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences";
+
+		// the
 
 		setTextUsingJS(bodyLocator, true, largeText);
 	}
@@ -297,6 +285,7 @@ public class ComposePageMethods extends PredefinedActions {
 	}
 
 	public boolean isTodaydateisPresent() {
+
 		return isElementDisplayed(propOperation.getValue("DatePicker"), true);
 	}
 
@@ -305,13 +294,14 @@ public class ComposePageMethods extends PredefinedActions {
 		sleep(3000);
 	}
 
-	public void OpenCalendar() {
+	public void openCalendar() {
 		clickOnElement(propOperation.getValue("DatePicker"), true);
 		sleep(3000);
 	}
 
 	public void SelectFutureDate() {
 		LocalDate currentDate = LocalDate.now();
+
 		System.out.println(currentDate);
 
 		LocalDate nextDate = currentDate.plusDays(1);
@@ -324,7 +314,7 @@ public class ComposePageMethods extends PredefinedActions {
 
 		WebElement nextDateElement = getElementByValue(nextDateStr, true); // Adjust boolean parameter as needed
 		nextDateElement.click();
-		sleep(3000);
+		sleep(5000);
 
 	}
 
@@ -617,6 +607,8 @@ public class ComposePageMethods extends PredefinedActions {
 
 	public void EnableVc() {
 		clickOnElement(propOperation.getValue("VC"), true);
+		sleep(3000);
+
 	}
 
 	public boolean isVcEnabled() {
@@ -644,6 +636,7 @@ public class ComposePageMethods extends PredefinedActions {
 
 	public void EnableD2I() {
 		clickOnElement(propOperation.getValue("D2I"), true);
+		sleep(5000);
 	}
 
 	public boolean isD2IEnabled() {
@@ -663,6 +656,10 @@ public class ComposePageMethods extends PredefinedActions {
 	public String IsFormatMessageSame() {
 		WebElement message = getElement(propOperation.getValue("TextFormatIcon"), true);
 		return message.getText();
+	}
+
+	public void SelectAllText() {
+		pressWIndowAndAll();
 	}
 
 	public void ClickTextFormat() {
@@ -745,7 +742,7 @@ public class ComposePageMethods extends PredefinedActions {
 	public void ChangeFontType() throws InterruptedException {
 		clickOnElement(propOperation.getValue("FontTypeicon"), true);
 		sleep(3000);
-		setText(propOperation.getValue("FontTypeicon"), true, "Sans-serif");
+		clickOnElement(propOperation.getValue("SelctFont"), true);
 	}
 
 	public String HoverFontSize() {
@@ -987,7 +984,7 @@ public class ComposePageMethods extends PredefinedActions {
 //	}
 
 	public void Subjetcone(int i) throws InterruptedException {
-		setText(propOperation.getValue("Subject"), true, "Subject new  " + i);
+		setText(propOperation.getValue("Subject"), true, "Subject from Macbook" + i);
 		sleep(3000);
 	}
 
@@ -995,12 +992,12 @@ public class ComposePageMethods extends PredefinedActions {
 //		setText(propOperation.getValue("ToField"), true, "nikitabaragl@staging.blinkly.com");
 //		pressEnterKey();
 //	sleep(2000);
-		setText(propOperation.getValue("ToField"), true, "testprajwalone@staging.blinkly.com");//
+		setText(propOperation.getValue("ToField"), true, "testprajwaltwo@staging.blinkly.com");//
 		pressSpace();
-		sleep(2000);
-		setText(propOperation.getValue("ToField"), true, "mansi@staging.blinkly.com");
-		pressEnterKey();
-		
+//		sleep(2000);
+//		setText(propOperation.getValue("ToField"), true, "mansi@staging.blinkly.com");
+//		pressEnterKey();
+
 	}
 
 	public void MultipleRecipientInCCField() throws InterruptedException {
@@ -1167,6 +1164,7 @@ public class ComposePageMethods extends PredefinedActions {
 	}
 
 	public void CreateLink() throws InterruptedException {
+
 		clickOnElement(propOperation.getValue("inputLinkText"), true);
 
 		setText(propOperation.getValue("inputLinkText"), true, "TextLink");
@@ -1293,7 +1291,7 @@ public class ComposePageMethods extends PredefinedActions {
 
 	public void EnterBodyInBulk(int count) throws InterruptedException {
 
-		for (int i = 486; i < count; i++) {
+		for (int i = 0; i < count; i++) {
 
 			OpenCompose();
 			MultipleRecipientInToField();
@@ -1306,7 +1304,7 @@ public class ComposePageMethods extends PredefinedActions {
 	}
 
 	public void BulkmailWithAllOptions(int count) throws InterruptedException {
-		for (int i =0 ; i < count; i++) {
+		for (int i = 0; i < count; i++) {
 			// send normal mail
 			OpenCompose();
 			MultipleRecipientInToField();
@@ -1340,9 +1338,9 @@ public class ComposePageMethods extends PredefinedActions {
 //			ClickOnSend();
 //			sleep(3000);
 //			
-			
-			//send mail with VC Enabled
-			
+
+			// send mail with VC Enabled
+
 //			OpenCompose();
 //			MultipleRecipientInToField();
 //			PressEnter();
@@ -1351,8 +1349,8 @@ public class ComposePageMethods extends PredefinedActions {
 //			EnableVc();
 //			ClickOnSend();
 //			sleep(3000);
-			
-			//send mail to blinkly and non blinkly
+
+			// send mail to blinkly and non blinkly
 //			OpenCompose();
 //			MultipleRecipientInToField();
 //			setText(propOperation.getValue("ToField"), true, "nikitabargalmindruby@gmail.com");
@@ -1366,11 +1364,52 @@ public class ComposePageMethods extends PredefinedActions {
 		}
 
 	}
+
+	public void clickAttachment() {
+		clickOnElement(propOperation.getValue("OpenAttachment"), true); // Click the icon
+		sleep(2000); // Allow time for any dynamic elements to load
+	}
+
 	
-	
-	
-	
-	
-	
+
+	public boolean isAttachmentDispalyed() {
+		return isElementDisplayed(propOperation.getValue("UploadedAttachment"), true);
+	}
+
+
+	public void uploadFile(String fileName) {
+		Screen screen = new Screen();
+
+		try {
+			Pattern downloadsFolder = new Pattern("/Users/Mind/Documents/DownloadFolder.png");
+			Pattern fileInputField = new Pattern("/Users/Mind/Documents/FieldInput.png");
+			Pattern File = new Pattern("/Users/Mind/Documents/File.png");
+
+			// Hover and click the Downloads folder
+			screen.wait(downloadsFolder, 10);
+			screen.hover(downloadsFolder);
+			screen.doubleClick(downloadsFolder);
+			System.out.println("Clicked on Downloads folder");
+
+			// Type the filename in the input field
+			System.out.println("Clicking on the search box...");
+			screen.click(fileInputField);
+
+			System.out.println("Typing the file name: " + fileName);
+			screen.type(fileName);
+
+			//Select File 
+			System.out.println("Clicking on the Attachment..");
+
+			// Wait for the first option to appear and click it
+			screen.wait(File, 10);
+			screen.hover(File);
+			screen.doubleClick(File);
+			System.out.println("Selected the first matching option");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

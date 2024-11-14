@@ -95,6 +95,8 @@ public class loginPageSteps {
 	@Then("user should login Successfully and navigate to Dashboard Screen")
 	public void user_should_login_Successfully_and_navigate_to_Dashboard_Screen() {
 		  Assert.assertTrue("Dashboard is not vidsible",loginPageMethods.isComposeButtonVisible());
+		
+		  
 	}
 
 	@Then("user selects incorrect slider value")

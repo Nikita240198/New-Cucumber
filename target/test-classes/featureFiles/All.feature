@@ -45,7 +45,7 @@ Feature: Verify Dashboad Features
     Given the user is logged in
     When On click on checkbox mail it should select mail
     And On click on Spam icon it should open a Popup with confirmation messgae
-    Then On clikc on Cancel the mail should not move to spam
+    Then On click on Cancel the mail should not move to spam
 
   @Alltag5
   Scenario: Delete single mail From Header
@@ -76,13 +76,15 @@ Feature: Verify Dashboad Features
     And On Hover it should show tooltip with message for Add Lable
     And On click On Add Lable it should open popup
     And Click on Apply Lable
+    Then It should show validation message
+    
 
   @Alltag9
   Scenario: verify Add label from popup
     Given the user is logged in
     When On click on checkbox mail it should select mail
     And On click On Add Lable it should open popup
-    And create new label
+    Then create new label
 
   @Alltag10
   Scenario: Select Label from List
@@ -160,7 +162,7 @@ Feature: Verify Dashboad Features
   Scenario: Verify Expand Mail on Open mail
     Given the user is logged in
     When user Click on first tile it should Open mail or message
-    And On Hover it should show Tooltip Expand or Collapseand on Click it should expand mail or collapse mail
+    And On Hover it should show Tooltip Expand or Collapse and on Click it should expand mail or collapse mail
 
   @Alltag21
   Scenario: Verify Print on Open mail
@@ -181,6 +183,7 @@ Feature: Verify Dashboad Features
     When user Click on first tile it should Open mail or message
     And On Hover it should show Tooltip Ellipses on Click it should open popup
     And Click Report Spam
+    And it Should Show confirmation popup
     Then On click on Ok the mail should move to spam
 
   @Alltag24
@@ -241,7 +244,8 @@ Feature: Verify Dashboad Features
     Given the user is logged in
     When user Click on first tile it should Open mail or message
     And On Hover on second ellipses it should show Tooltip on Click it should open popup
-    And on Click on report spam it should show confirmation popup
+    And on Click on report spam 
+    And it Should Show confirmation popup
     Then On click on Ok the mail should move to spam
 
   @Alltag32
@@ -300,8 +304,10 @@ Feature: Verify Dashboad Features
   Scenario: Verify report spam on right click
     Given the user is logged in
     When user right click on any Mail
-    And user select Report spam after right click it should show confirmation popup
+    And user select Report spam
+    And  after right click it should show confirmation popup
     Then On clikc on Cancel the mail should not move to spam
+    
     
   @Alltag40
   Scenario: Verify Deleet mail on right click
